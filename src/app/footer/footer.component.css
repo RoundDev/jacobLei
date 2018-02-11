@@ -1,0 +1,28 @@
+/*.footer {*/
+/*text-indent: 20px;*/
+/*font-size: 14px;*/
+/*z-index: 1;*/
+/*}*/
+.footer {
+  z-index: 1;
+  text-indent: 20px;
+  font-size: 14px;
+  height: 24px;
+  width: 100%;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 0pt;
+  left: 0pt;
+
+}
+
+.footer-contents {
+
+  height:24px; /* Replace with the height your footer should be*/
+  width: 1000px; /* Visible width of footer */
+  margin:auto;
+
+}
