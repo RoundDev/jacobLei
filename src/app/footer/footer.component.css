@@ -5,6 +5,7 @@
 /*}*/
 .footer {
   z-index: 1;
+  font-style: italic;
   text-indent: 20px;
   font-size: 14px;
   height: 24px;
@@ -16,13 +17,15 @@
   position: fixed;
   bottom: 0pt;
   left: 0pt;
-
+  background: #0B1A33;
+  color: #999;
+  opacity: 0.9;
 }
 
 .footer-contents {
 
   height:24px; /* Replace with the height your footer should be*/
-  width: 1000px; /* Visible width of footer */
+  width: 100%; /* Visible width of footer */
   margin:auto;
 
 }
