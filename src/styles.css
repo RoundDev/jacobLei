@@ -29,27 +29,41 @@ h3 {
 }
 .bg-1 {
   background: #0B1A33;
-  color: #bdbdbd;
+  /*color: #bdbdbd;*/
   width: 100%;
   opacity: 0.9;
+  height: 100%;
 }
 .bg-1 h3 {
   color: #e1e7ee;
 }
 .bg-1 p {
   font-style: italic;
-  color: #d5d5d5 !important;
+  color: #8a8a8a !important;
 }
 .bg-2 {
   background: #0B1A33;
-  color: #bdbdbd;
+  /*color: #bdbdbd;*/
   width: 100%;
   height: 100vh;
   opacity: 0.9;
 }
+
 .bg-2 p {
   font-style: italic;
   color: #2e3631 !important;
+}
+.bg-0 {
+  background: #0B1A33;
+  /*color: #bdbdbd;*/
+  width: 100%;
+  height: 100vh;
+  opacity: 0.9;
+}
+
+.bg-0 p {
+  font-style: italic;
+  color: #d8eee7 !important;
 }
 .list-group-item:first-child {
   border-top-right-radius: 0;
@@ -437,10 +451,10 @@ hr{
 .btn-row {
   padding-bottom: 10px;
 }
-p {
-  color: black;
-}
-img {
+/*p {*/
+  /*color: black;*/
+/*}*/
+.cards-img {
   width: 40%;
   margin-left: 67%;
 }
