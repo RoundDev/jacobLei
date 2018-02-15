@@ -5,3 +5,28 @@
 bg-2 p {
   color: #0000006e;
 }
+@media only screen and (max-width: 486px) {
+  .padding-container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .padding-content {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+}
+@media only screen and (max-width: 764px) {
+  .md-padding-content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+}
+@media only screen and (max-width: 989px){
+  .lg-padding-content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
