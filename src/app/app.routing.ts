@@ -6,6 +6,7 @@ import {PaymentComponent} from './payment/payment.component';
 import {CarouselComponent} from './carousel/carousel.component';
 import {ServicesComponent} from './services/services.component';
 import {PropertiesComponent} from './properties/properties.component';
+import {ApplicationComponent} from './application/application.component';
 
 const  appRoutes: Routes = [
   {
@@ -35,6 +36,10 @@ const  appRoutes: Routes = [
   {
     path: 'properties',
     component: PropertiesComponent
+  },
+  {
+    path: 'application',
+    component: ApplicationComponent
   }
 ]
 
