@@ -12,6 +12,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { ServicesComponent } from './services/services.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { FooterComponent } from './footer/footer.component';
+import { ApplicationComponent } from './application/application.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     CarouselComponent,
     ServicesComponent,
     PropertiesComponent,
-    FooterComponent
+    FooterComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,
