@@ -1,4 +1,5 @@
 <div class="container bg-2 padding-container">
+  <form [formGroup]="maintenanceForm">
   <div class="row row-padding padding-content md-padding-content lg-padding-content">
     <!--<div class="col-12"></div>-->
     <div class="panel panel-info">
@@ -12,39 +13,44 @@
             <strong>Tenant Name</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" name="ten_name" value=""/>
+            <input autocomplete="on" type="text" class="form-control" formControlName="tenName" name="tenName" value="" required />
           </div>
+          <span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <strong>Rental Property Address</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" name="app_address" value=""/>
+            <input autocomplete="on" type="text" class="form-control" formControlName="appAddress" name="appAddress" value="" required />
           </div>
+          <span *ngIf="maintenanceForm.controls.appAddress.errors" class="invalid">Rental Property Address Required</span>
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <strong>Your Contact #</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" name="phone_number" value=""/>
+            <input autocomplete="on" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" value="" required />
           </div>
+          <span *ngIf="maintenanceForm.controls.phoneNumber.errors" class="invalid">Phone Number Required</span>
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <strong>Your ​Email</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" name="email_address" value=""/>
+            <input autocomplete="on" type="text" class="form-control" formControlName="emailAddress" name="emailAddress" value="" required />
           </div>
+          <span *ngIf="maintenanceForm.controls.emailAddress.errors" class="invalid">Invalid Email</span>
+          <!--<span *ngIf="maintenanceForm.controls.emailAddress.required" class="invalid">Email Required</span>-->
         </div>
 
         <div class="form-group">
           <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
             <label class='control-label'>Repair Issue</label>
-            <textarea class="text-area"></textarea>
-            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right">Submit</button>
+            <textarea formControlName="textArea" class="text-area"></textarea>
+            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!maintenanceForm.valid">Submit</button>
           </div>
           <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
           <!--<div class="col-sm-12 col-md-2 col-lg-2 pull-left">-->
@@ -62,7 +68,6 @@
           <div class="col-sm-12 col-md-12 col-lg-12 pull-left">
             <p style="font-size: 14px">
               <strong>Note:</strong> An EMERGENCY ISSUE is related to...<br>
-
               <strong>A.</strong> Heating and Air with extreme outside temperatures.
               However, there are no emergency HVAC services, after hours that any HVAC company offers so,
               the HVAC issue will have to be addressed during the next day.<br>
@@ -74,3 +79,5 @@
       </div>
     </div>
   </div>
+  </form>
+</div>

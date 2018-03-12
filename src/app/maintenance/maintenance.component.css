@@ -30,3 +30,7 @@ bg-2 p {
   }
 }
 
+.invalid {
+  color: red;
+  padding-left: 15px;
+}
