@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 
 @Component({
@@ -7,18 +7,27 @@ import {FormBuilder, Validators, FormGroup} from '@angular/forms';
   styleUrls: ['./maintenance.component.css']
 })
 export class MaintenanceComponent implements OnInit {
+  @Input()
   maintenanceForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) { }
+  inputError: string;
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
-    this.maintenanceForm = this.formBuilder.group( {
+    this.maintenanceForm = this.formBuilder.group({
       'tenName': ['', Validators.required],
       'appAddress': ['', Validators.required],
       'textArea': ['', Validators.required],
       'phoneNumber': ['', [Validators.required, Validators.maxLength(11)]],
       'emailAddress': ['', [Validators.required, Validators.email]]
-      });
+    });
   }
 
+  checkInputError() {
+  if (this.maintenanceForm.controls.tenName.value === '') {
+    this.inputError = 'Name Required';
+  } else {
+    this.inputError = null;
+  }
+  }
 }
