@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tenants.component.css']
 })
 export class TenantsComponent implements OnInit {
-
+showPaymentForm: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.showPaymentForm = false;
   }
-
+togglePaymentForm() {
+    this.showPaymentForm = !this.showPaymentForm;
+}
 }
