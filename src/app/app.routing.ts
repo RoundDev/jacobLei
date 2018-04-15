@@ -1,20 +1,20 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import {HomePageComponent} from './home-page/home-page.component';
-import {MaintenanceComponent} from './maintenance/maintenance.component';
-import {PaymentComponent} from './payment/payment.component';
+
 import {CarouselComponent} from './carousel/carousel.component';
 import {ServicesComponent} from './services/services.component';
 import {PropertiesComponent} from './properties/properties.component';
 import {ApplicationComponent} from './application/application.component';
+import {TenantsComponent} from './tenants/tenants.component';
+import {OwnersComponent} from './owners/owners.component';
+import {ContactComponent} from './contact/contact.component';
+import {PaymentComponent} from './payment/payment.component';
+import {MaintenanceComponent} from './maintenance/maintenance.component';
 
 const  appRoutes: Routes = [
   {
     path: '',
-    component: HomePageComponent
-  },
-  {
-    path: 'home',
     component: HomePageComponent
   },
   {
@@ -24,6 +24,10 @@ const  appRoutes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent
+  },
+  {
+    path: 'owners',
+    component: OwnersComponent
   },
   {
     path: 'home',
@@ -40,6 +44,10 @@ const  appRoutes: Routes = [
   {
     path: 'application',
     component: ApplicationComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
 ]
 

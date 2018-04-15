@@ -17,14 +17,32 @@
       <ul class="nav navbar-nav navbar-right">
         <!--<li><a routerLink="/home">HOME</a></li>-->
         <li><a routerLink="/services">SERVICES</a></li>
-        <li><a routerLink="=/home">OWNERS</a></li>
-        <li><a routerLink="/tenants">TENANTS</a></li>
+        <li><a routerLink="/application">APPLICATION</a> </li>
+        <li><a routerLink="/owners">OWNERS</a></li>
+        <!--<li><a routerLink="/tenants">TENANTS</a></li>-->
+        <li class="collapse">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">TENANTS</a>
+          <ul id="dropLinks" class="dropdown-menu">
+            <li><a routerLink="/payment">PAYMENT</a></li>
+            <li><a routerLink="/maintenance">MAINTENANCE REQUEST</a></li>
+            <li><a routerLink="/note">NOTE OF VACANCY</a></li>
+          </ul>
+        </li>
         <li><a routerLink="/properties">PROPERTIES</a></li>
-        <li><a routerLink="/">CONTACT US</a></li>
+        <li><a routerLink="/contact">CONTACT US</a></li>
         <!--<li><a routerLink="/application">APPLICATION</a></li>-->
         <!--<li><a routerLink="/payment">PAYMENT</a></li>-->
         <!--<li><a routerLink="/maintenance">MAINTENANCE REQUEST</a></li>-->
       </ul>
     </div>
+    <script>
+      $(".dropdown").hover(
+        function() {
+          $('.dropdown-menu').collapse('show');
+        }, function() {
+          $('.dropdown-menu').collapse('hide');
+        }
+      );
+    </script>
   </div>
 </nav>
