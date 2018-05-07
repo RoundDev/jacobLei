@@ -21,6 +21,9 @@ bg-2 p {
     padding-left: 5%;
     padding-right: 5%;
   }
+  .btn {
+    width: 100% !important;
+  }
 
 }
 @media only screen and (max-width: 989px){
@@ -33,4 +36,11 @@ bg-2 p {
 .invalid {
   color: red;
   padding-left: 15px;
+}
+.btn {
+  margin-right: 0px;
+  width: 15%;
+  border-radius: 3px;
+  border: transparent;
+  box-shadow: 2px 3px 6px 1px #000000c2;
 }
