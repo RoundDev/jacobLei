@@ -17,13 +17,16 @@ h4 {
 }
 .container {
   /*padding-top: 10%;*/
-  padding: 0px 0px !important;
+  padding: 7% 0% !important;
+  /*padding-top: 10% !important;*/
+  /*padding-bottom: 10% !important;*/
 }
 
 .container-content {
   background-color: #ddd;
   padding: 11px !important;
   border-radius: 3px;
+
 }
 td {
   font: 400 15px/1.8 Lato, sans-serif;
@@ -39,4 +42,13 @@ tr {
   letter-spacing: 2px;
   font-size: 18px;
   color: #444;
+}
+@media only screen and (max-width: 640px) {
+  .container-content {
+    margin: 2%;
+  }
+  .container {
+    padding-top: 10% !important;
+    padding-bottom: 10% !important;
+  }
 }

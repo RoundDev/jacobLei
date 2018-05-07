@@ -111,11 +111,13 @@ h3 {
 .navbar-nav li a:hover {
   color: #ffffff !important;
 }
-/*.navbar-nav li.active a {*/
+
+
+.navbar-nav li a:active {
+  color: #ffffff !important;
   /*color: #000080 !important;*/
-  /*background-color: #304463 !important;*/
-  /*opacity: 0.5;*/
-/*}*/
+
+}
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }
