@@ -32,7 +32,10 @@
   margin:auto;
   padding-top: 10px;
 }
-
+.footer-link {
+  color: #f5f5f5;
+  text-decoration: none;
+}
 @media only screen and (max-width: 640px) {
   .padding {
     padding-top: 0px;

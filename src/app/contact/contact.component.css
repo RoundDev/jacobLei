@@ -1,32 +1,75 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Roboto Mono");
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-@font-face {
-  font-family: 'Dosis';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Dosis Light'), local('Dosis-Light'), url(http://fonts.gstatic.com/l/font?kit=RoNoOKoxvxVq4Mi9I4xIReCW9eLPAnScftSvRB4WBxg&skey=a88ea9d907460694) format('woff2');
-}
-@font-face {
-  font-family: 'Dosis';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Dosis Medium'), local('Dosis-Medium'), url(http://fonts.gstatic.com/l/font?kit=Z1ETVwepOmEGkbaFPefd_-CW9eLPAnScftSvRB4WBxg&skey=21884fc543bb1165) format('woff2');
-}
 body {
-
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif,  Open Sans;
+  /*font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif,  Open Sans;*/
   font-size: 14px;
   line-height: 1.42857;
   height: 350px;
   padding: 0;
   margin: 0;
 }
-
 .panel-default {
   width: 52%;
   border-color: #ddd;
   box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
   margin-left: 25%;
   padding-top: 4%;
+}
+.btn {
+  margin-right: 0px;
+  border-radius: 3px;
+  border: transparent;
+  box-shadow: 2px 3px 6px 1px #000000c2;
+}
+/*----------------------Mobile CSS---------------------------------------*/
+/*-------Vartical---------*/
+@media only screen and (max-width: 414px) {
+  .panel-default {
+    width: 136%;
+    -webkit-box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
+    box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
+     margin-left: 0%;
+     padding-top: 0%;
+    margin-bottom: 18px;
+  }
+  .row {
+    margin-right: -11%;
+    margin-left: -70%;
+  }
+  .padding-input-group {
+    padding-bottom: 5px;
+  }
+  .panel-body {
+    padding-top: 30px;
+  }
+  .map {
+    border: 0;
+    padding: 2px;
+    margin-left: -4px;
+    width: 138%;
+  }
+}
+/*-------Horizontal-----------*/
+@media only screen and (min-width: 730px) {
+  .row {
+    margin-right: 9%;
+    margin-left: -21%;
+  }
+  .padding-input-group {
+    padding-bottom: 5px;
+  }
+
+  .panel-default[_ngcontent-c3] {
+    width: 128%;
+    border-color: #ddd;
+    -webkit-box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
+    box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
+     margin-left: 0%;
+     padding-top: 0%;
+    margin-bottom: 18px;
+  }
+  .map {
+    border: 0;
+    padding: 2px;
+    margin-left: -4px;
+    width: 129%;
+  }
 }

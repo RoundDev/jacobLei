@@ -23,11 +23,11 @@ h4 {
 }
 
 .container-content {
-  background-color: #ddd;
-  padding: 11px !important;
-  border-radius: 3px;
+   background-color: #ddd;
+   padding: 11px !important;
+   border-radius: 3px;
 
-}
+ }
 td {
   font: 400 15px/1.8 Lato, sans-serif;
   color: #333 !important;

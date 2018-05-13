@@ -43,6 +43,10 @@ a.dropdown:hover {
 .router-link-active {
   color: #ffffff !important;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 /*@media (min-width: 764px) {*/
 
   /*ul.nav li.dropdown:hover > ul.dropdown-menu {*/

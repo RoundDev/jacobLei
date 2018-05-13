@@ -23,7 +23,6 @@
   .btn {
     width: 100% !important;
   }
-
 }
 @media only screen and (max-width: 989px){
   .lg-padding-content {
@@ -32,6 +31,10 @@
   }
 }
 
+.info-p {
+  font-style: italic;
+  color: #4c4c4c !important;
+}
 .btn {
   margin-right: 0px;
   width: 15%;
