@@ -29,3 +29,13 @@
   width: 100%;
   height: 100%;
 }
+
+@media only screen and (max-width: 736px) {
+  .intrinsic-container-16x9 {
+    padding-bottom: 160%;
+    margin-top: 49px;
+  }
+  .container {
+    padding: 0 !important;
+  }
+}

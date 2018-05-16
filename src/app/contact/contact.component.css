@@ -6,6 +6,9 @@ body {
   padding: 0;
   margin: 0;
 }
+.message-padding {
+  padding-left: 12%;
+}
 .panel-default {
   width: 52%;
   border-color: #ddd;
@@ -21,7 +24,7 @@ body {
 }
 /*----------------------Mobile CSS---------------------------------------*/
 /*-------Vartical---------*/
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 736px) {
   .panel-default {
     width: 136%;
     -webkit-box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
@@ -46,9 +49,14 @@ body {
     margin-left: -4px;
     width: 138%;
   }
+  .message-padding {
+    padding-left: 5%;
+    width: 100%;
+    margin-left: 2%;
+  }
 }
 /*-------Horizontal-----------*/
-@media only screen and (min-width: 730px) {
+@media only screen and (max-height: 414px) {
   .row {
     margin-right: 9%;
     margin-left: -21%;
@@ -57,7 +65,7 @@ body {
     padding-bottom: 5px;
   }
 
-  .panel-default[_ngcontent-c3] {
+  .panel-default {
     width: 128%;
     border-color: #ddd;
     -webkit-box-shadow: 2px 5px 7px 6px rgba(13, 4, 1, 0.51);
@@ -66,10 +74,18 @@ body {
      padding-top: 0%;
     margin-bottom: 18px;
   }
+  .panel-body {
+    padding-top: 30px;
+  }
   .map {
     border: 0;
     padding: 2px;
     margin-left: -4px;
     width: 129%;
+  }
+  .message-padding {
+    padding-left: 3%;
+    width: 100%;
+    margin-left: 1%;
   }
 }
