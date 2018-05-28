@@ -11,6 +11,7 @@ import {OwnersComponent} from './owners/owners.component';
 import {ContactComponent} from './contact/contact.component';
 import {PaymentComponent} from './payment/payment.component';
 import {MaintenanceComponent} from './maintenance/maintenance.component';
+import {NoticeComponent} from './notice/notice.component';
 
 const  appRoutes: Routes = [
   {
@@ -46,8 +47,8 @@ const  appRoutes: Routes = [
     component: ApplicationComponent
   },
   {
-    path: 'contact',
-    component: ContactComponent
+    path: 'notice',
+    component: NoticeComponent
   }
 ]
 

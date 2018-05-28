@@ -24,10 +24,10 @@ export class MaintenanceComponent implements OnInit {
   }
 
   checkInputError() {
-  if (this.maintenanceForm.controls.tenName.value === '') {
-    this.inputError = 'Name Required';
-  } else {
-    this.inputError = null;
-  }
+    if (this.maintenanceForm.controls.tenName.value === '') {
+      this.inputError = 'Name Required';
+    } else {
+      this.inputError = null;
+    }
   }
 }

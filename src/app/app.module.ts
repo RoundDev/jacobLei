@@ -17,6 +17,7 @@ import { ApplicationComponent } from './application/application.component';
 import { TenantsComponent } from './tenants/tenants.component';
 import { OwnersComponent } from './owners/owners.component';
 import { ContactComponent } from './contact/contact.component';
+import { NoticeComponent } from './notice/notice.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ContactComponent } from './contact/contact.component';
     ApplicationComponent,
     TenantsComponent,
     OwnersComponent,
-    ContactComponent
+    ContactComponent,
+    NoticeComponent
   ],
   imports: [
     BrowserModule,
