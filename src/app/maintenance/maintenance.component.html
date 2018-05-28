@@ -13,9 +13,10 @@
             <strong>Tenant Name</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" formControlName="tenName" name="tenName" value="" required />
+            <input autocomplete="on" type="text" class="form-control" id="tenName" formControlName="tenName" name="tenName" (input)="checkInputError()" value="" required />
           </div>
-          <span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>
+          <!--<span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>-->
+          <span class="alert-warning small" *ngIf="inputError !== null">{{inputError}}</span>
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">

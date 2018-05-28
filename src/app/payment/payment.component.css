@@ -7,14 +7,22 @@
     padding-left: 2px;
     padding-right: 2px;
   }
+  .btn {
+    width: 100% !important;
+  }
 
 }
-@media only screen and (max-width: 764px) {
+@media only screen and (max-width: 724px) {
   .md-padding-content {
     padding-left: 5%;
     padding-right: 5%;
   }
-
+  .selection-padding {
+    padding-bottom: 5%;
+  }
+  .btn {
+    width: 100% !important;
+  }
 }
 @media only screen and (max-width: 989px){
   .lg-padding-content {
@@ -23,3 +31,14 @@
   }
 }
 
+.info-p {
+  font-style: italic;
+  color: #4c4c4c !important;
+}
+.btn {
+  margin-right: 0px;
+  width: 15%;
+  border-radius: 3px;
+  border: transparent;
+  box-shadow: 2px 3px 6px 1px #000000c2;
+}

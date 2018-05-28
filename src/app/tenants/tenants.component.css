@@ -1,0 +1,12 @@
+.row-display {
+  display: inline-flex;
+}
+ .links-container {
+   background: #0d24387a;
+   border: 2px solid #8a8a8a;
+   width: 35%;
+   box-shadow: 0px 0px 25px 1px black;
+ }
+.li-adjustment {
+  padding-top: 45%;
+}
