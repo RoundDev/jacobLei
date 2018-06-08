@@ -14,7 +14,7 @@ import { ServicesComponent } from './services/services.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { FooterComponent } from './footer/footer.component';
 import { ApplicationComponent } from './application/application.component';
-import { TenantsComponent } from './tenants/tenants.component';
+
 import { OwnersComponent } from './owners/owners.component';
 import { ContactComponent } from './contact/contact.component';
 import { NoticeComponent } from './notice/notice.component';
@@ -34,7 +34,7 @@ import {HttpClient} from '@angular/common/http';
     PropertiesComponent,
     FooterComponent,
     ApplicationComponent,
-    TenantsComponent,
+
     OwnersComponent,
     ContactComponent,
     NoticeComponent

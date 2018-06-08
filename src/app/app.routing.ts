@@ -6,7 +6,6 @@ import {CarouselComponent} from './carousel/carousel.component';
 import {ServicesComponent} from './services/services.component';
 import {PropertiesComponent} from './properties/properties.component';
 import {ApplicationComponent} from './application/application.component';
-import {TenantsComponent} from './tenants/tenants.component';
 import {OwnersComponent} from './owners/owners.component';
 import {ContactComponent} from './contact/contact.component';
 import {PaymentComponent} from './payment/payment.component';
