@@ -1,84 +1,70 @@
 <div class="container bg-2 padding-container">
-  <form [formGroup]="maintenanceForm">
-  <div class="row row-padding padding-content md-padding-content lg-padding-content">
-    <!--<div class="col-12"></div>-->
-    <div class="panel panel-info">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  panel-heading">
-        <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-6"><span><i class="fa fa-wrench" aria-hidden="true"></i></span> Maintenance Request
+  <form [formGroup]="maintenanceForm" method="post" action="maintenance.php">
+    <div class="row row-padding padding-content md-padding-content lg-padding-content">
+      <div class="panel panel-info">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  panel-heading">
+          <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-6"><span><i class="fa fa-wrench" aria-hidden="true"></i></span> Maintenance Request
+          </div>
         </div>
-      </div>
-      <div class="panel-body panel-box">
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Tenant Name</strong>
+        <div class="panel-body panel-box">
+          <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <strong>Tenant Name</strong>
+            </div>
+            <div class="col-sm-12 col-md-12">
+              <input autocomplete="on" type="text" class="form-control"  formControlName="tenName" name="name" id="name" (input)="checkInputError()" value="" required />
+            </div>
+            <!--<span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>-->
+            <span class="alert-warning small" *ngIf="inputError !== null">{{inputError}}</span>
           </div>
-          <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" id="tenName" formControlName="tenName" name="tenName" (input)="checkInputError()" value="" required />
+          <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <strong>Rental Property Address</strong>
+            </div>
+            <div class="col-sm-12 col-md-12">
+              <input autocomplete="on" type="text" class="form-control" formControlName="appAddress" name="address" id="address" value="" required />
+            </div>
+            <span *ngIf="maintenanceForm.controls.appAddress.errors" class="invalid">Rental Property Address Required</span>
           </div>
-          <!--<span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>-->
-          <span class="alert-warning small" *ngIf="inputError !== null">{{inputError}}</span>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Rental Property Address</strong>
+          <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <strong>Your Contact Number</strong>
+            </div>
+            <div class="col-sm-12 col-md-12">
+              <input autocomplete="on" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber" value="" required />
+            </div>
+            <span *ngIf="maintenanceForm.controls.phoneNumber.errors" class="invalid">Phone Number Required</span>
           </div>
-          <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" formControlName="appAddress" name="appAddress" value="" required />
+          <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <strong>Your ​Email</strong>
+            </div>
+            <div class="col-sm-12 col-md-12">
+              <input autocomplete="on" type="text" class="form-control" formControlName="email" name="email" id="email" value="" required />
+            </div>
+            <!--<span *ngIf="maintenanceForm.controls.emailAddress.errors" class="invalid">Invalid Email</span>-->
+            <!--<span *ngIf="maintenanceForm.controls.emailAddress.required" class="invalid">Email Required</span>-->
           </div>
-          <span *ngIf="maintenanceForm.controls.appAddress.errors" class="invalid">Rental Property Address Required</span>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Your Contact #</strong>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" value="" required />
-          </div>
-          <span *ngIf="maintenanceForm.controls.phoneNumber.errors" class="invalid">Phone Number Required</span>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Your ​Email</strong>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" formControlName="emailAddress" name="emailAddress" value="" required />
-          </div>
-          <span *ngIf="maintenanceForm.controls.emailAddress.errors" class="invalid">Invalid Email</span>
-          <!--<span *ngIf="maintenanceForm.controls.emailAddress.required" class="invalid">Email Required</span>-->
-        </div>
 
-        <div class="form-group">
-          <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
-            <label class='control-label'>Repair Issue</label>
-            <textarea formControlName="textArea" class="text-area"></textarea>
-            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!maintenanceForm.valid">Submit</button>
-          </div>
-          <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
-          <!--<div class="col-sm-12 col-md-2 col-lg-2 pull-left">-->
-          <!--<strong>Repair Issue</strong>-->
-          <!--</div>-->
-          <!--<div class="col-sm-5 col-md-5 pull-left">-->
-          <!--<textarea class="text-area"></textarea>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-          <!--<div class="col-xs-12 col-md-5 col-sm-12  col-lg-5 pull-right btn-row">-->
-          <!--<button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right">Pay</button>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="col-sm-12 col-md-12 col-lg-12 pull-left">
-            <p style="font-size: 14px">
-              <strong>Note:</strong> An EMERGENCY ISSUE is related to...<br>
-              <strong>A.</strong> Heating and Air with extreme outside temperatures.
-              However, there are no emergency HVAC services, after hours that any HVAC company offers so,
-              the HVAC issue will have to be addressed during the next day.<br>
-              <strong>B.</strong> Major Water Leak that cannot be controlled by turning off a water valve to the fixture (Faucet, Commode, Washing Machine Hose, etc...)<br>
-              <strong>C.</strong> Fire... CALL 911 IMMEDIATELY
-            </p>
+          <div class="form-group">
+            <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
+              <label class='control-label'>Repair Issue</label>
+              <textarea id="message" name="message" formControlName="textArea" class="text-area"></textarea>
+              <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!maintenanceForm.valid">Submit</button>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 pull-left">
+              <p style="font-size: 14px">
+                <strong>Note:</strong> An EMERGENCY ISSUE is related to...<br>
+                <strong>A.</strong> Heating and Air with extreme outside temperatures.
+                However, there are no emergency HVAC services, after hours that any HVAC company offers so,
+                the HVAC issue will have to be addressed during the next day.<br>
+                <strong>B.</strong> Major Water Leak that cannot be controlled by turning off a water valve to the fixture (Faucet, Commode, Washing Machine Hose, etc...)<br>
+                <strong>C.</strong> Fire... CALL 911 IMMEDIATELY
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </form>
 </div>

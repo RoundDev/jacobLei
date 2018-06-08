@@ -47,6 +47,10 @@ const  appRoutes: Routes = [
     component: ApplicationComponent
   },
   {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
     path: 'notice',
     component: NoticeComponent
   }

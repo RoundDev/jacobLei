@@ -19,7 +19,7 @@ export class MaintenanceComponent implements OnInit {
       'appAddress': ['', Validators.required],
       'textArea': ['', Validators.required],
       'phoneNumber': ['', [Validators.required, Validators.maxLength(11)]],
-      'emailAddress': ['', [Validators.required, Validators.email]]
+      'email': ['', [Validators.required, Validators.email]]
     });
   }
 

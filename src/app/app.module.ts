@@ -18,6 +18,8 @@ import { TenantsComponent } from './tenants/tenants.component';
 import { OwnersComponent } from './owners/owners.component';
 import { ContactComponent } from './contact/contact.component';
 import { NoticeComponent } from './notice/notice.component';
+import {AppService} from './app.service';
+import {HttpClient} from '@angular/common/http';
 
 
 @NgModule({
@@ -42,11 +44,10 @@ import { NoticeComponent } from './notice/notice.component';
     RouterModule,
     routing,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // HttpClient
   ],
-  providers: [
-    appRoutingProviders
-  ],
+  providers: [appRoutingProviders, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
