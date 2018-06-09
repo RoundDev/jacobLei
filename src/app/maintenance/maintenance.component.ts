@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-maintenance',
@@ -10,7 +11,7 @@ export class MaintenanceComponent implements OnInit {
   @Input()
   maintenanceForm: FormGroup;
   inputError: string;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private appService:AppService) {
   }
 
   ngOnInit() {
@@ -30,4 +31,12 @@ export class MaintenanceComponent implements OnInit {
       this.inputError = null;
     }
   }
+
+  sendEmail(data){
+    console.log('in component',data);
+    this.appService.sendMaintEmail(JSON.stringify(data.maintenanceForm.value)).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
 }
