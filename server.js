@@ -12,6 +12,7 @@ app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 
 app.post('/api/maintemail',api.sendMaintEmail);
+app.post('/api/contactemail',api.sendContactEmail);
 
 app.get('/*', function(req,res) {
 
