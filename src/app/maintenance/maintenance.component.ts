@@ -33,9 +33,8 @@ export class MaintenanceComponent implements OnInit {
   }
 
   sendEmail(data){
-    console.log('in component',data);
-    this.appService.sendMaintEmail(JSON.stringify(data.maintenanceForm.value)).subscribe((data) => {
-      console.log(data);
+    this.appService.sendMaintEmail(data.maintenanceForm.value).subscribe((data) => {
+      console.log('data',data);
     });
   }
 

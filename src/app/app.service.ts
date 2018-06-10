@@ -8,6 +8,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AppService {
 
+  private _baseUrl = window.location.origin;
+
   constructor(private http: HttpClient) { }
 
   sendMaintEmail(data):Observable<any>{
@@ -15,7 +17,7 @@ export class AppService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post('http://localhost:5000/api/email',JSON.stringify(data),httpOptions).catch(this.handleErrorObservable);
+    return this.http.post(this._baseUrl + '/api/maintemail',data,httpOptions).catch(this.handleErrorObservable);
   }
 
   handleErrorObservable (error: Response | any) {
