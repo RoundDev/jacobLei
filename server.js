@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 app.post('/api/maintemail',api.sendMaintEmail);
 app.post('/api/contactemail',api.sendContactEmail);
+app.post('/api/noticeemail',api.sendNoticeEmail);
 
 app.get('/*', function(req,res) {
 

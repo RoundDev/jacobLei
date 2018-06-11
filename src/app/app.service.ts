@@ -12,12 +12,29 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  sendMaintEmail(data):Observable<any>{
-    console.log('in servcie',data)
+  sendMaintEmail(data): Observable<any> {
+    console.log('in servcie', data)
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post(this._baseUrl + '/api/maintemail',data,httpOptions).catch(this.handleErrorObservable);
+    return this.http.post(this._baseUrl + '/api/maintemail', data, httpOptions).catch(this.handleErrorObservable);
+  }
+
+
+  sendContacEmail(data): Observable<any> {
+    console.log('in servcie', data)
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(this._baseUrl + '/api/contactemail', data, httpOptions).catch(this.handleErrorObservable);
+  }
+
+  sendNoticeEmail(data): Observable<any> {
+    console.log('in servcie', data)
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(this._baseUrl + '/api/noticeemail', data, httpOptions).catch(this.handleErrorObservable);
   }
 
   handleErrorObservable (error: Response | any) {

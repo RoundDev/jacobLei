@@ -41,8 +41,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-export SENDGRID_API_KEY='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' echo sendgrid.env source ./sendgrid.env
-export SENDGRID_API_KEY='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' echo sendgrid.env source ./sendgrid.env
 
 #env
 .env
