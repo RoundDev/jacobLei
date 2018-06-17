@@ -35,7 +35,8 @@
     padding-bottom: 160%;
     margin-top: 49px;
   }
-  .container {
+  .fix-container {
     padding: 0 !important;
+    width: 100% !important;
   }
 }
