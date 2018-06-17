@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {FormBuilder, Validator, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-notice',
@@ -10,7 +11,7 @@ export class NoticeComponent implements OnInit {
 @Input()
 noticeForm: FormGroup;
 inputError: string;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private appService: AppService) { }
 
   ngOnInit() {
     this.noticeForm = this.formBuilder.group({
@@ -18,7 +19,7 @@ inputError: string;
       'appAddress': ['', Validators.required],
       'textArea': ['', Validators.required],
       'phoneNumber': ['', [Validators.required, Validators.maxLength(11)]],
-      'emailAddress': ['', [Validators.required, Validators.email]]
+      'emailAddress': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]]
     });
   }
 
@@ -28,6 +29,12 @@ inputError: string;
     } else {
       this.inputError = null;
     }
+  }
+
+  sendEmail(data) {
+    this.appService.sendNoticeEmail(data.noticeForm.value).subscribe((data) => {
+      console.log('data', data);
+    });
   }
 
 }

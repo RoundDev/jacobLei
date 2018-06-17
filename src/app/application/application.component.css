@@ -20,7 +20,10 @@
   padding: 0 !important;
   width: 100%;
 }
-
+.iframe-wrapper {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
 /* 4x3 Aspect Ratio */
 .intrinsic-container-4x3 {
   padding-bottom: 75%;

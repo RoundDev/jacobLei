@@ -49,9 +49,9 @@
 
           <div class="form-group">
             <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
-              <label class='control-label'>Repair Issue</label>
+              <label class='control-label'>Please Specified Reason </label>
               <textarea formControlName="textArea" class="text-area"></textarea>
-              <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!noticeForm.valid">Submit</button>
+              <button type="button" (click)="sendEmail(this)" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!noticeForm.valid">Submit</button>
             </div>
 
           </div>

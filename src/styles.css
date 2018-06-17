@@ -104,9 +104,16 @@ h3 {
   color: #aaaaaa !important;
 }
 .navbar-brand {
-  font: 400 18px/1.8 "EB Garamond";
+  font-family: EB Garamond, sans-serif;
+  font-size: 18px;
   color: #f5f5f5 !important;
-  margin-top: -8px;
+  margin-top: -1px;
+}
+@media screen and (max-width: 375px){
+ .navbar-brand {
+  font-size: 15px;
+   margin-top: -1px;
+ }
 }
 .navbar-nav li a:hover {
   color: #ffffff !important;
@@ -125,6 +132,24 @@ h3 {
   .sm-navbar {
     letter-spacing: 2px;
   }
+}
+/*long*/
+@media only screen and  (min-width: 768px) {
+  .brand {
+    display: none !important;
+  }
+  .desc-display {
+    margin-left: -34px;
+    top: 12px;
+    font-size: 5px;
+  }
+}
+/*short*/
+@media only screen and (max-width: 767px)   {
+  .ipad {
+    display: none !important;
+  }
+
 }
 
 .form-control {

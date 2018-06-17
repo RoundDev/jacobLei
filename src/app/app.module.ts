@@ -19,7 +19,7 @@ import { OwnersComponent } from './owners/owners.component';
 import { ContactComponent } from './contact/contact.component';
 import { NoticeComponent } from './notice/notice.component';
 import {AppService} from './app.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import {HttpClient} from '@angular/common/http';
     routing,
     FormsModule,
     ReactiveFormsModule,
-    // HttpClient
+    HttpClientModule
   ],
   providers: [appRoutingProviders, AppService],
   bootstrap: [AppComponent]

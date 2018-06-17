@@ -29,13 +29,18 @@
   width: 100%;
   height: 100%;
 }
+.iframe-wrapper {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
 
 @media only screen and (max-width: 736px) {
   .intrinsic-container-16x9 {
     padding-bottom: 160%;
     margin-top: 49px;
   }
-  .container {
+  .fix-container {
     padding: 0 !important;
+    width: 100% !important;
   }
 }
