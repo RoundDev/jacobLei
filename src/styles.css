@@ -109,7 +109,7 @@ h3 {
   color: #f5f5f5 !important;
   margin-top: -1px;
 }
-@media screen and (max-width: 374px){
+@media screen and (max-width: 375px){
  .navbar-brand {
   font-size: 15px;
    margin-top: -1px;
@@ -133,17 +133,23 @@ h3 {
     letter-spacing: 2px;
   }
 }
-
-@media screen and (min-width: 768px) and (max-width: 770px) {
-  .sm-logo {
-    width: 45%;
-    margin-top: -14px;
+/*long*/
+@media only screen and  (min-width: 768px) {
+  .brand {
+    display: none !important;
+  }
+  .desc-display {
+    margin-left: -34px;
+    top: 12px;
+    font-size: 5px;
   }
 }
-@media  screen and (min-width: 766px) {
-  .sm-logo {
-    display: none;
+/*short*/
+@media only screen and (max-width: 767px)   {
+  .ipad {
+    display: none !important;
   }
+
 }
 
 .form-control {
