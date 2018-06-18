@@ -15,6 +15,7 @@ export class MaintenanceComponent implements OnInit {
   inputPhoneError: string;
   inputEmailError: string;
   inputTextError: string;
+  emailSuccess: boolean;
   constructor(private formBuilder: FormBuilder, private appService: AppService) {
   }
 
@@ -26,7 +27,6 @@ export class MaintenanceComponent implements OnInit {
       'phoneNumber': ['', [Validators.required, Validators.maxLength(10)]],
       'email': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]]
     });
-    this.checkInputError();
   }
 
   checkInputError() {
@@ -50,7 +50,7 @@ export class MaintenanceComponent implements OnInit {
     } else {
       this.inputEmailError = null;
     }
-    if (this.maintenanceForm.controls.textArea.touched) {
+    if (this.maintenanceForm.controls.textArea.touched === false) {
       this.inputTextError = 'Repair Issue Required';
     } else {
       this.inputTextError = null;
@@ -59,6 +59,10 @@ export class MaintenanceComponent implements OnInit {
   sendEmail(data) {
     this.appService.sendMaintEmail(data.maintenanceForm.value).subscribe((data) => {
       console.log('data', data);
+      if (data.success) {
+        this.emailSuccess = true;
+        this.maintenanceForm.reset();
+      }
     });
   }
   // onSubmit() {

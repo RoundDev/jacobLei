@@ -31,7 +31,7 @@ const  appRoutes: Routes = [
   },
   {
     path: 'home',
-    component: CarouselComponent
+    component: HomePageComponent
   },
   {
     path: 'services',
