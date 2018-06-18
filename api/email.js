@@ -29,7 +29,7 @@ var self = module.exports ={
             mailgun.messages().send(data, function (err, body) {
                 //If there is an error, render the error page
                 if (err) {
-                    res.json({'error':err});
+                    res.json({'error':JSON.stringify(err)});
                     console.log("got an error: ", err);
                 }
                 //Else we can greet    and leave
