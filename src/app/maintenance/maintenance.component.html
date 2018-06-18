@@ -22,7 +22,7 @@
               <strong>Rental Property Address</strong>
             </div>
             <div class="col-sm-12 col-md-12">
-              <input autocomplete="off" type="text" class="form-control" formControlName="appAddress" name="address" id="address" value="" required />
+              <input autocomplete="off" type="text" class="form-control" formControlName="appAddress" (input)="checkInputError()" name="address" id="address" value="" required />
             </div>
             <span class="alert-warning small" *ngIf="inputAddressError !== null">{{inputAddressError}}</span>
             <!--<span *ngIf="maintenanceForm.controls.appAddress.errors" class="invalid">Rental Property Address Required</span>-->
@@ -32,7 +32,7 @@
               <strong>Your Contact Number</strong>
             </div>
             <div class="col-sm-12 col-md-12">
-              <input autocomplete="off" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber" value="" required />
+              <input autocomplete="off" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" (input)="checkInputError()" id="phoneNumber" value="" required />
             </div>
             <span class="alert-warning small" *ngIf="inputPhoneError !== null">{{inputPhoneError}}</span>
             <!--<span *ngIf="maintenanceForm.controls.phoneNumber.errors" class="invalid">Phone Number Required</span>-->
@@ -42,7 +42,7 @@
               <strong>Your ​Email</strong>
             </div>
             <div class="col-sm-12 col-md-12">
-              <input autocomplete="off" type="text" class="form-control" formControlName="email" name="email" id="email" value="" required />
+              <input autocomplete="off" type="text" class="form-control" formControlName="email" name="email" (input)="checkInputError()" id="email" value="" required />
             </div>
             <span class="alert-warning small" *ngIf="inputEmailError !== null">{{inputEmailError}}</span>
             <!--<span *ngIf="maintenanceForm.controls.emailAddress.errors" class="invalid">Invalid Email</span>-->
@@ -52,7 +52,7 @@
           <div class="form-group">
             <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
               <label class='control-label'>Repair Issue</label>
-              <textarea id="message" name="message" formControlName="textArea" class="text-area"></textarea>
+              <textarea id="message" name="message" formControlName="textArea" class="text-area" (input)="checkInputError()"></textarea>
               <span class="alert-warning small" *ngIf="inputTextError !== null">{{inputTextError}}</span>
               <button type="button" (click)="sendEmail(this)" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!maintenanceForm.valid">Submit</button>
             </div>
