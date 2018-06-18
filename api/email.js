@@ -29,20 +29,19 @@ var self = module.exports ={
             mailgun.messages().send(data, function (err, body) {
                 //If there is an error, render the error page
                 if (err) {
-                    res.status(500).end({'error':err});
+                    res.json({'error':err});
                     console.log("got an error: ", err);
                 }
                 //Else we can greet    and leave
                 else {
                     //Here "submitted.jade" is the view file for this landing page 
                     //We pass the variable "email" from the url parameter in an object rendered by Jade
-                    res.status(200).end({'success':'successfully sent email'});
-                    console.log(body);
+                    res.json({'success':'successfully sent email'});
                 }
             });
             /*for testing*/
         //res.status(200).send({"html":html.toString()});
-        next();
+        //next();
     },
 
     sendContactEmail: function(req,res,next){
