@@ -1,7 +1,8 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
-import {AppService} from '../app.service';
 
+import {AppService} from '../app.service';
+declare let $: any;
 @Component({
   selector: 'app-maintenance',
   templateUrl: './maintenance.component.html',
@@ -10,12 +11,18 @@ import {AppService} from '../app.service';
 export class MaintenanceComponent implements OnInit {
   @Input()
   maintenanceForm: FormGroup;
+  @Input()
+  showModal: boolean;
   inputNameError: string;
   inputAddressError: string;
   inputPhoneError: string;
   inputEmailError: string;
   inputTextError: string;
   emailSuccess: boolean;
+  messageHeader: string;
+  messageBody: string;
+  @ViewChild('modal') modal: ElementRef;
+
   constructor(private formBuilder: FormBuilder, private appService: AppService) {
   }
 
@@ -61,11 +68,24 @@ export class MaintenanceComponent implements OnInit {
       console.log('data', data);
       if (data.success) {
         this.emailSuccess = true;
+        this.messageHeader = 'Thank You';
+        this.messageBody = 'We received your email';
+        this.showInfoModal();
         this.maintenanceForm.reset();
+      } else if (data.error) {
+        this.emailSuccess = false;
+        this.messageHeader = 'Error';
+        this.messageBody = 'Something went wrong. Please, check your form and try again';
+        this.showInfoModal();
       }
     });
   }
-  // onSubmit() {
+
+  showInfoModal() {
+    $(this.modal.nativeElement).modal('show');
+  }
+
+    // onSubmit() {
   //   if (this.maintenanceForm.valid) {
   //
   //   }
