@@ -10,7 +10,10 @@ import {AppService} from '../app.service';
 export class NoticeComponent implements OnInit {
 @Input()
 noticeForm: FormGroup;
-inputError: string;
+  inputError: string;
+  emailSuccess: boolean;
+  messageHeader: string;
+  messageBody: string;
   constructor(private formBuilder: FormBuilder, private appService: AppService) { }
 
   ngOnInit() {
@@ -34,6 +37,16 @@ inputError: string;
   sendEmail(data) {
     this.appService.sendNoticeEmail(data.noticeForm.value).subscribe((data) => {
       console.log('data', data);
+      if (data.success) {
+        this.emailSuccess = true;
+        this.messageHeader = 'Thank You';
+        this.messageBody = 'We received your email';
+        this.noticeForm.reset();
+      } else if (data.error) {
+        this.emailSuccess = false;
+        this.messageHeader = 'Error';
+        this.messageBody = 'Something went wrong. Please, check your form and try again';
+      }
     });
   }
 

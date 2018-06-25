@@ -43,3 +43,20 @@ bg-2 p {
   border: transparent;
   box-shadow: 2px 3px 6px 1px #000000c2;
 }
+
+.modal-backdrop {
+  z-index: 99999;
+  position: absolute !important;
+}
+
+.modal-body {
+  z-index: 1029;
+}
+.modal-dialog {
+  padding-top: 8%;
+}
+
+.modal-class {
+  display: none;
+  z-index: 9999;
+}

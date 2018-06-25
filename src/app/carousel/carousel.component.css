@@ -1,3 +1,14 @@
 .p {
   color: #eeeeee;
 }
+@media only screen and (max-width: 770px) {
+  .carousel-inner img {
+    margin-top: 215px;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .carousel-inner img {
+    margin-top: 5px;
+  }
+}

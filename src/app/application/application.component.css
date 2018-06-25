@@ -22,7 +22,7 @@
 }
 .iframe-wrapper {
   -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 /* 4x3 Aspect Ratio */
 .intrinsic-container-4x3 {

@@ -4,6 +4,7 @@
 }
 bg-2 p {
   color: #0000006e;
+  height: 100vh !important;
 }
 @media only screen and (max-width: 486px) {
   .padding-container {
@@ -42,4 +43,21 @@ bg-2 p {
   border-radius: 3px;
   border: transparent;
   box-shadow: 2px 3px 6px 1px #000000c2;
+}
+
+.modal-backdrop {
+  z-index: 99999;
+  position: absolute !important;
+}
+
+.modal-body {
+  z-index: 1029;
+}
+.modal-dialog {
+  padding-top: 8%;
+}
+
+.modal-class {
+  display: none;
+  z-index: 9999;
 }

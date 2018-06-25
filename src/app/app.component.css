@@ -330,4 +330,7 @@ img {
   }
 }
 
+.modal-backdrop {
+  position: inherit !important;
+}
 
