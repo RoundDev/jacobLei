@@ -1,4 +1,5 @@
 <div class="container bg-1 padding-container">
+  <form>
   <div class="row row-padding padding-content md-padding-content lg-padding-content">
     <div class="col-12"></div>
     <div class="panel panel-info">
@@ -56,41 +57,50 @@
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Expiration Date</strong>
+            <strong>Expiration Month</strong>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 selection-padding">
-            <select autocomplete="on" class="form-control" name="">
-              <option value="">Month</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
+          <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
+            <input type="number" class="form-control" minlength="2" maxlength="2" placeholder="ex. 01" name="month">
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <select autocomplete="on" class="form-control" name="">
-              <option value="">Year</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-            </select>
+          <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 selection-padding">-->
+            <!--<select autocomplete="on" class="form-control" name="">-->
+              <!--<option value="">Month</option>-->
+              <!--<option value="01">01</option>-->
+              <!--<option value="02">02</option>-->
+              <!--<option value="03">03</option>-->
+              <!--<option value="04">04</option>-->
+              <!--<option value="05">05</option>-->
+              <!--<option value="06">06</option>-->
+              <!--<option value="07">07</option>-->
+              <!--<option value="08">08</option>-->
+              <!--<option value="09">09</option>-->
+              <!--<option value="10">10</option>-->
+              <!--<option value="11">11</option>-->
+              <!--<option value="12">12</option>-->
+            <!--</select>-->
+          <!--</div>-->
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <strong>Expiration Year</strong>
           </div>
+          <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
+            <input type="number" class="form-control" minlength="4" maxlength="4" placeholder="ex. 2018" name="year">
+          </div>
+          <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+            <!--<select autocomplete="on" class="form-control" name="">-->
+              <!--<option value="">Year</option>-->
+              <!--<option value="2018">2018</option>-->
+              <!--<option value="2019">2019</option>-->
+              <!--<option value="2020">2020</option>-->
+              <!--<option value="2021">2021</option>-->
+              <!--<option value="2022">2022</option>-->
+              <!--<option value="2023">2023</option>-->
+              <!--<option value="2024">2024</option>-->
+              <!--<option value="2026">2026</option>-->
+              <!--<option value="2027">2027</option>-->
+              <!--<option value="2028">2028</option>-->
+              <!--<option value="2029">2029</option>-->
+            <!--</select>-->
+          <!--</div>-->
         </div>
 
         <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
@@ -133,13 +143,13 @@
             <strong>Amount You Are Paying</strong>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-6">
-            <input type="text" class="form-control" name="pay_amount" value="" />
+            <input type="text" class="form-control" name="pay_amount" id="pay_amount" value="" (blur)="calculatePayment()" />
             <span class="afix">***3.75% fee will be added to the amount (see below)</span>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right btn-row">
-            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right">Pay</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right">Pay {{totalAmount}}</button>
           </div>
           <div class="col-xs-12 col-md-6 col-sm-6 col-xs-6 col-lg-6 pull-right">
           </div>
@@ -154,4 +164,5 @@
       </div>
     </div>
   </div>
+  </form>
 </div>

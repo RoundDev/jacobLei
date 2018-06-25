@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-payment',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
+totalAmount: number;
+paymentForm: any;
   constructor() { }
 
   ngOnInit() {
   }
-
+  OnChanges() {
+    this.totalAmount = (this.paymentForm.value.amount * 0.0375) + this.paymentForm.value.amount;
+  }
+calculatePayment() {
+}
 }

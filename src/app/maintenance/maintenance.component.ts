@@ -38,27 +38,27 @@ export class MaintenanceComponent implements OnInit {
   }
 
   checkInputError() {
-    if (this.maintenanceForm.controls.tenName.touched === false) {
+    if (this.maintenanceForm.controls.tenName.value === '') {
       this.inputNameError = 'Name Required';
     } else {
       this.inputNameError = null;
     }
-    if (this.maintenanceForm.controls.appAddress.touched === false) {
+    if (this.maintenanceForm.controls.appAddress.value === '') {
       this.inputAddressError = 'Property Address Required';
     } else {
       this.inputAddressError = null;
     }
-    if (this.maintenanceForm.controls.phoneNumber.touched === false) {
+    if (this.maintenanceForm.controls.phoneNumber.value === '') {
       this.inputPhoneError = 'Phone Number Required';
     } else {
       this.inputPhoneError = null;
     }
-    if (this.maintenanceForm.controls.email.touched === false) {
+    if (this.maintenanceForm.controls.email.value === '') {
       this.inputEmailError = 'Email Address Required';
     } else {
       this.inputEmailError = null;
     }
-    if (this.maintenanceForm.controls.textArea.touched === false) {
+    if (this.maintenanceForm.controls.textArea.value === '') {
       this.inputTextError = 'Repair Issue Required';
     } else {
       this.inputTextError = null;

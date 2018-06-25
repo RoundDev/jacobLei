@@ -10,7 +10,11 @@ import {AppService} from '../app.service';
 export class ContactComponent implements OnInit {
 @Input()
 contactForm: FormGroup;
-  inputError: string;
+  nameError: string;
+  appAddressError: string;
+  phoneNumberError: string;
+  emailAddressError: string;
+  textAreaError: string;
   emailSuccess: boolean;
   messageHeader: string;
   messageBody: string;
@@ -29,9 +33,29 @@ contactForm: FormGroup;
 
   checkInputError() {
     if (this.contactForm.controls.tenName.value === '') {
-      this.inputError = 'Name Required';
+      this.nameError = 'Name Required';
     } else {
-      this.inputError = null;
+      this.nameError = null;
+    }
+    if (this.contactForm.controls.appAddress.value === '') {
+      this.appAddressError = 'Address Required';
+    } else {
+      this.appAddressError = null;
+    }
+    if (this.contactForm.controls.phoneNumber.value === '') {
+      this.phoneNumberError = 'Address Required';
+    } else {
+      this.phoneNumberError = null;
+    }
+    if (this.contactForm.controls.emailAddress.value === '') {
+      this.emailAddressError = 'Address Required';
+    } else {
+      this.emailAddressError = null;
+    }
+    if (this.contactForm.controls.textArea.value === '') {
+      this.textAreaError = 'Address Required';
+    } else {
+      this.textAreaError = null;
     }
   }
 
