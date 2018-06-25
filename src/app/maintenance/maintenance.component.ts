@@ -2,7 +2,8 @@ import {Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 
 import {AppService} from '../app.service';
-declare let $: any;
+
+
 @Component({
   selector: 'app-maintenance',
   templateUrl: './maintenance.component.html',
@@ -21,7 +22,7 @@ export class MaintenanceComponent implements OnInit {
   emailSuccess: boolean;
   messageHeader: string;
   messageBody: string;
-  @ViewChild('modal') modal: ElementRef;
+  @ViewChild('modalInfo') modal: ElementRef;
 
   constructor(private formBuilder: FormBuilder, private appService: AppService) {
   }
@@ -70,20 +71,20 @@ export class MaintenanceComponent implements OnInit {
         this.emailSuccess = true;
         this.messageHeader = 'Thank You';
         this.messageBody = 'We received your email';
-        this.showInfoModal();
         this.maintenanceForm.reset();
       } else if (data.error) {
         this.emailSuccess = false;
         this.messageHeader = 'Error';
         this.messageBody = 'Something went wrong. Please, check your form and try again';
-        this.showInfoModal();
       }
     });
   }
 
-  showInfoModal() {
-    $(this.modal.nativeElement).modal('show');
-  }
+//   showInfoModal() {
+// const modalInfo = document.getElementById('modal');
+//     modalInfo.classList.add('modal-class');
+//     modalInfo.classList.remove('modal-class');
+//   }
 
     // onSubmit() {
   //   if (this.maintenanceForm.valid) {

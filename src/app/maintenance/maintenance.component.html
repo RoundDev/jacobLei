@@ -54,11 +54,12 @@
               <label class='control-label'>Repair Issue</label>
               <textarea id="message" name="message" formControlName="textArea" class="text-area" (input)="checkInputError()"></textarea>
               <span class="alert-warning small" *ngIf="inputTextError !== null">{{inputTextError}}</span>
-              <button type="button" (click)="sendEmail(this)" class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!maintenanceForm.valid">Submit</button>
+              <button type="button" (click)="sendEmail(this)" class="btn btn-primary btn-lg btn-submit-fix pull-right" data-toggle="modal" href="#modal" [disabled]="!maintenanceForm.valid">Submit</button>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 pull-left">
               <div>
-                <a class="btn btn-primary" data-toggle="modal" href="#modal-id">Trigger modal</a>
+                <!--<a class="btn btn-primary" >Trigger modal</a>-->
+                <!--data-toggle="modal" href="#modal" (click)="showInfoModal()"-->
               </div>
               <p style="font-size: 14px">
                 <strong>Note:</strong> An EMERGENCY ISSUE is related to...<br>
@@ -75,9 +76,9 @@
     </div>
   </form>
 </div>
-<div class="container-fluid" >
+<!--<div class="container-fluid" >-->
 
-  <div *ngIf="emailSuccess" #modal class="modal fade" id="modal">
+  <div class="modal fade" id="modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -93,5 +94,5 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-</div>
+<!--</div>-->
 
