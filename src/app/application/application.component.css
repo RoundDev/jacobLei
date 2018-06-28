@@ -7,7 +7,7 @@
 .intrinsic-container {
   position: relative;
   height: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 /* 16x9 Aspect Ratio */
@@ -22,7 +22,8 @@
 }
 .iframe-wrapper {
   -webkit-overflow-scrolling: touch;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 /* 4x3 Aspect Ratio */
 .intrinsic-container-4x3 {

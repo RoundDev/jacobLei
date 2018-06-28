@@ -10,7 +10,11 @@ import {AppService} from '../app.service';
 export class NoticeComponent implements OnInit {
 @Input()
 noticeForm: FormGroup;
-  inputError: string;
+  nameError: string;
+  appAddressError: string;
+  phoneNumberError: string;
+  emailAddressError: string;
+  textAreaError: string;
   emailSuccess: boolean;
   messageHeader: string;
   messageBody: string;
@@ -28,9 +32,29 @@ noticeForm: FormGroup;
 
   checkInputError() {
     if (this.noticeForm.controls.tenName.value === '') {
-      this.inputError = 'Name Required';
+      this.nameError = 'Name Required';
     } else {
-      this.inputError = null;
+      this.nameError = null;
+    }
+    if (this.noticeForm.controls.appAddress.value === '') {
+      this.appAddressError = 'Address Required';
+    } else {
+      this.appAddressError = null;
+    }
+    if (this.noticeForm.controls.phoneNumber.value === '') {
+      this.phoneNumberError = 'Address Required';
+    } else {
+      this.phoneNumberError = null;
+    }
+    if (this.noticeForm.controls.emailAddress.value === '') {
+      this.emailAddressError = 'Address Required';
+    } else {
+      this.emailAddressError = null;
+    }
+    if (this.noticeForm.controls.textArea.value === '') {
+      this.textAreaError = 'Address Required';
+    } else {
+      this.textAreaError = null;
     }
   }
 

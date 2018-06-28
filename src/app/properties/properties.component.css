@@ -7,7 +7,7 @@
 .intrinsic-container {
   position: relative;
   height: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .container {
   padding: 0 !important;
@@ -35,6 +35,7 @@
 .iframe-wrapper {
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
+  overflow-x: scroll;
 }
 @media only screen and (max-width: 735px) {
   .intrinsic-container-16x9 {

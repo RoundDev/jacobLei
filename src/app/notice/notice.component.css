@@ -61,3 +61,12 @@ bg-2 p {
   display: none;
   z-index: 9999;
 }
+
+.fa {
+  padding-right: 5px;
+}
+
+textarea {
+  margin-bottom: 10px;
+}
+
