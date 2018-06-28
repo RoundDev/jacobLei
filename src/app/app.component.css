@@ -324,13 +324,20 @@ img {
   width: 40%;
   margin-left: 67%;
 }
-@media only screen and (max-width: 777px){
-  .container{
-    overflow-x: hidden;
-  }
-}
+/*@media only screen and (max-width: 777px){*/
+  /*.container{*/
+    /*overflow-x: hidden;*/
+  /*}*/
+/*}*/
 
 .modal-backdrop {
   position: inherit !important;
 }
+
+@media only screen and (max-width: 823px) {
+  .modal-dialog {
+    padding: 25vh 2vh 0vh 2vh !important;
+  }
+}
+
 

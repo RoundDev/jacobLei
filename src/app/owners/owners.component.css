@@ -7,7 +7,7 @@
 .intrinsic-container {
   position: relative;
   height: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 /* 16x9 Aspect Ratio */
@@ -32,6 +32,7 @@
 .iframe-wrapper {
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 @media only screen and (max-width: 736px) {

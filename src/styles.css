@@ -9,6 +9,13 @@ h3 {
   font-size: 18px;
   color: #111;
 }
+h5 {
+  margin: 10px 0 30px;
+  letter-spacing: 8px;
+  font-size: 16px;
+  color: #111;
+  text-align: center;
+}
 
 .container {
   padding: 80px 120px;
@@ -509,11 +516,11 @@ hr{
   width: 40%;
   margin-left: 67%;
 }
-@media only screen and (max-width: 777px){
-  .container{
-    overflow-x: hidden;
-  }
-}
+/*@media only screen and (max-width: 777px){*/
+  /*.container{*/
+    /*overflow-x: hidden;*/
+  /*}*/
+/*}*/
 .row-padding {
   padding-left: 25%;
   padding-right: 25%;
@@ -521,3 +528,45 @@ hr{
 .modal-backdrop {
   position: inherit !important;
 }
+
+/*-------------Spinner--------------------*/
+.loader {
+  margin-top: 40vh;
+  margin-left: 6em;
+  border: 16px solid #00000082;
+  border-top: 16px solid #fff0;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media only screen and (max-width: 414px) {
+  .spinner {
+    margin-left: 40%;
+    margin-top: 65%;
+  }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 823px) {
+  .spinner {
+    margin-left: 42%;
+    margin-top: 20%;
+  }
+}
+
+.bgr-color {
+  background-color: #0b1a33;
+  height: 100vh;
+}
+
+@media only screen and (max-width: 823px) {
+  .modal-dialog {
+    padding: 25vh 2vh 0vh 2vh !important;
+  }
+}
+
