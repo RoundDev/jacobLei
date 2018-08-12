@@ -15,7 +15,7 @@
                 <strong class="pull-left">Name</strong>
               </div>
               <div class="col-sm-12 col-md-12">
-                <input autocomplete="on" type="text" class="form-control" id="tenName" formControlName="tenName" name="tenName" (input)="checkInputError()" value="" required />
+                <input autocomplete="on" type="text" maxlength="30"  max="30" class="form-control" id="tenName" formControlName="tenName" name="tenName" (input)="checkInputError()" value="" required />
               </div>
               <span class="alert-warning small" *ngIf="nameError !== null">{{nameError}}</span>
               <!--<span *ngIf="maintenanceForm.controls.tenName.errors" class="invalid">Name of Tenant Required</span>-->
@@ -26,7 +26,7 @@
                 <strong class="pull-left">Rental Property Address</strong>
               </div>
               <div class="col-sm-12 col-md-12">
-                <input autocomplete="on" type="text" class="form-control" formControlName="appAddress" name="appAddress" value="" (input)="checkInputError()" required />
+                <input autocomplete="on" type="text" maxlength="50"  class="form-control" formControlName="appAddress" name="appAddress" value="" (input)="checkInputError()" required />
               </div>
               <span class="alert-warning small" *ngIf="appAddressError !== null">{{appAddressError}}</span>
               <!--<span *ngIf="maintenanceForm.controls.appAddress.errors" class="invalid">Rental Property Address Required</span>-->
@@ -36,7 +36,7 @@
                 <strong class="pull-left">Your Contact Number</strong>
               </div>
               <div class="col-sm-12 col-md-12">
-                <input autocomplete="on" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" value="" (input)="checkInputError()" required />
+                <input autocomplete="on" type="number" max="12" class="form-control" formControlName="phoneNumber" name="phoneNumber" value="" (input)="checkInputError()" required />
               </div>
               <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}</span>
               <!--<span *ngIf="maintenanceForm.controls.phoneNumber.errors" class="invalid">Phone Number Required</span>-->
@@ -46,7 +46,7 @@
                 <strong class="pull-left">Your ​Email</strong>
               </div>
               <div class="col-sm-12 col-md-12">
-                <input autocomplete="on" type="text" class="form-control" formControlName="emailAddress" name="emailAddress" value="" (input)="checkInputError()" required />
+                <input autocomplete="on" type="text" maxlength="50" class="form-control" formControlName="emailAddress" name="emailAddress" value="" (input)="checkInputError()" required />
               </div>
               <span class="alert-warning small" *ngIf="emailAddressError !== null">{{emailAddressError}}</span>
               <!--<span *ngIf="maintenanceForm.controls.emailAddress.errors" class="invalid">Invalid Email</span>-->
@@ -56,7 +56,7 @@
             <div class="form-group">
               <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
                 <label class='control-label pull-left'>Message</label>
-                <textarea formControlName="textArea" class="text-area" (input)="checkInputError()"></textarea>
+                <textarea formControlName="textArea" maxlength="400" class="text-area" (input)="checkInputError()"></textarea>
                 <span class="alert-warning small" *ngIf="textAreaError !== null">{{textAreaError}}</span>
                 <button type="button"  (click)="sendEmail(this)" data-toggle="modal" href="#modal" [disabled]="!contactForm.valid" class="btn btn-primary btn-lg btn-submit-fix pull-right">Submit</button>
               </div>
