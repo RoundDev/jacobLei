@@ -13,8 +13,9 @@ paymentForm: any;
   ngOnInit() {
   }
   OnChanges() {
-    this.totalAmount = (this.paymentForm.value.amount * 0.0375) + this.paymentForm.value.amount;
+
   }
 calculatePayment() {
+  this.totalAmount = (this.paymentForm.value.amount * 0.0375) + this.paymentForm.value.amount;
 }
 }
