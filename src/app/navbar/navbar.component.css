@@ -16,7 +16,8 @@ li.dropdown:hover > .dropdown-menu {
 .dropdown-menu {
   font-family: Montserrat, sans-serif !important;
   font-size: 11px !important;
-  background-color: #002754;
+  background-color: #fff;
+  top: 20px;
   /*opacity: 0.8;*/
 }
 a.dropdown:hover {
@@ -37,11 +38,20 @@ a.dropdown:hover {
   background-color: transparent;
 }
 .router-link-active {
-  color: #ffffff !important;
+  /*color: #ffffff !important;*/
+  color: #13034d !important;
+  font-weight: 900;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.dropdown-menu>li>a:hover {
+  border: none !important;
+}
+.navbar-collapse {
+  background: #ffffff;
 }
 /*@media (min-width: 764px) {*/
 

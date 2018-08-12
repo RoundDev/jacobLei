@@ -180,13 +180,19 @@
 
 /*----------Google Map------------*/
 .google-maps {
-  position: relative;
-  padding-bottom: 75%; // This is the aspect ratio
-  height: 0;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  /*position: relative;*/
+  /*padding-bottom: 75%; // This is the aspect ratio*/
+  /*height: 0;*/
+  /*-webkit-overflow-scrolling: touch;*/
+  /*overflow-x: scroll;*/
+  /*overflow-y: scroll;*/
   /*overflow: hidden;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*position: absolute;*/
+  /*top: 0px;*/
+  /*left: 0px;*/
+  /*background-color: rgb(229, 227, 223);*/
 }
 .google-maps iframe {
   position: absolute;
@@ -212,3 +218,17 @@
   display: none;
   z-index: 9999;
 }
+.container {
+  padding: 0 !important;
+}
+.row-top-padding {
+  padding-top: 90px;
+}
+/*.contact-map {*/
+  /*height: 40vh;*/
+  /*min-height: 40rem;*/
+  /*border-bottom: 1px solid #1f3741;*/
+  /*position: relative;*/
+  /*overflow: hidden;*/
+/*}*/
+

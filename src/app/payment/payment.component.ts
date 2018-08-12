@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, EventEmitter } from '@angular/core';
+import {PaymentInputs} from '../../shared/payment/paymentInputs';
 
 @Component({
   selector: 'app-payment',
@@ -8,6 +9,8 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 export class PaymentComponent implements OnInit {
 totalAmount: number;
 paymentForm: any;
+@Input()
+paymentInputs: PaymentInputs;
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +19,7 @@ paymentForm: any;
 
   }
 calculatePayment() {
-  this.totalAmount = (this.paymentForm.value.amount * 0.0375) + this.paymentForm.value.amount;
+    this.paymentInputs.pay_amount = 0;
+  this.totalAmount = (this.paymentInputs.pay_amount * 0.0375) + this.paymentInputs.pay_amount;
 }
 }
