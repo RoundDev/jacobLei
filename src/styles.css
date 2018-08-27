@@ -119,12 +119,12 @@ h5 {
   }
 }
 .navbar li a  {
-  color: #263f9d !important;
+  color: #0d0d59 !important;
 }
 .navbar-brand {
   font-family: EB Garamond, sans-serif;
   font-size: 18px;
-  color: #000080 !important;
+  color: #0d0d59 !important;
   margin-top: 15px;
 }
 @media screen and (max-width: 414px) {
@@ -142,9 +142,9 @@ h5 {
  }
 }
 .navbar-nav li a:hover {
-  color: #13034d !important;
+  color: #0d042e !important;
   font-weight: 600;
-  border-bottom: 2px solid #000080 !important;
+  border-bottom: 2px solid #0d042e !important;
   /*font-size: 12px !important;*/
 }
 @media screen and (max-width: 414px) {
@@ -154,7 +154,7 @@ h5 {
 }
 
 .navbar-nav li a:active {
-  color: #13034d !important;
+  color: #0d042e !important;
   font-weight: 900;
 }
 .navbar-default .navbar-toggle {
