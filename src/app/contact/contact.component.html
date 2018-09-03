@@ -81,28 +81,97 @@
                 <!--</div>-->
               <!--</div>-->
             <!--</div>-->
-
-            <!--<div class="modal fade" id="modal">-->
-              <!--<div class="modal-dialog">-->
-                <!--<div class="modal-content">-->
-                  <!--<div class="modal-header">-->
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                    <!--<h4 class="modal-title">{{messageHeader}}</h4>-->
-                  <!--</div>-->
-                  <!--<div class="modal-body">-->
-                    <!--<h5>{{messageBody}}</h5>-->
-                  <!--</div>-->
-                  <!--<div class="modal-footer">-->
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                  <!--</div>-->
-                <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-              <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
-            <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
-          <!--</div>-->
         <!--</form>-->
       <!--</div>-->
     </div>
-
-</div>
+    <div class="container">
+        <div class="row">
+        <h1>Contact Us</h1>
+          <div class="col-md-push-4 col-md-8 col-xs-12 content">
+            <div class="contact-form">
+              <div class="address-text">
+                <label>
+                Jacob Lei Property Management LLC
+                </label>
+                <br>
+                <label>
+                346 Ebenezer Road
+                </label>
+                <br>
+                <label>
+                  Knoxville
+                </label>
+                <br>
+                <label>
+                  TN,  37923
+                </label>
+                <br><br>
+                <label>
+                  Phone:
+                </label>
+                <label>
+                  865.675.7880
+                </label>
+                <br>
+                <label>
+                  Fax:
+                </label>
+                <label>
+                  866.703.7882
+                </label>
+                <br>
+                <label>
+                  Email:
+                </label>
+                <a href="mailto:dmin@jacobolei.com">
+                 admin@jacobolei.com
+                </a>
+              </div>
+            </div>
+            <div class="contact-form">
+              <div class="address-text">
+                <form [formGroup]="contactForm">
+                  <div class="col-sm-12 col-md-6">
+                    <input  autocomplete="on" type="text" maxlength="30"  max="30" class="form-control inputs" id="tenName" formControlName="tenName" name="tenName" (input)="checkInputError()" placeholder="Name" required />
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <input autocomplete="on" type="text" maxlength="50" class="form-control inputs" formControlName="emailAddress" name="emailAddress" value="" (input)="checkInputError()" placeholder="Email" required />
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <input autocomplete="on" type="text" maxlength="50"  class="form-control inputs" formControlName="appAddress" name="appAddress" value="" (input)="checkInputError()" placeholder="What is this Regarding?" required />
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <input autocomplete="on" type="number" max="12" class="form-control inputs" formControlName="phoneNumber" name="phoneNumber" value="" (input)="checkInputError()" placeholder="Phone(Optional)" />
+                  </div>
+                  <div class="col-sm-12 col-md-12">
+                    <textarea formControlName="textArea" maxlength="400" class="text-area inputs" (input)="checkInputError()" placeholder="Message"></textarea>
+                  </div>
+                  <div class="col-sm-12 col-md-12 contact-btn-padding">
+                    <button type="button"  (click)="sendEmail(this)" data-toggle="modal" href="#modal" [disabled]="!contactForm.valid" class="btn btn-primary btn-lg btn-submit-fix pull-left">Submit</button>
+                  </div>
+                  <!--Modal-->
+                  <div class="modal fade" id="modal">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title">{{messageHeader}}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h5>{{messageBody}}</h5>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
 

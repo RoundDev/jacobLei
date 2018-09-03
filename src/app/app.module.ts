@@ -20,6 +20,8 @@ import { ContactComponent } from './contact/contact.component';
 import { NoticeComponent } from './notice/notice.component';
 import {AppService} from './app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SingleComponent } from './single/single.component';
+import { MultiComponent } from './multi/multi.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
 
     OwnersComponent,
     ContactComponent,
-    NoticeComponent
+    NoticeComponent,
+    SingleComponent,
+    MultiComponent
   ],
   imports: [
     BrowserModule,

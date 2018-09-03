@@ -119,12 +119,12 @@ h5 {
   }
 }
 .navbar li a  {
-  color: #0d0d59 !important;
+  color: #00005C !important;
 }
 .navbar-brand {
   font-family: EB Garamond, sans-serif;
   font-size: 18px;
-  color: #0d0d59 !important;
+  color: #00005C !important;
   margin-top: 15px;
 }
 @media screen and (max-width: 414px) {
@@ -192,7 +192,10 @@ h5 {
   border-radius: 0;
 }
 textarea {
-  resize: none;
+  overflow: hidden;
+  min-height: 150px;
+  padding-top: 40px;
+  resize: vertical;
 }
 .img-size {
   width: 100%;

@@ -11,6 +11,8 @@ import {ContactComponent} from './contact/contact.component';
 import {PaymentComponent} from './payment/payment.component';
 import {MaintenanceComponent} from './maintenance/maintenance.component';
 import {NoticeComponent} from './notice/notice.component';
+import {SingleComponent} from './single/single.component';
+import {MultiComponent} from './multi/multi.component';
 
 const  appRoutes: Routes = [
   {
@@ -52,8 +54,16 @@ const  appRoutes: Routes = [
   {
     path: 'notice',
     component: NoticeComponent
+  },
+  {
+    path: 'single',
+    component: SingleComponent
+  },
+  {
+    path: 'multi',
+    component: MultiComponent
   }
-]
+];
 
 export const appRoutingProviders: any[] = [
 ]
