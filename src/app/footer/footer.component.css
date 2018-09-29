@@ -70,7 +70,15 @@ h4 {
 .footer a:hover {
   font-weight: 400;
 }
-
+.img-size {
+  /*max-width: 110px;*/
+  background: #F5F5F5;
+  padding-top: 50%;
+  padding-bottom: 60%;
+}
+.logo {
+  margin-right: 25px;
+}
 /*.footer {*/
   /*z-index: 1;*/
   /*!*font-style: italic;*!*/

@@ -1,6 +1,6 @@
-.p {
-  color: #eeeeee;
-}
+/*.p {*/
+  /*color: #eeeeee;*/
+/*}*/
 @media only screen and (max-width: 770px) {
   .carousel-inner img {
     margin-top: 140px;
