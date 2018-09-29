@@ -1,3 +1,9 @@
 .bg-0 {
   height: 100% !important;
 }
+p {
+  color: #4c4c4c !important;
+}
+.text-padding {
+  padding: 20px 5px 30px 5px;
+}

@@ -2,17 +2,24 @@
   .padding {
     padding-bottom: 5%;
   }
-
+}
+body {
+  -webkit-transform: translate3d(0, 0, 0);
 }
 iframe {
-  border-width: 0px !important; ;
+  border-width: 0 !important;
+  /*-webkit-transform: translate3d(0, 0, 0);*/
 }
 .intrinsic-container {
   position: relative;
   height: 0;
   /*overflow: hidden;*/
 }
-
+/*.iframe-wrapper {*/
+  /*-webkit-overflow-scrolling: touch;*/
+  /*overflow-y: scroll;*/
+  /*overflow-x: scroll;*/
+/*}*/
 /* 16x9 Aspect Ratio */
 .intrinsic-container-16x9 {
   padding-bottom: 65%;
@@ -44,6 +51,9 @@ iframe {
   .intrinsic-container-16x9 {
     padding-bottom: 160%;
     margin-top: 88px;
+  }
+  iframe {
+
   }
   .iframe-wrapper {
     -webkit-overflow-scrolling: touch;
