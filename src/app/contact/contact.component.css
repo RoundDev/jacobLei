@@ -274,4 +274,11 @@ label {
   /*position: relative;*/
   /*overflow: hidden;*/
 /*}*/
-
+@media only screen and (max-width: 414px) {
+  .contact-btn-padding {
+    padding-bottom: 55px;
+  }
+  .textarea-padding {
+    padding-bottom: 25px;
+  }
+}
