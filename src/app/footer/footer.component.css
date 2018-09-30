@@ -72,12 +72,22 @@ h4 {
 }
 .img-size {
   /*max-width: 110px;*/
-  background: #F5F5F5;
+  /*background: #F5F5F5;*/
   padding-top: 50%;
   padding-bottom: 60%;
 }
 .logo {
   margin-right: 25px;
+}
+@media only screen and (max-width: 414px) {
+  .img-size {
+    display: none;
+    /*padding: 0 !important;*/
+    /*max-width: 25%;*/
+  }
+  .container {
+    padding-top: 0;
+  }
 }
 /*.footer {*/
   /*z-index: 1;*/

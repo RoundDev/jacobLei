@@ -14,7 +14,8 @@ li.dropdown:hover > .dropdown-menu {
   display: block;
 }
 .dropdown-menu {
-  font-family: Montserrat, sans-serif !important;
+  /*font-family: Montserrat, sans-serif !important;*/
+  font-family: 'Cinzel', serif !important;
   font-size: 11px !important;
   background-color: #fff;
   top: 20px;

@@ -25,7 +25,7 @@ h5 {
   -webkit-filter: grayscale(90%);
   filter: grayscale(10%); /* make all photos black and white */
   width: 100%; /* Set width to 100% */
-  height: 500px !important;
+  /*height: 500px !important;*/
   margin: auto;
 }
 .carousel-caption h3 {
@@ -100,7 +100,7 @@ h5 {
 
 /*-----------------NavBar--------------*/
 .navbar {
-  font-family: Montserrat, sans-serif;
+  font-family: Cinzel, serif;
   /* font: 400 18px/1.8 "EB Garamond"; */
   margin-bottom: 0;
   background-color: #ffffff;
@@ -113,31 +113,52 @@ h5 {
   height: 90px;
   /* opacity: 0.8; */
 }
-@media screen and (max-width: 414px) {
-  .navbar {
-    height: auto !important;
-  }
-}
 .navbar li a  {
   color: #00005C !important;
 }
 .navbar-brand {
-  font-family: EB Garamond, sans-serif;
+  font-family: Cinzel, serif;
   font-size: 18px;
   color: #00005C !important;
-  margin-top: 15px;
+margin-top: 15px;
 }
-@media screen and (max-width: 414px) {
+@media screen and (min-width: 360px) and (max-width: 376px) {
   .navbar-brand {
     margin-top: 0px !important;
+    font-size: 11px !important;
+  }
+  .navbar {
+    height: 50px;
   }
 }
+@media screen and (min-width: 411px) and (max-width: 412px) {
+  .navbar {
+    height: 50px;
+  }
+  .navbar-brand {
+    margin-top: 0px !important;
+    font-size: 14px !important;
+  }
+}
+@media screen and (min-width: 414px) and (max-width: 415px) {
+  .navbar-brand {
+    margin-top: 0px !important;
+    font-size: 14px !important;
+  }
+  .navbar {
+    height: auto !important;
+  }
+  .navbar-nav li a:hover {
+    border: none !important;
+  }
+}
+
 /*.navbar-default {*/
   /*border-bottom: 5px #9d0810 !important;*/
 /*}*/
 @media screen and (max-width: 375px){
  .navbar-brand {
-  font-size: 15px;
+  font-size: 11px;
    margin-top: -1px;
  }
 }
@@ -146,11 +167,6 @@ h5 {
   font-weight: 600;
   border-bottom: 2px solid #0d042e !important;
   /*font-size: 12px !important;*/
-}
-@media screen and (max-width: 414px) {
-  .navbar-nav li a:hover {
-  border: none !important;
-    }
 }
 
 .navbar-nav li a:active {
@@ -166,7 +182,7 @@ h5 {
 }
 @media only screen and (max-width: 1024px) {
   .sm-navbar {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 }
 /*long*/
