@@ -118,7 +118,7 @@ h5 {
 }
 .navbar-brand {
   font-family: Cinzel, serif;
-  font-size: 18px;
+  font-size: 27px;
   color: #00005C !important;
 margin-top: 15px;
 }
@@ -137,13 +137,13 @@ margin-top: 15px;
   }
   .navbar-brand {
     margin-top: 0px !important;
-    font-size: 14px !important;
+    font-size: 27px !important;
   }
 }
 @media screen and (min-width: 414px) and (max-width: 415px) {
   .navbar-brand {
     margin-top: 0px !important;
-    font-size: 14px !important;
+    font-size: 27px !important;
   }
   .navbar {
     height: auto !important;
@@ -188,7 +188,7 @@ margin-top: 15px;
 /*long*/
 @media only screen and  (min-width: 768px) {
   .brand {
-    display: none !important;
+    /*display: none !important;*/
   }
   .desc-display {
     margin-left: -34px;
@@ -214,8 +214,9 @@ textarea {
   resize: vertical;
 }
 .img-size {
-  width: 100%;
-  height: 100%;
+  width: 12em;
+  height: 7em;
+  position: absolute;
 }
 /*.map-padding {*/
   /*padding-top: 45px;*/
