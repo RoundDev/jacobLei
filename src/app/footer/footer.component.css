@@ -17,8 +17,10 @@ p {
   padding-right: 0px !important;
 }
 .footer-main {
-  background-color: #221f1f;
-  padding: 35px 0 0;
+  /*background-color: #221f1f;*/
+  background-color: #d5d5d5;
+  padding: 0 0 0;
+  /*padding: 35px 0 0;*/
 }
 .top {
   padding-left: 0;
@@ -57,14 +59,16 @@ p {
 }
 
 p {
-  color: #ffffff !important;
+  /*color: #ffffff !important;*/
+  color: #000000 !important;
   font-weight: 200;
 }
 h4 {
-  color: #ffffff;
+  color: #0e0d0dbf;
 }
 .footer a {
-  color: #ffffff;
+  /*color: #ffffff;*/
+  color: #000000;
   font-weight: 200;
 }
 .footer a:hover {
@@ -73,6 +77,9 @@ h4 {
 .img-size {
   /*max-width: 110px;*/
   /*background: #F5F5F5;*/
+  width: 10%;
+  height: 10%;
+  position: absolute;
   padding-top: 50%;
   padding-bottom: 60%;
 }

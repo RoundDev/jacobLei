@@ -54,6 +54,20 @@ a.dropdown:hover {
 .navbar-collapse {
   background: #ffffff;
 }
+
+.brand-text {
+  font-size: 9px;
+  margin-left: -156px;
+
+}
+.brand-text-mobile {
+  font-size: 8px;
+  margin-left: -116px;
+
+}
+sub {
+  bottom: -1.25em;
+}
 /*@media (min-width: 764px) {*/
 
   /*ul.nav li.dropdown:hover > ul.dropdown-menu {*/
