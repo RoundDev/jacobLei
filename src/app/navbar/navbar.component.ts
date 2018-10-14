@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild('mobileNavbar') mobileNavbar: ElementRef;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {  }
+  navBarTogglerIsVisible() {
+    return this.mobileNavbar.nativeElement.offsetParent !== null;
   }
-
+  collapseNav() {
+    if (this.navBarTogglerIsVisible()) {
+      this.mobileNavbar.nativeElement.click();
+    }
+  }
 }

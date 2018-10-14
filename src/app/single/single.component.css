@@ -65,3 +65,8 @@ thead {
   max-width: 60%;
   margin-left: 20%;
 }
+@media screen and (min-width: 768px) {
+  .container-content {
+    padding-top: 45px !important;
+  }
+}
