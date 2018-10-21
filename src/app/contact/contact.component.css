@@ -274,7 +274,7 @@ label {
   /*position: relative;*/
   /*overflow: hidden;*/
 /*}*/
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 736px) {
   .contact-btn-padding {
     padding-bottom: 55px;
   }

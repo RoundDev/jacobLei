@@ -68,6 +68,18 @@ a.dropdown:hover {
 sub {
   bottom: -1.25em;
 }
+@media only screen and  (max-width: 736px) {
+  .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    border: none;
+  }
+  .navbar-nav li a:hover {
+    border-bottom: none !important;
+  }
+  .navbar {
+    height: 65px !important;
+  }
+}
+
 /*@media (min-width: 764px) {*/
 
   /*ul.nav li.dropdown:hover > ul.dropdown-menu {*/
