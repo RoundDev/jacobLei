@@ -204,19 +204,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
     // Don't submit the form until SqPaymentForm returns with a nonce
     event.preventDefault();
-    // let address = $('#delivery-address').val();
-    // let differentName = $('#differentName').val();
-    // let propertyComment = $('#propertyComment').val();
-    // let propertyName = $('#propertyName').val();
-    // let phoneNumber = $('#delivery-date').val();
-    // let email = $('#email-address').val();
-    // let peyeeName = $('#first-name').val();
-    // if (!address) {
-    //   $('#delivery-address').css('border-color', 'red');
-    // }
+    // const address = $('#delivery-address').val();
+    // const differentName = $('#differentName').val();
+    // const propertyComment = $('#propertyComment').val();
+    // const propertyName = $('#propertyName').val();
+    // const phoneNumber = $('#phoneNumber').val();
+    // const email = $('#email').val();
+    // const peyeeName = $('#peyeeName').val();
     //
     // if (!differentName) {
-    //   $('#delivery-city').css('border-color', 'red');
+    //   $('#differentName').css('border-color', 'red');
     // }
     //
     // if (!propertyComment) {
@@ -238,7 +235,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     //   $('#peyeeName').css('border-color', 'red');
     // }
     //
-    // if (!address || !differentName || !propertyComment || !propertyName || !peyeeName || !email || !phoneNumber) {
+    // if (!differentName || !propertyComment || !propertyName || !peyeeName || !email || !phoneNumber) {
     //   return false;
     // }
     // Request a nonce from the SqPaymentForm object

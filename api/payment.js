@@ -9,8 +9,8 @@ var self = module.exports ={
       let amt = req.body.amountToPay;
       console.log("This is amt" +  amt);
       
-      let location_id = process.env.SQUARE_LOCATION;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
-		  let access_token = process.env.SQUARE_TOKEN;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+      let location_id = process.env.SQUARE_LOCATION_TEST;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
+		  let access_token = process.env.SQUARE_TOKEN_TEST;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
       
       unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions')
 			.headers({
@@ -31,4 +31,4 @@ var self = module.exports ={
       })
 
     }
-}
+};
