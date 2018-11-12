@@ -17,7 +17,7 @@ var self = module.exports ={
 				'Authorization': 'Bearer ' + access_token,
 			})
 			.send({
-				'card_nonce':card_nonce,
+				'card_nonce':nonce /*NONCE field from form*/,
 				'amount_money':{
 					'amount':/*amount field from form*/,
 					'currency':'USD'
