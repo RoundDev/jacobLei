@@ -33,6 +33,7 @@
     "path": "^0.12.7",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "square-connect": "^2.20180918.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
