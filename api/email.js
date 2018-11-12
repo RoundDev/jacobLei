@@ -1,7 +1,6 @@
 var Mailgun = require('mailgun-js');
 var jade = require('jade');
-
-
+var emailAddres = "admin@jacoblei.com";
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){
@@ -9,7 +8,7 @@ var self = module.exports ={
        let email = req.body.email;
        let tenantName = req.body.tenName;
        let mailgunKey = process.env.MAILGUN_KEY;
-       let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
+       let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
         let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
         let fn = jade.compileFile('./maintEmail.jade');
@@ -19,7 +18,7 @@ var self = module.exports ={
             //Specify email data
               from: email,
             //The email to contact
-              to: 'pooh098@hotmail.com',
+              to: emailAddres,
             //Subject and text data
               subject: 'Maintenance Request from ' + tenantName,
               html: html
@@ -59,7 +58,7 @@ var self = module.exports ={
              //Specify email data
                from: email,
              //The email to contact
-               to: 'pooh098@hotmail.com',
+               to: emailAddres,
              //Subject and text data
                subject: 'Contact Request from ' + tenantName,
                html: html
@@ -98,7 +97,7 @@ var self = module.exports ={
         //Specify email data
         from: email,
         //The email to contact
-        to: 'pooh098@hotmail.com',
+        to: emailAddres,
         //Subject and text data
         subject: 'Notice Request from ' + tenantName,
         html: html
