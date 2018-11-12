@@ -1,5 +1,5 @@
 <div class="container bg-1 padding-container">
-  <form>
+  <form id="nonce-form" novalidate action="/v1/square/customer/createCard" method="post">
   <div class="row row-padding padding-content md-padding-content lg-padding-content">
     <div class="col-12"></div>
     <div class="panel panel-info">
@@ -12,23 +12,23 @@
 
       <div class="panel-body panel-box">
 
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12"><strong>Card Type:</strong></div>
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <select autocomplete="on" id="CreditCardType" name="CreditCardType" class="form-control">
-              <option value="5">Visa</option>
-              <option value="6">MasterCard</option>
-              <option value="7">American Express</option>
-              <option value="8">Discover</option>
-            </select>
-          </div>
-        </div>
+        <!--<div class="form-group">-->
+          <!--<div class="col-sm-12 col-md-12 col-lg-12"><strong>Card Type:</strong></div>-->
+          <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+            <!--<select autocomplete="on" id="CreditCardType" name="CreditCardType" class="form-control">-->
+              <!--<option value="5">Visa</option>-->
+              <!--<option value="6">MasterCard</option>-->
+              <!--<option value="7">American Express</option>-->
+              <!--<option value="8">Discover</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <strong>Name on Card</strong>
           </div>
           <div class="col-sm-12 col-md-12">
-            <input autocomplete="on" type="text" class="form-control" name="card_name" value=""/>
+            <input id="peyeeName" autocomplete="on" type="text" class="form-control" name="card_name" value=""/>
           </div>
         </div>
         <div class="form-group">
@@ -36,7 +36,7 @@
             <strong>Phone Number</strong>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <input autocomplete="on" type="number" class="form-control" name="payee_phone"/>
+            <input id="phoneNumber" autocomplete="on" type="number" class="form-control" name="payee_phone"/>
           </div>
         </div>
         <div class="form-group">
@@ -44,82 +44,55 @@
             <strong>Email Address</strong>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <input autocomplete="on" type="text" class="form-control" name="payee_email"/>
+            <input id="email" autocomplete="on" type="text" class="form-control" name="payee_email"/>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Credit Card Number:</strong>
+        <!--Beginning of Square-->
+        <div id="sq-ccbox">
+          <div class="form-group">
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+              <!--<strong>Credit Card Number:</strong>-->
+            <!--</div>-->
+            <label for="sq-card-number">Card Number</label>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <input id="sq-card-number" autocomplete="off" type="text" class="form-control" name="car_number" value="" />
+            </div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <input autocomplete="on" type="text" class="form-control" name="car_number" value="" />
+          <div class="form-group">
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+              <!--<strong>Expiration Month</strong>-->
+            <!--</div>-->
+            <label for="sq-expiration-date">Expiration Date</label>
+            <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
+              <input id="sq-expiration-date" type="number" class="form-control" minlength="2" maxlength="2" placeholder="ex. 01" name="month">
+            </div>
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+              <!--<strong>Expiration Year</strong>-->
+            <!--</div>-->
+            <!--<div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">-->
+              <!--<input type="number" class="form-control" minlength="4" maxlength="4" placeholder="ex. 2018" name="year">-->
+            <!--</div>-->
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Expiration Month</strong>
-          </div>
-          <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
-            <input type="number" class="form-control" minlength="2" maxlength="2" placeholder="ex. 01" name="month">
-          </div>
-          <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 selection-padding">-->
-            <!--<select autocomplete="on" class="form-control" name="">-->
-              <!--<option value="">Month</option>-->
-              <!--<option value="01">01</option>-->
-              <!--<option value="02">02</option>-->
-              <!--<option value="03">03</option>-->
-              <!--<option value="04">04</option>-->
-              <!--<option value="05">05</option>-->
-              <!--<option value="06">06</option>-->
-              <!--<option value="07">07</option>-->
-              <!--<option value="08">08</option>-->
-              <!--<option value="09">09</option>-->
-              <!--<option value="10">10</option>-->
-              <!--<option value="11">11</option>-->
-              <!--<option value="12">12</option>-->
-            <!--</select>-->
-          <!--</div>-->
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <strong>Expiration Year</strong>
-          </div>
-          <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
-            <input type="number" class="form-control" minlength="4" maxlength="4" placeholder="ex. 2018" name="year">
-          </div>
-          <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-            <!--<select autocomplete="on" class="form-control" name="">-->
-              <!--<option value="">Year</option>-->
-              <!--<option value="2018">2018</option>-->
-              <!--<option value="2019">2019</option>-->
-              <!--<option value="2020">2020</option>-->
-              <!--<option value="2021">2021</option>-->
-              <!--<option value="2022">2022</option>-->
-              <!--<option value="2023">2023</option>-->
-              <!--<option value="2024">2024</option>-->
-              <!--<option value="2026">2026</option>-->
-              <!--<option value="2027">2027</option>-->
-              <!--<option value="2028">2028</option>-->
-              <!--<option value="2029">2029</option>-->
-            <!--</select>-->
-          <!--</div>-->
-        </div>
 
-        <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
-          <label class='control-label'>Card CVV</label>
-          <input autocomplete="off" class='form-control card-CVV' placeholder='ex.733' size='4' type='text'>
-          <span class="afix">3 Digit Security Code on Back or 4 Digits on Front of AmEx</span>
-        </div>
+          <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
+            <label for="sq-cvv" class='control-label'>Card CVV</label>
+            <input id="sq-cvv" autocomplete="off" class='form-control card-CVV' placeholder='733' size='4' type='text'>
+            <span class="afix">3 Digit Security Code on Back or 4 Digits on Front of AmEx</span>
+          </div>
 
-        <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
-          <label class='control-label'>Card Zip Code</label>
-          <input autocomplete="on" class='form-control card-ZIP' placeholder='ex.37919' size='4' type='text'>
+          <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
+            <label for="sq-postal-code" class='control-label'>Card Zip Code</label>
+            <input id="sq-postal-code" autocomplete="on" class='form-control card-ZIP' placeholder='ex.37919' size='4' type='text'>
+          </div>
         </div>
+        <!--End of Square payment-->
 
         <div class="form-group">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info-row">
             <strong>This payment is regarding rental property</strong>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <input type="text" class="form-control" name="property_name" value="" />
+            <input id="propertyName" type="text" class="form-control" name="propertyName" value="" />
           </div>
         </div>
         <div class="form-group">
@@ -127,7 +100,7 @@
             <strong>Your Comment</strong>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <input type="text" class="form-control" name="property_comment" value="" />
+            <input id="propertyComment" type="text" class="form-control" name="propertyComment" value="" />
           </div>
         </div>
         <div class="form-group">
@@ -135,7 +108,7 @@
             <strong>If you are paying for a different Named Rental Applicant, Please enter their name</strong>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <input type="text" class="form-control" name="property_comment" value="" />
+            <input id="differentName" type="text" class="form-control" name="differentName" value="" />
           </div>
         </div>
         <div class="form-group">
@@ -143,13 +116,13 @@
             <strong>Amount You Are Paying</strong>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-6">
-            <input type="text" class="form-control" name="pay_amount" id="pay_amount" value="" (input)="calculatePayment()" />
+            <input id="amountToPay" type="number" #amountToPay (keyup)="this.calculatePayment(amountToPay)" class="form-control" name="pay_amount"  value="0"  />
             <span class="afix">***3.75% fee will be added to the amount (see below)</span>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right btn-row">
-            <button type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right">Pay {{totalAmount}}</button>
+            <button id="sq-creditcard" type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" onclick="requestCardNonce(event)">Pay {{amountToPay}}</button>
           </div>
           <div class="col-xs-12 col-md-6 col-sm-6 col-xs-6 col-lg-6 pull-right">
           </div>
