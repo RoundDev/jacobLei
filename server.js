@@ -8,7 +8,7 @@ const config = require('dotenv').config();
 
 const api = require('./api/email');
 const sq = require('./api/payment');
-
+const port = process.env.PORT || 5000;
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
@@ -23,4 +23,6 @@ app.get('/*', function(req,res) {
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 5000);
+app.listen(port,() => {
+  console.log("\x1b[36m%s\x1b[0m",`Listening on port ${port}`)
+});
