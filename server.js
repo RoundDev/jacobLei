@@ -2,9 +2,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const squareConnect = require('square-connect');
 const app = express();
-const config = require('dotenv').config();
+require('dotenv').config();
 
 const api = require('./api/email');
 const sq = require('./api/payment');
