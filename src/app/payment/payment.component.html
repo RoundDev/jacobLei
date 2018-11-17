@@ -1,6 +1,7 @@
 <div class="container bg-1 padding-container">
-  <form id="nonce-form" novalidate method="post">
-    <input type="hidden" name="action" value="payment"/>
+  <div id="error">Error Occured</div>
+  <form id="nonce-form" novalidate method="POST">
+    <input type="hidden" name="action" value="/api/sendpayment"/>
   <div class="row row-padding padding-content md-padding-content lg-padding-content">
     <div class="col-12"></div>
     <div class="panel panel-info">
@@ -112,7 +113,7 @@
         </div>
         <div class="form-group">
           <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right btn-row">
-            <button id="sq-creditcard" type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" onclick="requestCardNonce(event)">Pay</button>
+            <button id="sq-creditcard" type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" (click)="requestCardNonce($event)">Pay</button>
             <input type="hidden" id="card-nonce" name="nonce">
           </div>
           <div class="col-xs-12 col-md-6 col-sm-6 col-xs-6 col-lg-6 pull-right">

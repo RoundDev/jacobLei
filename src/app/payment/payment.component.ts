@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
-    const locationId = 'sandbox-sq0atb-tt72F0IGd0OqfRyjPj1ieg';
+    const locationId = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
       // Initialize the payment form elements
@@ -204,6 +204,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
     // Don't submit the form until SqPaymentForm returns with a nonce
     event.preventDefault();
+    
     // const address = $('#delivery-address').val();
     // const differentName = $('#differentName').val();
     // const propertyComment = $('#propertyComment').val();
