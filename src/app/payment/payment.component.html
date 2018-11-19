@@ -106,15 +106,16 @@
             <strong>Amount You Are Paying</strong>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-6">
-            <input id="amountToPay" type="number" class="form-control" name="amountToPay"  value="0" />
+            <input id="amountToPay" type="number" min="1" max="9999" class="form-control" name="amountToPay"  value="0" />
             <!--<input id="amountToPay" type="number" #amountToPay (keyup)="this.calculatePayment(amountToPay)" class="form-control" name="amountToPay"  value="0"  />-->
             <span class="afix">***3.75% fee will be added to the amount (see below)</span>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12 col-lg-12 pull-right btn-row">
-            <button id="sq-creditcard" type="submit" class="btn btn-primary btn-lg btn-submit-fix pull-right" (click)="requestCardNonce($event)">Pay</button>
+            <button id="sq-creditcard"  class="btn btn-primary btn-lg btn-submit-fix pull-right" (click)="requestCardNonce($event)">Pay</button>
             <input type="hidden" id="card-nonce" name="nonce">
+            <input type="hidden" id="sq-id" name="sq-id">
           </div>
           <div class="col-xs-12 col-md-6 col-sm-6 col-xs-6 col-lg-6 pull-right">
           </div>

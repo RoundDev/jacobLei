@@ -1,20 +1,20 @@
 import { Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {$} from 'protractor';
-// import {PaymentInputs} from '../../shared/payment/paymentInputs';
+import {AppService} from '../app.service';
 declare var SqPaymentForm: any;
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-  totalPayment: number;
-  totalPayment$: Observable<number>;
-  constructor() { }
+
+  constructor(private appService: AppService) { }
   paymentForm;
 
   ngOnInit() {
+    let vm;
+    vm = this;
   // this.calculatePayment();
     const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
@@ -135,13 +135,15 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           // Assign the nonce value to the hidden form field
           // document.getElementById('card-nonce').value = nonce;
           // needs to be extracted from the
-          (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
+         (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
+
+          let amount = (<HTMLInputElement>document.getElementById('amountToPay')).value;
           // get this value from the database when the user is logged in
-          // (<HTMLInputElement>document.getElementById('sq-id')).value = "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
+          // (<HTMLInputElement>document.getElementById('sq-id')).value = "sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw" // "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
 
           // POST the nonce form to the payment processing page
-          (<HTMLFormElement>document.getElementById('nonce-form')).submit();
-
+          // (<HTMLFormElement>document.getElementById('nonce-form')).submit();
+            vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount});
         },
 
         /*
@@ -192,14 +194,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  calculatePayment(input)  {
-    console.log(input);
-    // let paymentAmount = ((document.getElementById('amountToPay') as HTMLInputElement).value);
-    // const paymentAmountInt = parseInt(paymentAmount);
-    // // let paymentAmmount = document.getElementById('sq-creditcard').value;
-    //  this.totalPayment = (paymentAmountInt * 0.0375 ) + paymentAmountInt;
-    // console.log(this.totalPayment);
-  }
+  // calculatePayment(input){
+  //   console.log(input);
+  //   // let paymentAmount = ((document.getElementById('amountToPay') as HTMLInputElement).value);
+  //   // const paymentAmountInt = parseInt(paymentAmount);
+  //   // // let paymentAmmount = document.getElementById('sq-creditcard').value;
+  //   //  this.totalPayment = (paymentAmountInt * 0.0375 ) + paymentAmountInt;
+  //   // console.log(this.totalPayment);
+  // }
+
+
   requestCardNonce(event) {
 
     // Don't submit the form until SqPaymentForm returns with a nonce
@@ -242,7 +246,11 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     // Request a nonce from the SqPaymentForm object
     this.paymentForm.requestCardNonce();
   }
-
+  sendSqPayment(data) {
+    this.appService.sendPayment(data).subscribe((data) => {
+      console.log('data', data);
+    });
+  }
   ngAfterViewInit(): void {
   }
 

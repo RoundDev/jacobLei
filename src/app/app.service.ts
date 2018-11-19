@@ -37,6 +37,14 @@ export class AppService {
     return this.http.post(this._baseUrl + '/api/noticeemail', data, httpOptions).catch(this.handleErrorObservable);
   }
 
+  sendPayment(data): Observable<any> {
+    console.log('in servcie', data)
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(this._baseUrl + '/api/sendPayment', data, httpOptions).catch(this.handleErrorObservable);
+  }
+
   handleErrorObservable (error: Response | any) {
     console.error(error.message || error);
     return Observable.throw(error.message || error);

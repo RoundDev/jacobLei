@@ -13,7 +13,7 @@ square.sendSquarePayment = function(req,res,next){
 	try{
 		let nonce = req.body.nonce;
 		console.log("This is nonce" + nonce);
-		let amt = req.body.amountToPay;
+		let amt = parseInt(req.body.amountToPay, 10);
 		console.log("This is amt" +  amt);
 		
 		let location_id = process.env.SQUARE_LOCATION_TEST;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
@@ -34,12 +34,17 @@ square.sendSquarePayment = function(req,res,next){
 			'idempotency_key':uuidv1()
 		})
 		.end(function(response){
-			response.status(200)
+      if(response.statusCode === 200) {}
+		  console.log(response);
+			res.json(response)
+
 		})
 	}
 	catch(error){
 		console.log("\x1b[31m%s\x1b[0m",`ERROR: ${error}`);
 	}
+
+
 
 }
 
