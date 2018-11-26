@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit, AfterContentInit, DoCheck } from '@angular/core';
 import {AppService} from '../app.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 declare var SqPaymentForm: any;
 
 @Component({
@@ -7,15 +9,57 @@ declare var SqPaymentForm: any;
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit, AfterViewInit {
+export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck  {
+@Input()
+infoPaymentForm: FormGroup;
+  inputNameError: string;
+  constructor(private appService: AppService, private formBuilder: FormBuilder) { }
+  paymentForm: any ;
+  // SqPaymentForm: any;
+  ngAfterContentInit() {
 
-  constructor(private appService: AppService) { }
-  paymentForm;
 
+  }
+  // ngOnChanges():  {
+  // }
   ngOnInit() {
+    this.squarePaymentFunction();
+    this.userForm();
+    this.checkInputError();
+  }
+
+  ngAfterViewInit()  {
+
+  }
+  ngOnChanges() {
+  }
+  ngDoCheck() {
+  }
+  // TODO: Do validation of input fields
+  userForm() {
+    this.infoPaymentForm = this.formBuilder.group({
+      user: this.formBuilder.group({
+      'peyeeName': new FormControl('', Validators.required),
+      'phoneNumber': [''],
+      'email': [''],
+      'propertyName': [''],
+      'propertyComment': [''],
+      'differentName': [''],
+      'amountToPay': ['']
+      })
+    });
+  }
+  checkInputError() {
+    if (this.infoPaymentForm.controls.peyeeName.value === '') {
+      this.inputNameError = 'Name Required';
+    } else {
+      this.inputNameError = null;
+    }
+  }
+  squarePaymentFunction() {
     let vm;
     vm = this;
-  // this.calculatePayment();
+    // this.calculatePayment();
     const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
@@ -135,7 +179,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           // Assign the nonce value to the hidden form field
           // document.getElementById('card-nonce').value = nonce;
           // needs to be extracted from the
-         (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
+          (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
 
           let amount = (<HTMLInputElement>document.getElementById('amountToPay')).value;
           // get this value from the database when the user is logged in
@@ -143,7 +187,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
           // POST the nonce form to the payment processing page
           // (<HTMLFormElement>document.getElementById('nonce-form')).submit();
-            vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount});
+          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount});
         },
 
         /*
@@ -208,7 +252,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
     // Don't submit the form until SqPaymentForm returns with a nonce
     event.preventDefault();
-    
+
     // const address = $('#delivery-address').val();
     // const differentName = $('#differentName').val();
     // const propertyComment = $('#propertyComment').val();
@@ -248,10 +292,15 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   }
   sendSqPayment(data) {
     this.appService.sendPayment(data).subscribe((data) => {
-      console.log('data', data);
-    });
+        if (data.statusCode === 200 ) {
+          console.log('Data success');
+        } else if (data.statusCode !== 200) {
+          console.log( 'Message:' + '' + data.statusCode);
+        }
+        // console.log('data', data);
+      },
+      // () => '',
+      // () => ''
+    );
   }
-  ngAfterViewInit(): void {
-  }
-
 }

@@ -17,7 +17,7 @@ h4 {
 }
 .container {
   /*padding-top: 10%;*/
-  padding: 7% 0% !important;
+  padding: 7% 0 !important;
   /*padding-top: 10% !important;*/
   /*padding-bottom: 10% !important;*/
 }
@@ -65,4 +65,12 @@ thead {
 .img-responsive {
   max-width: 60%;
   margin-left: 20%;
+}
+
+table {
+  border-spacing: 25px 0px !important;
+  border-collapse: separate;
+}
+td {
+  padding: 0px 55px 0px 0px !important;
 }

@@ -13,7 +13,7 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   sendMaintEmail(data): Observable<any> {
-    console.log('in servcie', data)
+    console.log('in servcie', data);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -22,7 +22,7 @@ export class AppService {
 
 
   sendContacEmail(data): Observable<any> {
-    console.log('in servcie', data)
+    console.log('in servcie', data);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -30,7 +30,7 @@ export class AppService {
   }
 
   sendNoticeEmail(data): Observable<any> {
-    console.log('in servcie', data)
+    console.log('in servcie', data);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -38,7 +38,7 @@ export class AppService {
   }
 
   sendPayment(data): Observable<any> {
-    console.log('in servcie', data)
+    console.log('in servcie', data);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

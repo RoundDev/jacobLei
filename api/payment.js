@@ -2,7 +2,9 @@
  * Module for processing square payment
  */
 
- // Dependencies
+
+
+// Dependencies
 var unirest = require('unirest');
 const uuidv1 = require('uuid/v1');
 
@@ -34,8 +36,14 @@ square.sendSquarePayment = function(req,res,next){
 			'idempotency_key':uuidv1()
 		})
 		.end(function(response){
-      if(response.statusCode === 200) {}
-		  console.log(response);
+      // if(response.statusCode === 200) {
+      //   // alert('Payment send')
+      //   console.log('Success')
+      // }else if(response.statusCode !== 200) {
+      //   // alert('Payment Fail' + res.json(error))
+      //   console.log('Fail')
+      // }
+		  // console.log(response);
 			res.json(response)
 
 		})
@@ -46,6 +54,6 @@ square.sendSquarePayment = function(req,res,next){
 
 
 
-}
+};
 
 module.exports = square;
