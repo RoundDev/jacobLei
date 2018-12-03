@@ -42,3 +42,24 @@
   border: transparent;
   box-shadow: 2px 3px 6px 1px #000000c2;
 }
+
+#error {
+  color: red;
+}
+.currency-input {
+  position: absolute;
+  top: 3px;
+  left: 17px;
+}
+.currency-input input {
+  border: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-default {
+    width: 115px !important;
+  }
+  .modal-title {
+    font-size: 15px;
+  }
+}

@@ -52,7 +52,7 @@
           <div class="form-group">
             <div class='col-xs-12 col-md-6 col-lg-6 form-group expiration required'>
               <label class='control-label'>Repair Issue</label>
-              <textarea id="message" name="message" formControlName="textArea" class="text-area" (input)="checkInputError()"></textarea>
+              <textarea id="message" name="message" formControlName="textArea" class="text-area" (input)="checkInputError()" required></textarea>
               <span class="alert-warning small" *ngIf="inputTextError !== null">{{inputTextError}}</span>
               <button type="button" (click)="sendEmail(this)" class="btn btn-primary btn-lg btn-submit-fix pull-right" data-toggle="modal" href="#modal" [disabled]="!maintenanceForm.valid">Submit</button>
             </div>

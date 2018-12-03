@@ -108,7 +108,11 @@ h4 {
   font-size: 35px;
   color: #00005c !important;
 }
-
+.footer-logo {
+  font-family: Cinzel, serif;
+  font-size: 18px;
+  color: #00005c !important;
+}
 .brand-text {
   font-size: 12px;
   margin-left: -156px;

@@ -1,21 +1,119 @@
-import { Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {$} from 'protractor';
-// import {PaymentInputs} from '../../shared/payment/paymentInputs';
+import {Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit, AfterContentInit, DoCheck, OnDestroy} from '@angular/core';
+import {AppService} from '../app.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {stringify} from 'querystring';
+import {ɵHammerGesturesPlugin} from '@angular/platform-browser';
+
 declare var SqPaymentForm: any;
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit, AfterViewInit {
-  totalPayment: number;
-  totalPayment$: Observable<number>;
-  constructor() { }
-  paymentForm;
+export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck, OnDestroy  {
+@Input()
+infoPaymentForm: FormGroup;
+  nameError: string;
+  phoneNumberError: string;
+  emailError: string;
+  propertyNameError: string;
+  propertyCommentError: string;
+  differentNameError: string;
+  amountToPayError: string;
+  modalAmountToPay: string;
+  modalHeader: string;
+  modalConformation: string;
+  paymnetSuccess: boolean;
+  conformationShow: boolean;
+  paymentForm: any ;
 
+  constructor(private appService: AppService, private formBuilder: FormBuilder) {}
+
+
+  // SqPaymentForm: any;
+  ngAfterContentInit() {
+    this.userForm();
+
+
+  }
+  ngOnDestroy() {
+    // this.conformationModal();
+  }
+  // ngOnChanges():  {
+  // }
   ngOnInit() {
-  // this.calculatePayment();
+    this.squarePaymentFunction();
+    // this.squarePaymentFunction();
+    // this.squarePaymentFunction();
+    this.checkInputError();
+  }
+
+  ngAfterViewInit()  {
+    // this.squarePaymentFunction();
+    // this.paymentForm.build();
+
+  }
+  ngOnChanges() {
+  }
+  ngDoCheck() {
+  }
+  // TODO: Do validation of input fields
+  // new FormControl('', Validators.required),
+  userForm() {
+    this.infoPaymentForm = this.formBuilder.group({
+      // user: this.formBuilder.group({
+      'payeeName':  ['', [Validators.required, Validators.maxLength(25)]],
+      'phoneNumber':  ['', [Validators.required, Validators.maxLength(10)]],
+      'email': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
+      'propertyName': ['', [Validators.required, Validators.maxLength(25)]],
+      'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
+      'differentName': ['', [Validators.required, Validators.maxLength(25)]]
+      // 'amountToPay': ['', [Validators.required, Validators.maxLength(4)]]
+      // })
+    });
+  }
+  checkInputError() {
+    if (this.infoPaymentForm.controls.payeeName.value === '') {
+      this.nameError = 'Name Required';
+    } else {
+      this.nameError = null;
+    }
+    if (this.infoPaymentForm.controls.phoneNumber.value === '') {
+      this.phoneNumberError = 'Phone Number Required';
+    } else {
+      this.phoneNumberError = null;
+    }
+    if  (this.infoPaymentForm.controls.email.value === '') {
+      this.emailError = 'Email Address Required';
+    } else {
+      this.emailError = null;
+    }
+    if  (this.infoPaymentForm.controls.propertyName.value === '') {
+      this.propertyNameError = 'Property Name Required';
+    } else {
+      this.propertyNameError = null;
+    }
+    if  (this.infoPaymentForm.controls.propertyComment.value === '') {
+      this.propertyCommentError = 'Property Comment Required';
+    } else {
+      this.propertyCommentError = null;
+    }
+    if  (this.infoPaymentForm.controls.differentName.value === '') {
+      this.differentNameError = 'Name Required';
+    } else {
+      this.differentNameError = null;
+    }
+    // if  (this.infoPaymentForm.controls.amountToPay.value === '') {
+    //   this.amountToPayError = 'Amount Required. Minimum $1 maximum $9999';
+    // } else {
+    //   this.amountToPayError = null;
+    // }
+  }
+  squarePaymentFunction() {
+    let vm;
+    vm = this;
+    // this.calculatePayment();
     const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
@@ -136,12 +234,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           // document.getElementById('card-nonce').value = nonce;
           // needs to be extracted from the
           (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
+
+          let amount = (<HTMLInputElement>document.getElementById('amountToPay')).value;
           // get this value from the database when the user is logged in
-          // (<HTMLInputElement>document.getElementById('sq-id')).value = "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
+          // (<HTMLInputElement>document.getElementById('sq-id')).value = "sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw" // "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
 
           // POST the nonce form to the payment processing page
-          (<HTMLFormElement>document.getElementById('nonce-form')).submit();
-
+          // (<HTMLFormElement>document.getElementById('nonce-form')).submit();
+          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount});
         },
 
         /*
@@ -192,19 +292,21 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  calculatePayment(input)  {
-    console.log(input);
-    // let paymentAmount = ((document.getElementById('amountToPay') as HTMLInputElement).value);
-    // const paymentAmountInt = parseInt(paymentAmount);
-    // // let paymentAmmount = document.getElementById('sq-creditcard').value;
-    //  this.totalPayment = (paymentAmountInt * 0.0375 ) + paymentAmountInt;
-    // console.log(this.totalPayment);
-  }
+  // calculatePayment(input){
+  //   console.log(input);
+  //   // let paymentAmount = ((document.getElementById('amountToPay') as HTMLInputElement).value);
+  //   // const paymentAmountInt = parseInt(paymentAmount);
+  //   // // let paymentAmmount = document.getElementById('sq-creditcard').value;
+  //   //  this.totalPayment = (paymentAmountInt * 0.0375 ) + paymentAmountInt;
+  //   // console.log(this.totalPayment);
+  // }
+
+
   requestCardNonce(event) {
 
     // Don't submit the form until SqPaymentForm returns with a nonce
     event.preventDefault();
-    
+
     // const address = $('#delivery-address').val();
     // const differentName = $('#differentName').val();
     // const propertyComment = $('#propertyComment').val();
@@ -242,8 +344,40 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     // Request a nonce from the SqPaymentForm object
     this.paymentForm.requestCardNonce();
   }
-
-  ngAfterViewInit(): void {
+  conformationModal() {
+    this.conformationShow = true;
+    let amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
+    this.modalHeader = 'Do You Agree To Pay';
+    this.modalAmountToPay = amountModal;
+  }
+  sendEmail(data) {
+    this.appService.sendPaymentEmail(data.infoPaymentForm.value).subscribe((data) => {
+      console.log('data', data);
+    });
   }
 
+
+  sendSqPayment(data) {
+    this.conformationShow = false;
+    this.appService.sendPayment(data).subscribe((data) => {
+        if (data.statusCode === 200 ) {
+          this.paymnetSuccess = true;
+          this.modalHeader = 'Thank You';
+          this.modalConformation = 'We received yor payment';
+          (<HTMLInputElement> document.getElementById('payButton')).disabled = true;
+          this.sendEmail(this);
+          console.log('Data success');
+          this.infoPaymentForm.reset();
+        } else if (data.statusCode !== 200) {
+          this.paymnetSuccess = false;
+          this.modalHeader = 'Sorry Something Went Wrong';
+          this.modalConformation = 'Please, check form for errors';
+          console.log( 'Message:' + '' + data.statusCode);
+        }
+        // console.log('data', data);
+      },
+      // () => '',
+      // () => ''
+    );
+  }
 }
