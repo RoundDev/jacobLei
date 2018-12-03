@@ -1,6 +1,8 @@
-import { Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit, AfterContentInit, DoCheck } from '@angular/core';
+import {Component, OnInit, OnChanges, Input, EventEmitter, AfterViewInit, AfterContentInit, DoCheck, OnDestroy} from '@angular/core';
 import {AppService} from '../app.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {stringify} from 'querystring';
+import {ɵHammerGesturesPlugin} from '@angular/platform-browser';
 
 declare var SqPaymentForm: any;
 
@@ -9,26 +11,47 @@ declare var SqPaymentForm: any;
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck  {
+export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck, OnDestroy  {
 @Input()
 infoPaymentForm: FormGroup;
-  inputNameError: string;
-  constructor(private appService: AppService, private formBuilder: FormBuilder) { }
+  nameError: string;
+  phoneNumberError: string;
+  emailError: string;
+  propertyNameError: string;
+  propertyCommentError: string;
+  differentNameError: string;
+  amountToPayError: string;
+  modalAmountToPay: string;
+  modalHeader: string;
+  modalConformation: string;
+  paymnetSuccess: boolean;
+  conformationShow: boolean;
   paymentForm: any ;
+
+  constructor(private appService: AppService, private formBuilder: FormBuilder) {}
+
+
   // SqPaymentForm: any;
   ngAfterContentInit() {
+    this.userForm();
 
 
+  }
+  ngOnDestroy() {
+    // this.conformationModal();
   }
   // ngOnChanges():  {
   // }
   ngOnInit() {
     this.squarePaymentFunction();
-    this.userForm();
+    // this.squarePaymentFunction();
+    // this.squarePaymentFunction();
     this.checkInputError();
   }
 
   ngAfterViewInit()  {
+    // this.squarePaymentFunction();
+    // this.paymentForm.build();
 
   }
   ngOnChanges() {
@@ -36,25 +59,56 @@ infoPaymentForm: FormGroup;
   ngDoCheck() {
   }
   // TODO: Do validation of input fields
+  // new FormControl('', Validators.required),
   userForm() {
     this.infoPaymentForm = this.formBuilder.group({
-      user: this.formBuilder.group({
-      'peyeeName': new FormControl('', Validators.required),
-      'phoneNumber': [''],
-      'email': [''],
-      'propertyName': [''],
-      'propertyComment': [''],
-      'differentName': [''],
-      'amountToPay': ['']
-      })
+      // user: this.formBuilder.group({
+      'payeeName':  ['', [Validators.required, Validators.maxLength(25)]],
+      'phoneNumber':  ['', [Validators.required, Validators.maxLength(10)]],
+      'email': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
+      'propertyName': ['', [Validators.required, Validators.maxLength(25)]],
+      'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
+      'differentName': ['', [Validators.required, Validators.maxLength(25)]]
+      // 'amountToPay': ['', [Validators.required, Validators.maxLength(4)]]
+      // })
     });
   }
   checkInputError() {
-    if (this.infoPaymentForm.controls.peyeeName.value === '') {
-      this.inputNameError = 'Name Required';
+    if (this.infoPaymentForm.controls.payeeName.value === '') {
+      this.nameError = 'Name Required';
     } else {
-      this.inputNameError = null;
+      this.nameError = null;
     }
+    if (this.infoPaymentForm.controls.phoneNumber.value === '') {
+      this.phoneNumberError = 'Phone Number Required';
+    } else {
+      this.phoneNumberError = null;
+    }
+    if  (this.infoPaymentForm.controls.email.value === '') {
+      this.emailError = 'Email Address Required';
+    } else {
+      this.emailError = null;
+    }
+    if  (this.infoPaymentForm.controls.propertyName.value === '') {
+      this.propertyNameError = 'Property Name Required';
+    } else {
+      this.propertyNameError = null;
+    }
+    if  (this.infoPaymentForm.controls.propertyComment.value === '') {
+      this.propertyCommentError = 'Property Comment Required';
+    } else {
+      this.propertyCommentError = null;
+    }
+    if  (this.infoPaymentForm.controls.differentName.value === '') {
+      this.differentNameError = 'Name Required';
+    } else {
+      this.differentNameError = null;
+    }
+    // if  (this.infoPaymentForm.controls.amountToPay.value === '') {
+    //   this.amountToPayError = 'Amount Required. Minimum $1 maximum $9999';
+    // } else {
+    //   this.amountToPayError = null;
+    // }
   }
   squarePaymentFunction() {
     let vm;
@@ -290,11 +344,34 @@ infoPaymentForm: FormGroup;
     // Request a nonce from the SqPaymentForm object
     this.paymentForm.requestCardNonce();
   }
+  conformationModal() {
+    this.conformationShow = true;
+    let amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
+    this.modalHeader = 'Do You Agree To Pay';
+    this.modalAmountToPay = amountModal;
+  }
+  sendEmail(data) {
+    this.appService.sendPaymentEmail(data.infoPaymentForm.value).subscribe((data) => {
+      console.log('data', data);
+    });
+  }
+
+
   sendSqPayment(data) {
+    this.conformationShow = false;
     this.appService.sendPayment(data).subscribe((data) => {
         if (data.statusCode === 200 ) {
+          this.paymnetSuccess = true;
+          this.modalHeader = 'Thank You';
+          this.modalConformation = 'We received yor payment';
+          (<HTMLInputElement> document.getElementById('payButton')).disabled = true;
+          this.sendEmail(this);
           console.log('Data success');
+          this.infoPaymentForm.reset();
         } else if (data.statusCode !== 200) {
+          this.paymnetSuccess = false;
+          this.modalHeader = 'Sorry Something Went Wrong';
+          this.modalConformation = 'Please, check form for errors';
           console.log( 'Message:' + '' + data.statusCode);
         }
         // console.log('data', data);

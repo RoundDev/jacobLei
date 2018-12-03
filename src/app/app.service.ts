@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 // rxjs
+// import {Observable} from 'rxjs/Observable';
 import {Observable} from 'rxjs/Observable';
 import { Resolve } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -43,6 +44,14 @@ export class AppService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.post(this._baseUrl + '/api/sendPayment', data, httpOptions).catch(this.handleErrorObservable);
+  }
+
+  sendPaymentEmail(data): Observable<any> {
+    console.log('in servcie', data);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(this._baseUrl + '/api/paymentemail', data, httpOptions).catch(this.handleErrorObservable);
   }
 
   handleErrorObservable (error: Response | any) {
