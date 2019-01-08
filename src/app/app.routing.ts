@@ -13,6 +13,7 @@ import {MaintenanceComponent} from './maintenance/maintenance.component';
 import {NoticeComponent} from './notice/notice.component';
 import {SingleComponent} from './single/single.component';
 import {MultiComponent} from './multi/multi.component';
+// import {FormResolver} from './payment/form-resolver.service';
 
 const  appRoutes: Routes = [
   {
@@ -25,7 +26,10 @@ const  appRoutes: Routes = [
   },
   {
     path: 'payment',
-    component: PaymentComponent
+    component: PaymentComponent,
+    // resolve: {
+    //   FormResolver
+    // }
   },
   {
     path: 'owners',
@@ -66,5 +70,5 @@ const  appRoutes: Routes = [
 ];
 
 export const appRoutingProviders: any[] = [
-]
+];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
