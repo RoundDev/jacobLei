@@ -48,19 +48,21 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
   propertyNameError: string;
   propertyCommentError: string;
   differentNameError: string;
-  sqCardNumberError: string;
-  sqExpirationDateError: string;
-  sqCVVError: string;
-  sqPostalCodeError: string;
+  // sqCardNumberError: string;
+  // sqExpirationDateError: string;
+  // sqCVVError: string;
+  // sqPostalCodeError: string;
   amountToPayError: string;
-  modalAmountToPay: string;
+  modalAmountToPay: any;
   modalHeader: string;
   modalConformation: string;
   paymnetSuccess: boolean;
   conformationShow: boolean;
   paymentForm: any;
   amountToPay: any;
-  sqData: any;
+  totalAmount: number;
+  amountValue: any;
+  intAmount: number;
 //   loadsScript = loadafter.loadsScript;
 // url: 'https://js.squareup.com/v2/paymentform';
   constructor(private appService: AppService, private formBuilder: FormBuilder,
@@ -624,11 +626,17 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
 
   conformationModal() {
     this.conformationShow = true;
-    const amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
+    // const amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
     this.modalHeader = 'Do You Agree To Pay';
-    this.modalAmountToPay = amountModal;
+    this.modalAmountToPay = this.modalTotal();
   }
-
+modalTotal() {
+  this.amountValue = (<HTMLInputElement>document.getElementById('amountToPay')).value;
+  this.intAmount = parseInt(this.amountValue);
+  this.totalAmount = (this.intAmount * 0.0375) + this.intAmount;
+  console.log('Total amount' + ' ' + this.totalAmount);
+  return this.totalAmount.toFixed(2);
+}
   sendEmail(data) {
     this.appService.sendPaymentEmail(data.infoPaymentForm.value).subscribe((data) => {
       console.log('data', data);
