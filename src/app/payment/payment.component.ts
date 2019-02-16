@@ -218,7 +218,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
       applicationId: applicationId,
       locationId: locationId,
       inputClass: 'sq-input',
-      // autoBuild : false,
+      autoBuild : false,
 
       // Customize the CSS for SqPaymentForm iframe elements
       inputStyles: [{
@@ -623,7 +623,9 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     // Request a nonce from the SqPaymentForm object
     this.paymentForm.requestCardNonce();
   }
-
+loadPaymentForm() {
+  this.paymentForm.build();
+}
   conformationModal() {
     this.conformationShow = true;
     // const amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
