@@ -63,3 +63,8 @@
     font-size: 15px !important;
   }
 }
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
