@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // rxjs
 // import {Observable} from 'rxjs/Observable';
 import {Observable} from 'rxjs/Observable';
+import {throwError} from 'rxjs';
 import { Resolve } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
@@ -56,7 +57,7 @@ export class AppService {
 
   handleErrorObservable (error: Response | any) {
     console.error(error.message || error);
-    return Observable.throw(error.message || error);
+    return throwError(error.message || error);
   }
 
 }

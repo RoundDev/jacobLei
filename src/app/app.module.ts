@@ -21,7 +21,7 @@ import {AppService} from './app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SingleComponent } from './single/single.component';
 import { MultiComponent } from './multi/multi.component';
-import {FormResolver} from './payment/form-resolver.service';
+// import {FormResolver} from './payment/form-resolver.service';
 // import {loadafter} from '../shared/js/loadafter.js';
 
 
@@ -55,7 +55,7 @@ import {FormResolver} from './payment/form-resolver.service';
     HttpClientModule,
 
   ],
-  providers: [appRoutingProviders, AppService, FormResolver],
+  providers: [appRoutingProviders, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
