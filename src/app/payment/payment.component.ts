@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import {AppService} from '../app.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+// import {ActivatedRoute} from '@angular/router';
 import {Payment} from './payment';
 // import {loadafter} from 'shared/js/loadafter.js';
 
@@ -23,7 +23,7 @@ declare var SqPaymentForm: any;
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck, OnDestroy, AfterContentChecked, AfterViewChecked {
   numberOfTicks = 0;
@@ -41,7 +41,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     'sqCVVError': [''],
     'sqPostalCodeError': ['']
   });
-
+  formLoaded: boolean =  false;
   nameError: string;
   phoneNumberError: string;
   emailError: string;
@@ -65,14 +65,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
   intAmount: number;
 //   loadsScript = loadafter.loadsScript;
 // url: 'https://js.squareup.com/v2/paymentform';
-  constructor(private appService: AppService, private formBuilder: FormBuilder,
-              private route: ActivatedRoute, private ref:  ChangeDetectorRef) {
-    // setInterval(() => {
-    //   this.numberOfTicks++;
-    //   // require view to be updated
-    //   this.ref.markForCheck();
-    // }, 1000);
-  }
+  constructor(private appService: AppService, private formBuilder: FormBuilder) {}
 
 
   // SqPaymentForm: any;
@@ -87,7 +80,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
 
   ngAfterViewChecked(): void {
     // this.squarePaymentFunction();
-    this.ref.detectChanges();
+    // this.ref.detectChanges();
   }
 
   ngOnDestroy() {
@@ -206,11 +199,13 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     let vm;
     vm = this;
     // this.calculatePayment();
-    const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
+    const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
+      // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
-    const locationId = 'B0RXTVMP1T4WP';
+    const locationId = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
+      // 'B0RXTVMP1T4WP';
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
@@ -624,7 +619,10 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     this.paymentForm.requestCardNonce();
   }
 loadPaymentForm() {
-  this.paymentForm.build();
+    if (this.formLoaded === false) {
+      this.paymentForm.build();
+      this.formLoaded = true;
+    }
 }
   conformationModal() {
     this.conformationShow = true;

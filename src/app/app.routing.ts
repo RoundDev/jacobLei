@@ -27,9 +27,6 @@ const  appRoutes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent,
-    // resolve: {
-    //   FormResolver
-    // }
   },
   {
     path: 'owners',
