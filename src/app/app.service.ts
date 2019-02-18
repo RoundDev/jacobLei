@@ -54,7 +54,13 @@ export class AppService {
     };
     return this.http.post(this._baseUrl + '/api/paymentemail', data, httpOptions).catch(this.handleErrorObservable);
   }
-
+  sendAdminPaymentEmail(data): Observable<any> {
+    console.log('in servcie', data);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post(this._baseUrl + '/api/paymentConfirmation', data, httpOptions).catch(this.handleErrorObservable);
+  }
   handleErrorObservable (error: Response | any) {
     console.error(error.message || error);
     return throwError(error.message || error);

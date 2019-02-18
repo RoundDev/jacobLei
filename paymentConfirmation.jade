@@ -1,0 +1,38 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Conformation of payment
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    style.
+      li {
+        display: block;
+      }
+      .content-row {
+        padding: 40px 0 40px 0;
+      }
+  body
+    .container-fluid
+      .row.text-center.content-row
+        h1 Conformation of payment #{propertyName}
+        .col-sm-12.col-md-12
+          ul
+            li Name: {{payeeName}}
+            li Phone number: #{phoneNumber}
+            li Email: #{email}
+            li Paying for a different Named Rental Applicant: #{differentName}
+    footer
+      .container
+        .row.text-center
+          .col-sm-12.col-md-12
+            h3 Jacob Lei Property Management
+            .col-sm-6.col-md-6
+              p
+                | 346 Ebenezer Road
+                br
+                |             Knoxville TN, 37923
+            .col-sm-6.col-md-6
+              p
+                | T: 865.675.7880
+                br
+                |  F: 866.703.7882

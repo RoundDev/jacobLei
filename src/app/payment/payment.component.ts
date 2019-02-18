@@ -643,6 +643,12 @@ modalTotal() {
     });
   }
 
+  sendAdminEmail(data) {
+    this.appService.sendAdminPaymentEmail(data.infoPaymentForm.value).subscribe((data) => {
+      console.log('data', data);
+    });
+  }
+
 
   sendSqPayment(data) {
     this.conformationShow = false;
@@ -653,6 +659,7 @@ modalTotal() {
           this.modalConformation = 'We received yor payment';
           (<HTMLInputElement>document.getElementById('payButton')).disabled = true;
           this.sendEmail(this);
+          this.sendAdminEmail(this);
           console.log('Data success');
           this.infoPaymentForm.reset();
         } else if (data.statusCode !== 200) {
