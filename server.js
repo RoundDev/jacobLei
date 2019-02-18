@@ -16,6 +16,7 @@ app.post('/api/maintemail',api.sendMaintEmail);
 app.post('/api/contactemail',api.sendContactEmail);
 app.post('/api/noticeemail',api.sendNoticeEmail);
 app.post('/api/paymentemail',api.sendPaymentFormEmail);
+app.post('/api/paymentConfirmation',api.sendAdminPaymentFormEmail);
 app.post('/api/sendpayment',sq.sendSquarePayment);
 app.get('/*', function(req,res) {
 
