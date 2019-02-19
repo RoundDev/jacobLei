@@ -1,6 +1,6 @@
 var Mailgun = require('mailgun-js');
 var jade = require('jade');
-var emailAddres = "admin@jacoblei.net";
+var emailAddres = "admin@jacoblei.com";
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){
