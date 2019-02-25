@@ -16,7 +16,8 @@ square.sendSquarePayment = function(req,res,next){
 		let nonce = req.body.nonce;
 		console.log("This is nonce" + nonce);
 		let amtEl = parseInt(req.body.amountToPay, 10);
-		let amt = amtEl * 100;
+		let amtInDollars = amtEl * 100;
+		let amt = (amtInDollars * 0.0375) + amtInDollars;
 		console.log("This is amt" +  amt);
 		
 		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";

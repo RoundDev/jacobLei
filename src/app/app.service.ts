@@ -47,12 +47,12 @@ export class AppService {
     return this.http.post(this._baseUrl + '/api/sendPayment', data, httpOptions).catch(this.handleErrorObservable);
   }
 
-  sendPaymentEmail(data): Observable<any> {
+  sendUserPaymentEmail(data): Observable<any> {
     console.log('in servcie', data);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post(this._baseUrl + '/api/paymentemail', data, httpOptions).catch(this.handleErrorObservable);
+    return this.http.post(this._baseUrl + '/api/paymentEmail', data, httpOptions).catch(this.handleErrorObservable);
   }
   sendAdminPaymentEmail(data): Observable<any> {
     console.log('in servcie', data);
