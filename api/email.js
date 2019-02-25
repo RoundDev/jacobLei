@@ -87,7 +87,7 @@ var self = module.exports ={
       let email = req.body.emailAddress;
       let tenantName = req.body.tenName;
       let mailgunKey = process.env.MAILGUN_KEY;
-      let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
+      let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
       let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
       let fn = jade.compileFile('./noticeEmail.jade');
@@ -121,12 +121,12 @@ var self = module.exports ={
       /*for testing*/
       //res.status(200).send({"html":html.toString()});
     },
-  sendPaymentFormEmail: function(req,res,next){
+  sendUserPaymentFormEmail: function(req,res,next){
 
     let email = req.body.email;
     let tenantName = req.body.payeeName;
     let mailgunKey = process.env.MAILGUN_KEY;
-    let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
+    let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentEmail.jade');
