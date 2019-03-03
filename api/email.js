@@ -123,7 +123,7 @@ var self = module.exports ={
     },
   sendUserPaymentFormEmail: function(req,res,next){
 
-    let email = req.body.email;
+    let email = req.body.email_address;
     let tenantName = req.body.payeeName;
     let mailgunKey = process.env.MAILGUN_KEY;
     let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
@@ -163,7 +163,7 @@ var self = module.exports ={
 
   sendAdminPaymentFormEmail: function(req,res,next) {
 
-    let email = req.body.email;
+    let email = req.body.email_address;
     let tenantName = req.body.payeeName;
     let mailgunKey = process.env.MAILGUN_KEY;
     let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
