@@ -22,8 +22,8 @@ square.sendSquarePayment = function(req,res,next){
 		let amt = parseInt(amtTotal, 10);
 		console.log('This is amt' + ' ' +  amt);
 		
-		let location_id = process.env.SQUARE_LOCATION_TEST;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
-		let access_token = process.env.SQUARE_TOKEN_TEST;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
+		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
 		
 		unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions')
 		.headers({

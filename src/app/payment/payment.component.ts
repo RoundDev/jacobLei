@@ -200,12 +200,12 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     let vm;
     vm = this;
     // this.calculatePayment();
-    const applicationId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
+    const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
       // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg'; prod
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
-    const locationId = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
+    const locationId = 'B0RXTVMP1T4WP';
       // 'B0RXTVMP1T4WP'; prod
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
