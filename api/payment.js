@@ -40,6 +40,7 @@ square.sendSquarePayment = function(req,res,next){
 			'idempotency_key':uuidv1()
 		})
 		.end(function(response){
+		  console.log('Respons paymnent' + '' + response);
       // if(response.statusCode === 200) {
       //   // alert('Payment send')
       //   console.log('Success')
