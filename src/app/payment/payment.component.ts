@@ -29,9 +29,10 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
   numberOfTicks = 0;
   infoPaymentForm = this.formBuilder.group({
     // user: this.formBuilder.group({
-    'payeeName': ['', [Validators.required, Validators.maxLength(25)]],
-    'phoneNumber': ['', [Validators.required, Validators.maxLength(10)]],
-    'email': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
+    'given_name': ['', [Validators.required, Validators.maxLength(25)]],
+    'family_name': ['', [Validators.required, Validators.maxLength(25)]],
+    'phone_number': ['', [Validators.required, Validators.maxLength(10)]],
+    'email_address': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
     'propertyName': ['', [Validators.required, Validators.maxLength(25)]],
     'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
     'differentName': ['', [Validators.required, Validators.maxLength(25)]],
@@ -200,12 +201,12 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     vm = this;
     // this.calculatePayment();
     const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
-      // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
+      // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg'; prod
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
     const locationId = 'B0RXTVMP1T4WP';
-      // 'B0RXTVMP1T4WP';
+      // 'B0RXTVMP1T4WP'; prod
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
@@ -666,7 +667,7 @@ modalTotal() {
           this.paymnetSuccess = false;
           this.modalHeader = 'Sorry Something Went Wrong';
           this.modalConformation = 'Please, check form for errors';
-          console.log('Message:' + '' + data.statusCode);
+          console.log('Message:' + '' + data.statusCode + ' ' + data.toString());
         }
         // console.log('data', data);
       },

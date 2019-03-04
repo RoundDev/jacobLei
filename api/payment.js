@@ -16,9 +16,11 @@ square.sendSquarePayment = function(req,res,next){
 		let nonce = req.body.nonce;
 		console.log("This is nonce" + nonce);
 		let amtEl = parseInt(req.body.amountToPay, 10);
+		console.log('Amount to pay' + ' ' + amtEl);
 		let amtInDollars = amtEl * 100;
-		let amt = (amtInDollars * 0.0375) + amtInDollars;
-		console.log("This is amt" +  amt);
+		let amtTotal = (amtInDollars * 0.0375) + amtInDollars;
+		let amt = parseInt(amtTotal, 10);
+		console.log('This is amt' + ' ' +  amt);
 		
 		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
 		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
@@ -38,6 +40,7 @@ square.sendSquarePayment = function(req,res,next){
 			'idempotency_key':uuidv1()
 		})
 		.end(function(response){
+		  console.log('Respons paymnent' + '' + response);
       // if(response.statusCode === 200) {
       //   // alert('Payment send')
       //   console.log('Success')

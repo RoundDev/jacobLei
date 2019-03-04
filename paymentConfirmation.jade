@@ -2,7 +2,7 @@ doctype html
 html(lang='en')
   head
     meta(charset='UTF-8')
-    title Conformation of payment
+    title Confirmation of payment
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     style.
       li {
@@ -17,10 +17,12 @@ html(lang='en')
         h1 Conformation of payment #{propertyName}
         .col-sm-12.col-md-12
           ul
-            li Name: #{payeeName}
-            li Phone number: #{phoneNumber}
-            li Email: #{email}
+            li Name: #{first_name}
+            li Name: #{last_name}
+            li Phone number: #{phone_number}
+            li Email: #{email_address}
             li Paying for a different Named Rental Applicant: #{differentName}
+            li Amount Paid: $ #{modalAmountToPay}
     footer
       .container
         .row.text-center
