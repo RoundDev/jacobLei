@@ -78,8 +78,8 @@
 
         <div class="form-group clearfix">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="propertyName">This payment is regarding rental property</label>
-              <input id="propertyName" formControlName="propertyName"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="propertyName" required/>
+            <label for="property_name">This payment is regarding rental property</label>
+              <input id="property_name" formControlName="property_name"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="property_name" required/>
             <span class="alert-warning small" *ngIf="propertyNameError !== null">{{propertyNameError}}</span>
           </div>
         </div>

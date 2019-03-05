@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     'family_name': ['', [Validators.required, Validators.maxLength(25)]],
     'phone_number': ['', [Validators.required, Validators.maxLength(10)]],
     'email_address': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
-    'propertyName': ['', [Validators.required, Validators.maxLength(25)]],
+    'property_name': ['', [Validators.required, Validators.maxLength(25)]],
     'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
     'differentName': ['', [Validators.required, Validators.maxLength(25)]],
     'amountToPay': ['', [Validators.required, Validators.maxLength(4), Validators.minLength(1)]],
@@ -201,18 +201,20 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     vm = this;
     // this.calculatePayment();
     const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
+    const applicationIdTest = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
       // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg'; prod
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
     const locationId = 'B0RXTVMP1T4WP';
+    const locationIdTest = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
       // 'B0RXTVMP1T4WP'; prod
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
       // Initialize the payment form elements
-      applicationId: applicationId,
-      locationId: locationId,
+      applicationId: applicationIdTest,
+      locationId: locationIdTest,
       inputClass: 'sq-input',
       autoBuild : false,
 

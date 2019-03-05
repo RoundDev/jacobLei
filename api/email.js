@@ -1,6 +1,7 @@
 var Mailgun = require('mailgun-js');
 var jade = require('jade');
-var emailAddres = "admin@jacoblei.com";
+var emailAddres = "pooh098@hotmail.com";
+  // "admin@jacoblei.com";
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){
@@ -131,6 +132,10 @@ var self = module.exports ={
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentEmail.jade');
     let html = fn(req.body);
+    let amn = parseInt(req.body.amountToPay, 10);
+    let totalAmount = (amn * 0.0375) + amn;
+    console.log("Email Total Amount" + ' ' + totalAmount);
+
 
     var data = {
       //Specify email data
@@ -138,7 +143,7 @@ var self = module.exports ={
       //The email to contact
       to: email,
       //Subject and text data
-      subject: 'Conformation of payment' + ' ' + tenantName,
+      subject: 'Conformation of payment',
       html: html
     }
 
@@ -171,14 +176,14 @@ var self = module.exports ={
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentConfirmation.jade');
     let html = fn(req.body);
-
+    // console.log("Email Body Admin" + ' ' + html);
     var data = {
       //Specify email data
       from: email,
       //The email to contact
       to: emailAddres,
       //Subject and text data
-      subject: 'Conformation of payment' + ' ' + tenantName,
+      subject: 'Conformation of payment',
       html: html
     }
 
