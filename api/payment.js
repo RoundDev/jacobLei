@@ -13,6 +13,7 @@ var square = {};
 
 square.sendSquarePayment = function(req,res,next){
 	try{
+	  console.log("Req" + " " + JSON.stringify(req.body));
 		let nonce = req.body.nonce;
 		console.log("This is nonce" + nonce);
 		let amtEl = parseInt(req.body.amountToPay, 10);
@@ -28,7 +29,7 @@ square.sendSquarePayment = function(req,res,next){
 		
 		let location_id = process.env.SQUARE_LOCATION_TEST;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
 		let access_token = process.env.SQUARE_TOKEN_TEST;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
-		
+		console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
 		let customer = new Promise((resolve) => {
 			unirest.post('https://connect.squareup.com/v2/customers')
 			.headers({
@@ -37,17 +38,19 @@ square.sendSquarePayment = function(req,res,next){
 				'Authorization': 'Bearer ' + access_token,
 			})
 			.send({
-				given_name,
-				family_name,
-				email_address,
-				phone_number
+				"given_name": given_name,
+        "family_name": family_name,
+        "email_address": email_address,
+				"phone_number": phone_number
 			})
 			.end(function(response){
+			  console.log("This is response" + '' + JSON.stringify(response));
 				resolve(response);
 			})
 		});
 
 		customer.then(data => {
+		  console.log('Customer Data ID' + ' ' + data.body.customer.id);
 			unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions')
 			.headers({
 				'Accept': 'application/json',
@@ -61,7 +64,7 @@ square.sendSquarePayment = function(req,res,next){
 					'currency':'USD'
 				},
 				'idempotency_key':uuidv1(),
-				'customer_id' : data.id
+				'customer_id' : data.body.customer.id
 			})
 			.end(function(response){
 			console.log('Respons paymnent' + '' + response);
