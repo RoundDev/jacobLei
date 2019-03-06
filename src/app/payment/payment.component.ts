@@ -43,7 +43,8 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     'sqPostalCodeError': ['']
   });
   formLoaded: boolean =  false;
-  nameError: string;
+  firstNameError: string;
+  lastNameError: string;
   phoneNumberError: string;
   emailError: string;
   propertyNameError: string;
@@ -137,17 +138,22 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
   //   });
   // }
   checkInputError() {
-    if (this.infoPaymentForm.controls.payeeName.value === '') {
-      this.nameError = 'Name Required';
+    if (this.infoPaymentForm.controls.given_name.value === '') {
+      this.firstNameError = 'First Name Required';
     } else {
-      this.nameError = null;
+      this.firstNameError = null;
     }
-    if (this.infoPaymentForm.controls.phoneNumber.value === '') {
+    if (this.infoPaymentForm.controls.family_name.value === '') {
+      this.lastNameError = 'Last Name Required';
+    } else {
+      this.lastNameError = null;
+    }
+    if (this.infoPaymentForm.controls.phone_number.value === '') {
       this.phoneNumberError = 'Phone Number Required';
     } else {
       this.phoneNumberError = null;
     }
-    if (this.infoPaymentForm.controls.email.value === '') {
+    if (this.infoPaymentForm.controls.email_address.value === '') {
       this.emailError = 'Email Address Required';
     } else {
       this.emailError = null;
@@ -201,20 +207,20 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     vm = this;
     // this.calculatePayment();
     const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
-    const applicationIdTest = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
+    // const applicationIdTest = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
       // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg'; prod
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
     const locationId = 'B0RXTVMP1T4WP';
-    const locationIdTest = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
+    // const locationIdTest = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
       // 'B0RXTVMP1T4WP'; prod
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
       // Initialize the payment form elements
-      applicationId: applicationIdTest,
-      locationId: locationIdTest,
+      applicationId: applicationId,
+      locationId: locationId,
       inputClass: 'sq-input',
       autoBuild : false,
 
@@ -327,12 +333,14 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
           // document.getElementById('card-nonce').value = nonce;
           // needs to be extracted from the
           (<HTMLInputElement>document.getElementById('card-nonce')).value = nonce; // casting so .value will work
-
+          let intAmount = 0;
           let amount = (<HTMLInputElement>document.getElementById('amountToPay')).value;
           let first_name = (<HTMLInputElement>document.getElementById('first_name')).value;
           let last_name = (<HTMLInputElement>document.getElementById('last_name')).value;
           let email_address = (<HTMLInputElement>document.getElementById('email_address')).value;
           let phone_number = (<HTMLInputElement>document.getElementById('phone_number')).value;
+          intAmount = parseInt(amount, 10);
+          let totalFeeAmount = (intAmount * 0.0375) + intAmount;
           // get this value from the database when the user is logged in
           // (<HTMLInputElement>document.getElementById('sq-id')).value = "sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw" // "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
 
