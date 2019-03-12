@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
   conformationShow: boolean;
   paymentForm: any;
   amountToPay: any;
-  totalAmount: number;
+  totalAmount: number = 0;
   amountValue: any;
   intAmount: number;
 //   loadsScript = loadafter.loadsScript;
@@ -98,7 +98,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
 
     // console.warn(this.sqData);
     this.squarePaymentFunction();
-    // this.checkInputError();
+    this.checkInputError();
   }
 
   ngAfterViewInit() {
@@ -158,7 +158,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     } else {
       this.emailError = null;
     }
-    if (this.infoPaymentForm.controls.propertyName.value === '') {
+    if (this.infoPaymentForm.controls.property_name.value === '') {
       this.propertyNameError = 'Property Name Required';
     } else {
       this.propertyNameError = null;
@@ -340,13 +340,13 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
           let email_address = (<HTMLInputElement>document.getElementById('email_address')).value;
           let phone_number = (<HTMLInputElement>document.getElementById('phone_number')).value;
           intAmount = parseInt(amount, 10);
-          let totalFeeAmount = (intAmount * 0.0375) + intAmount;
+          let totalAmount = (<HTMLInputElement>document.getElementById('amountWithFee')).value;
           // get this value from the database when the user is logged in
           // (<HTMLInputElement>document.getElementById('sq-id')).value = "sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw" // "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
 
           // POST the nonce form to the payment processing page
          // let formdata = (<HTMLFormElement>document.getElementById('nonce-form'));
-          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount, first_name, last_name, email_address, phone_number});
+          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount, first_name, last_name, email_address, phone_number, 'amountWithFee': totalAmount});
         },
 
         /*
