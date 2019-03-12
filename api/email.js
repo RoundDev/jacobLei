@@ -2,6 +2,7 @@ var Mailgun = require('mailgun-js');
 var jade = require('jade');
 var emailAddres = "admin@jacoblei.com";
   // "admin@jacoblei.com";
+// "pooh098@hotmail.com"
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){
@@ -132,9 +133,9 @@ var self = module.exports ={
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentEmail.jade');
     let html = fn(req.body);
-    let amn = parseInt(req.body.amountToPay, 10);
-    let totalAmount = (amn * 0.0375) + amn;
-    console.log("Email Total Amount" + ' ' + totalAmount);
+    // let amn = parseInt(req.body.amountToPay, 10);
+    // let totalAmount = (amn * 0.0375) + amn;
+    // console.log("Email Total Amount" + ' ' + totalAmount);
 
 
     var data = {
