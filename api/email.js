@@ -9,7 +9,7 @@ var self = module.exports ={
 
        let email = req.body.email;
        let tenantName = req.body.tenName;
-       let mailgunKey = process.env.MAILGUN_KEY;
+       let mailgunKey = process.env.MAILGUN_KEY_TEST;
        let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
         let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
@@ -49,8 +49,9 @@ var self = module.exports ={
 
         let email = req.body.emailAddress;
         let tenantName = req.body.tenName;
-        let mailgunKey = process.env.MAILGUN_KEY;
-        let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
+        let mailgunKey = process.env.MAILGUN_KEY_TEST;
+        let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
+          // "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
 
          let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
          let fn = jade.compileFile('./contactEmail.jade');
@@ -62,7 +63,7 @@ var self = module.exports ={
              //The email to contact
                to: emailAddres,
              //Subject and text data
-               subject: 'Contact Request from ' + ' ' + tenantName,
+               subject: 'Contact Us from ' + ' ' + tenantName,
                html: html
              }
 
@@ -88,7 +89,7 @@ var self = module.exports ={
 
       let email = req.body.emailAddress;
       let tenantName = req.body.tenName;
-      let mailgunKey = process.env.MAILGUN_KEY;
+      let mailgunKey = process.env.MAILGUN_KEY_TEST;
       let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
       let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
@@ -101,7 +102,7 @@ var self = module.exports ={
         //The email to contact
         to: emailAddres,
         //Subject and text data
-        subject: 'Notice Request from ' + ' ' + tenantName,
+        subject: ' Notice to Vacate from ' + ' ' + tenantName,
         html: html
       }
 
@@ -127,7 +128,7 @@ var self = module.exports ={
 
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
-    let mailgunKey = process.env.MAILGUN_KEY;
+    let mailgunKey = process.env.MAILGUN_KEY_TEST;
     let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
@@ -144,7 +145,7 @@ var self = module.exports ={
       //The email to contact
       to: email,
       //Subject and text data
-      subject: 'Conformation of payment',
+      subject: 'Confirmation of payment',
       html: html
     }
 
@@ -171,7 +172,7 @@ var self = module.exports ={
 
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
-    let mailgunKey = process.env.MAILGUN_KEY;
+    let mailgunKey = process.env.MAILGUN_KEY_TEST;
     let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});

@@ -196,6 +196,12 @@ a {
   text-align: center;
   padding: 0;
 }
+.contact-link {
+  cursor: pointer !important;
+}
+.contact-link:focus {
+  outline: transparent none !important;
+}
 
 /*===============================================================================================================*/
 

@@ -340,13 +340,13 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
           let email_address = (<HTMLInputElement>document.getElementById('email_address')).value;
           let phone_number = (<HTMLInputElement>document.getElementById('phone_number')).value;
           intAmount = parseInt(amount, 10);
-          let totalAmount = (<HTMLInputElement>document.getElementById('amountWithFee')).value;
+          // let totalAmount = (<HTMLInputElement>document.getElementById('amountWithFee')).value;
           // get this value from the database when the user is logged in
           // (<HTMLInputElement>document.getElementById('sq-id')).value = "sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw" // "CBASEC8F-Phq5_pV7UNi64_kX_4gAQ";
 
           // POST the nonce form to the payment processing page
          // let formdata = (<HTMLFormElement>document.getElementById('nonce-form'));
-          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount, first_name, last_name, email_address, phone_number, 'amountWithFee': totalAmount});
+          vm.sendSqPayment({'nonce': nonce, 'amountToPay': amount, first_name, last_name, email_address, phone_number});
         },
 
         /*
