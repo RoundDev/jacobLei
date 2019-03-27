@@ -145,7 +145,7 @@ var self = module.exports ={
       //The email to contact
       to: email,
       //Subject and text data
-      subject: 'Conformation of Payment',
+      subject: 'Confirmation of Payment',
       html: html
     }
 
@@ -185,7 +185,7 @@ var self = module.exports ={
       //The email to contact
       to: emailAddres,
       //Subject and text data
-      subject: 'Conformation of Payment',
+      subject: 'Confirmation of Payment',
       html: html
     }
 
