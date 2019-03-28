@@ -1,6 +1,7 @@
 var Mailgun = require('mailgun-js');
 var jade = require('jade');
 var emailAddres = "admin@jacoblei.com";
+var mailgunDomainAddress = "jacoblei.com";
   // "admin@jacoblei.com";
 // "pooh098@hotmail.com"
 var self = module.exports ={
@@ -9,8 +10,8 @@ var self = module.exports ={
 
        let email = req.body.email;
        let tenantName = req.body.tenName;
-       let mailgunKey = process.env.MAILGUN_KEY_TEST;
-       let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
+       let mailgunKey = process.env.MAILGUN_KEY_PROD;
+       let mailgunDomain = mailgunDomainAddress;
 
         let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
         let fn = jade.compileFile('./maintEmail.jade');
@@ -50,8 +51,8 @@ var self = module.exports ={
         let email = req.body.emailAddress;
         let tenantName = req.body.tenName;
         let mailgunKey = process.env.MAILGUN_KEY_TEST;
-        let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
-          // "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org"
+        let mailgunDomain = mailgunDomainAddress;
+          // mailgunDomainAddress
 
          let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
          let fn = jade.compileFile('./contactEmail.jade');
@@ -90,7 +91,7 @@ var self = module.exports ={
       let email = req.body.emailAddress;
       let tenantName = req.body.tenName;
       let mailgunKey = process.env.MAILGUN_KEY_TEST;
-      let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
+      let mailgunDomain = mailgunDomainAddress;
 
       let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
       let fn = jade.compileFile('./noticeEmail.jade');
@@ -129,7 +130,7 @@ var self = module.exports ={
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
     let mailgunKey = process.env.MAILGUN_KEY_TEST;
-    let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
+    let mailgunDomain = mailgunDomainAddress;
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentEmail.jade');
@@ -173,7 +174,7 @@ var self = module.exports ={
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
     let mailgunKey = process.env.MAILGUN_KEY_TEST;
-    let mailgunDomain = "sandbox6d45582eac3d42c7854c56422124ee23.mailgun.org";
+    let mailgunDomain = mailgunDomainAddress;
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
     let fn = jade.compileFile('./paymentConfirmation.jade');
