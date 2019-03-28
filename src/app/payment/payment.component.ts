@@ -243,7 +243,8 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
         placeholder: 'MM/YY'
       },
       postalCode: {
-        elementId: 'sq-postal-code'
+        elementId: 'sq-postal-code',
+        placeholder: '54321'
       },
       // SqPaymentForm callback functions
       callbacks: {
