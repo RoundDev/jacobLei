@@ -50,7 +50,7 @@ var self = module.exports ={
 
         let email = req.body.emailAddress;
         let tenantName = req.body.tenName;
-        let mailgunKey = process.env.MAILGUN_KEY_TEST;
+        let mailgunKey = process.env.MAILGUN_KEY_PROD;
         let mailgunDomain = mailgunDomainAddress;
           // mailgunDomainAddress
 
@@ -90,7 +90,7 @@ var self = module.exports ={
 
       let email = req.body.emailAddress;
       let tenantName = req.body.tenName;
-      let mailgunKey = process.env.MAILGUN_KEY_TEST;
+      let mailgunKey = process.env.MAILGUN_KEY_PROD;
       let mailgunDomain = mailgunDomainAddress;
 
       let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
@@ -129,7 +129,7 @@ var self = module.exports ={
 
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
-    let mailgunKey = process.env.MAILGUN_KEY_TEST;
+    let mailgunKey = process.env.MAILGUN_KEY_PROD;
     let mailgunDomain = mailgunDomainAddress;
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
@@ -173,7 +173,7 @@ var self = module.exports ={
 
     let email = req.body.email_address;
     let tenantName = req.body.payeeName;
-    let mailgunKey = process.env.MAILGUN_KEY_TEST;
+    let mailgunKey = process.env.MAILGUN_KEY_PROD;
     let mailgunDomain = mailgunDomainAddress;
 
     let mailgun = new Mailgun({apiKey:mailgunKey,domain:mailgunDomain});
