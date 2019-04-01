@@ -1,0 +1,81 @@
+<div id="sq-ccbox">
+  <form [formGroup]="infoPaymentForm" id="nonce-form"  method="POST">
+    <input type="hidden" name="action" value="/api/sendpayment"/>
+    <div class="row">
+      <div class="col-12">
+        <label for="first_name">First Name on Card</label>
+        <input id="first_name" formControlName="given_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()"  name="first_name" required/>
+        <span class="alert-warning small" *ngIf="firstNameError !== null">{{firstNameError}}</span>
+      </div>
+      <div class="col-12">
+        <label for="last_name">Last Name on Card</label>
+        <input id="last_name" formControlName="family_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()"  name="last_name" required/>
+        <span class="alert-warning small" *ngIf="lastNameError !== null">{{lastNameError}}</span>
+      </div>
+      <div class="col-12">
+        <label for="phone_number">Phone Number</label>
+        <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" type="number"  name="phone_number" required/>
+        <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}</span>
+      </div>
+      <div class="col-12">
+        <label for="email_address">Email Address</label>
+        <input id="email_address" formControlName="email_address" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" type="text"  name="email_address" required/>
+        <span class="alert-warning small" *ngIf="emailError !== null">{{emailError}}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <label for="sq-card-number">Card Number</label>
+        <input type="number" id="sq-card-number" (focus)="loadPaymentForm()" placeholder="•••• •••• •••• ••••" />
+      </div>
+
+      <div class="col-12">
+        <label for="sq-expiration-date">Expiration Date</label>
+        <input type="number" id="sq-expiration-date" placeholder="MM/YY"/>
+      </div>
+
+      <div class="col-12">
+        <label for="sq-cvv">Card CVV</label>
+        <input type="number" id="sq-cvv" placeholder="CVV" (focus)="loadPaymentForm()"/>
+<!--        <span class="afix">3 Digit Security Code on Back or 4 Digits on Front of AmEx</span>-->
+      </div>
+
+      <div class="col-12">
+        <label for="sq-postal-code">5 Digit Card Zip Code</label>
+        <input type="number" id="sq-postal-code" placeholder="54321" (focus)="loadPaymentForm()"/>
+<!--        <span class="afix">5 Digit Credit Card Zip Code</span>-->
+      </div>
+      <div id="error"></div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-12">
+        <label for="property_name">This payment is regarding rental property</label>
+        <input id="property_name" formControlName="property_name"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text"  name="property_name" required/>
+        <span class="alert-warning small" *ngIf="propertyNameError !== null">{{propertyNameError}}</span>
+      </div>
+      <div class="col-12">
+        <label for="propertyComment">Your Comment</label>
+        <input id="propertyComment" formControlName="propertyComment" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text"  name="propertyComment" required/>
+        <span class="alert-warning small" *ngIf="propertyCommentError !== null">{{propertyCommentError}</span>
+      </div>
+      <div class="col-12">
+        <label for="differentName">If you are paying for a different Named Rental Applicant, Please enter their name</label>
+        <input id="differentName" autocomplete="off" formControlName="differentName" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text"  name="differentName"  required/>
+        <span class="alert-warning small" *ngIf="differentNameError !== null">{{differentNameError}}</span>
+    </div>
+      <div class="col-6">
+        <label for="amountToPay">Amount You Are Paying</label>
+        <span class="currency-input">$</span><input id="amountToPay" formControlName="amountToPay" (focus)="loadPaymentForm()" (input)="checkInputError()" autocomplete="off" type="number" min="1" max="9999"  name="amountToPay"  value="0" />
+        <span class="alert-warning small" *ngIf="amountToPayError !== null">{{amountToPayError}}</span>
+<!--        <span class="afix">***3.75% fee will be added to the amount (see below)</span>-->
+      </div>
+      <div class="col-12">
+        <button id="sq-creditcard"  class="btn btn-primary btn-lg btn-submit-fix pull-right" [disabled]="!infoPaymentForm.valid" data-toggle="modal" data-target="#modalConformation" (click)="conformationModal();" >Pay</button>
+        <input type="hidden" id="sq-id" name="sq-id">
+        <input type="hidden" id="card-nonce" name="nonce">
+      </div>
+    </div>
+  </form>
+</div>
