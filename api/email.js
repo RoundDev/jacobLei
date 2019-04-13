@@ -182,7 +182,7 @@ var self = module.exports ={
     // console.log("Email Body Admin" + ' ' + html);
     var data = {
       //Specify email data
-      from: email,
+      from: emailAddres,
       //The email to contact
       to: emailAddres,
       //Subject and text data
