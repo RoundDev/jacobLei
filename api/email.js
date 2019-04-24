@@ -1,9 +1,9 @@
 var Mailgun = require('mailgun-js');
 var jade = require('jade');
-var emailAddres = "admin@jacoblei.com";
 var mailgunDomainAddress = "jacoblei.com";
-  // "admin@jacoblei.com";
-// "pooh098@hotmail.com"
+var adminEmail = "admin@jacoblei.com";
+var testingEmail = "pooh098@hotmail.com";
+var emailAddres = adminEmail;
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){
@@ -24,6 +24,7 @@ var self = module.exports ={
               to: emailAddres,
             //Subject and text data
               subject: 'Maintenance Request from ' + ' ' + tenantName,
+              "o:tag" : ['Maintenance Request'],
               html: html
             }
 
@@ -65,6 +66,7 @@ var self = module.exports ={
                to: emailAddres,
              //Subject and text data
                subject: 'Contact Us from ' + ' ' + tenantName,
+               "o:tag" : ['Contact Us'],
                html: html
              }
 
@@ -104,6 +106,7 @@ var self = module.exports ={
         to: emailAddres,
         //Subject and text data
         subject: ' Notice to Vacate from ' + ' ' + tenantName,
+        "o:tag" : ['Notice to Vacate'],
         html: html
       }
 
@@ -147,6 +150,7 @@ var self = module.exports ={
       to: email,
       //Subject and text data
       subject: 'Confirmation of Payment',
+      "o:tag" : ['Confirmation of Payment User'],
       html: html
     }
 
@@ -187,6 +191,7 @@ var self = module.exports ={
       to: emailAddres,
       //Subject and text data
       subject: 'Confirmation of Payment',
+      "o:tag" : ['Confirmation of Payment Admin'],
       html: html
     }
 
