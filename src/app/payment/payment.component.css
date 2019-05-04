@@ -30,7 +30,11 @@
     padding-right: 5%;
   }
 }
-
+.note {
+  display: block;
+  color: #ff332b !important;
+  font-size: 10px;
+}
 .info-p {
   font-style: italic;
   color: #4c4c4c !important;
