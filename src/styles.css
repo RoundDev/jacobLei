@@ -576,6 +576,7 @@ hr{
 .afix {
   font-size: 11px;
   font-style: italic;
+  white-space: nowrap;
 }
 .info-row {
   padding-top: 15px;
