@@ -32,7 +32,7 @@
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="phone_number">Phone Number</label>
-            <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" type="number" class="form-control" name="phone_number" required/>
+            <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" [textMask]="{mask: mask}" [(ngModel)]="phoneNumberModel" type="text" class="form-control" name="phone_number" required/>
             <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}<br></span>
             <span class="note"> *Field Cannot Be Left Blank</span>
           </div>

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {TextMaskModule} from 'angular2-text-mask';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {routing, appRoutingProviders} from './app.routing';
@@ -51,6 +52,7 @@ import { MultiComponent } from './multi/multi.component';
     RouterModule,
     routing,
     FormsModule,
+    TextMaskModule,
     ReactiveFormsModule,
     HttpClientModule,
 

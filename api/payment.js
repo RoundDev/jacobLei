@@ -27,8 +27,8 @@ square.sendSquarePayment = function(req,res,next){
 		let email_address = req.body.email_address;
 		let phone_number = req.body.phone_number;
 		
-		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
-		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+		let location_id = process.env.SQUARE_LOCATION_TEST;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
+		let access_token = process.env.SQUARE_TOKEN_TEST;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
 		console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
 		let customer = new Promise((resolve) => {
 			unirest.post('https://connect.squareup.com/v2/customers')

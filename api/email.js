@@ -3,7 +3,7 @@ var jade = require('jade');
 var mailgunDomainAddress = "jacoblei.com";
 var adminEmail = "admin@jacoblei.com";
 var testingEmail = "pooh098@hotmail.com";
-var emailAddres = adminEmail;
+var emailAddres = testingEmail;
 var self = module.exports ={
 
     sendMaintEmail: function(req,res,next){

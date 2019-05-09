@@ -26,12 +26,13 @@ declare var SqPaymentForm: any;
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges, DoCheck, OnDestroy, AfterContentChecked, AfterViewChecked {
-  numberOfTicks = 0;
+  public phoneNumberModel = ''
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
   infoPaymentForm = this.formBuilder.group({
     // user: this.formBuilder.group({
     'given_name': ['', [Validators.required, Validators.maxLength(25)]],
     'family_name': ['', [Validators.required, Validators.maxLength(25)]],
-    'phone_number': ['', [Validators.required, Validators.maxLength(10)]],
+    'phone_number': ['', [Validators.required, Validators.maxLength(15)]],
     'email_address': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
     'property_name': ['', [Validators.required, Validators.maxLength(25)]],
     'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
@@ -180,47 +181,25 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
       this.amountToPayError = null;
     }
   }
-
-  // if (this.infoPaymentForm.controls.sqCardNumber.value === '') {
-  //   this.sqCardNumberError = 'Please, Provide Number ';
-  // } else {
-  //   this.sqCardNumberError = null;
-  // }
-  // if (this.infoPaymentForm.controls.sqExpirationDate.value === '') {
-  //   this.sqExpirationDateError = 'Please, Provide Expiration Date ';
-  // } else {
-  //   this.sqExpirationDateError = null;
-  // }
-  // if (this.infoPaymentForm.controls.sqCVV.value === '') {
-  //   this.sqCVVError = 'Please, Provide Number';
-  // } else {
-  //   this.sqCVVError = null;
-  // }
-  // if (this.infoPaymentForm.controls.sqPostalCode.value === '') {
-  //   this.sqPostalCodeError = 'Please, Provide Zip Code';
-  // } else {
-  //   this.sqPostalCodeError = null;
-  // }
-
-  squarePaymentFunction() {
+squarePaymentFunction() {
     let vm;
     vm = this;
     // this.calculatePayment();
-    const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
-    // const applicationIdTest = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
+    // const applicationId = 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg';
+    const applicationIdTest = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
       // 'sq0idp-kh1SRsHUXqn-d5ba6YGQqg'; prod
       // 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
 
     // Set the location ID
-    const locationId = 'B0RXTVMP1T4WP';
-    // const locationIdTest = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
+    // const locationId = 'B0RXTVMP1T4WP';
+    const locationIdTest = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
       // 'B0RXTVMP1T4WP'; prod
       // 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
     this.paymentForm = new SqPaymentForm({
 
       // Initialize the payment form elements
-      applicationId: applicationId,
-      locationId: locationId,
+      applicationId: applicationIdTest,
+      locationId: locationIdTest,
       inputClass: 'sq-input',
       autoBuild : false,
 
@@ -328,7 +307,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
             return;
           }
 
-          alert('Nonce received: ' + nonce); /* FOR TESTING ONLY */
+          // alert('Nonce received: ' + nonce); /* FOR TESTING ONLY */
 
           // Assign the nonce value to the hidden form field
           // document.getElementById('card-nonce').value = nonce;
