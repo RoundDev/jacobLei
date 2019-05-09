@@ -29,7 +29,7 @@ square.sendSquarePayment = function(req,res,next){
 		
 		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
 		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
-		console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
+		// console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
 		let customer = new Promise((resolve) => {
 			unirest.post('https://connect.squareup.com/v2/customers')
 			.headers({
@@ -44,13 +44,13 @@ square.sendSquarePayment = function(req,res,next){
 				"phone_number": phone_number
 			})
 			.end(function(response){
-			  console.log("This is response" + '' + JSON.stringify(response));
+			  // console.log("This is response" + '' + JSON.stringify(response));
 				resolve(response);
 			})
 		});
 
 		customer.then(data => {
-		  console.log('Customer Data ID' + ' ' + data.body.customer.id);
+		  // console.log('Customer Data ID' + ' ' + data.body.customer.id);
 			unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions')
 			.headers({
 				'Accept': 'application/json',
@@ -67,7 +67,7 @@ square.sendSquarePayment = function(req,res,next){
 				'customer_id' : data.body.customer.id
 			})
 			.end(function(response){
-			console.log('Respons paymnent' + '' + response);
+			// console.log('Respons paymnent' + '' + response);
 		// if(response.statusCode === 200) {
 		//   // alert('Payment send')
 		//   console.log('Success')
