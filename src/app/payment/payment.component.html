@@ -17,16 +17,16 @@
           <div class="col-sm-12 col-md-12">
             <label for="first_name">First Name on Card</label>
             <input id="first_name" formControlName="given_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="first_name" required/>
-            <span class="alert-warning small" *ngIf="firstNameError !== null">{{firstNameError}}<br></span>
-            <span class="note"> *Field Cannot Be Left Blank</span>
+<!--            <span class="alert-warning small" *ngIf="firstNameError !== null">{{firstNameError}}<br></span>-->
+<!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
         </div>
         <div class="form-group" >
           <div class="col-sm-12 col-md-12">
             <label for="last_name">Last Name on Card</label>
             <input id="last_name" formControlName="family_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="last_name" required/>
-            <span class="alert-warning small" *ngIf="lastNameError !== null">{{lastNameError}}<br></span>
-            <span class="note"> *Field Cannot Be Left Blank</span>
+<!--            <span class="alert-warning small" *ngIf="lastNameError !== null">{{lastNameError}}<br></span>-->
+<!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
         </div>
         <div class="form-group">
@@ -85,20 +85,20 @@
 
         <div class="form-group clearfix">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="property_name">This payment is regarding rental property</label>
+            <label for="property_name">Rental Property Address</label>
               <input id="property_name" formControlName="property_name"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="property_name" required/>
             <span class="alert-warning small" *ngIf="propertyNameError !== null">{{propertyNameError}}<br></span>
             <span class="note"> *Field Cannot Be Left Blank</span>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="propertyComment">Your Comment</label>
-              <input id="propertyComment" formControlName="propertyComment" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="propertyComment" required/>
-            <span class="alert-warning small" *ngIf="propertyCommentError !== null">{{propertyCommentError}}<br></span>
-            <span class="note"> *Field Cannot Be Left Blank</span>
-          </div>
-        </div>
+<!--        <div class="form-group">-->
+<!--          <div class="col-sm-12 col-md-12 col-lg-12">-->
+<!--            <label for="propertyComment">Your Comment</label>-->
+<!--              <input id="propertyComment" formControlName="propertyComment" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="propertyComment" required/>-->
+<!--            <span class="alert-warning small" *ngIf="propertyCommentError !== null">{{propertyCommentError}}<br></span>-->
+<!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="differentName">If you are paying for a different Named Rental Applicant, Please enter their name</label>
