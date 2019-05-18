@@ -15,7 +15,7 @@
       <div class="panel-body panel-box">
         <div class="form-group" >
           <div class="col-sm-12 col-md-12">
-            <label for="first_name">First Name on Card</label>
+            <label for="first_name">First Name on Card (Required)</label>
             <input id="first_name" formControlName="given_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="first_name" required/>
 <!--            <span class="alert-warning small" *ngIf="firstNameError !== null">{{firstNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group" >
           <div class="col-sm-12 col-md-12">
-            <label for="last_name">Last Name on Card</label>
+            <label for="last_name">Last Name on Card (Required)</label>
             <input id="last_name" formControlName="family_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="last_name" required/>
 <!--            <span class="alert-warning small" *ngIf="lastNameError !== null">{{lastNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="phone_number">Phone Number</label>
+            <label for="phone_number">Phone Number (Required)</label>
             <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" [textMask]="{mask: mask}" [(ngModel)]="phoneNumberModel" type="text" class="form-control" name="phone_number" required/>
 <!--            <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="email_address">Email Address</label>
+            <label for="email_address">Email Address (Required)</label>
             <input id="email_address" formControlName="email_address" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" type="text" class="form-control" name="email_address" required/>
 <!--            <span class="alert-warning small" *ngIf="emailError !== null">{{emailError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
@@ -50,21 +50,21 @@
         <div>
           <div class="form-group">
             <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="sq-card-number">Card Number</label>
+            <label for="sq-card-number">Card Number (Required)</label>
               <input id="sq-card-number" (focus)="loadPaymentForm()" placeholder="•••• •••• •••• ••••" class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
             </div>
           </div>
           <div class="form-group">
             <div class="col-xss-12 col-sm-12 col-md-12 col-lg-12">
-            <label for="sq-expiration-date">Expiration Date</label>
+            <label for="sq-expiration-date">Expiration Date (Required)</label>
               <input id="sq-expiration-date" placeholder="MM/YY" class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
             </div>
           </div>
           <div class="form-group clearfix">
             <div class='col-xs-12 col-md-12 col-lg-12'>
-            <label for="sq-cvv">Card CVV</label>
+            <label for="sq-cvv">Card CVV (Required)</label>
               <input id="sq-cvv" placeholder="CVV" (focus)="loadPaymentForm()" class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
               <span class="afix">3 Digit Security Code on Back or 4 Digits on Front of AmEx</span>
@@ -72,7 +72,7 @@
           </div>
           <div class="form-group clearfix">
             <div class='col-xs-12 col-md-12 col-lg-12'>
-            <label for="sq-postal-code">5 Digit Card Zip Code</label>
+            <label for="sq-postal-code">5 Digit Card Zip Code (Required)</label>
               <input id="sq-postal-code" placeholder="54321" (focus)="loadPaymentForm()" class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
               <span class="afix">5 Digit Credit Card Zip Code</span>
@@ -85,7 +85,7 @@
 
         <div class="form-group clearfix">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="property_name">Rental Property Address</label>
+            <label for="property_name">Rental Property Address (Required)</label>
               <input id="property_name" formControlName="property_name"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="property_name" required/>
 <!--            <span class="alert-warning small" *ngIf="propertyNameError !== null">{{propertyNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
@@ -93,17 +93,17 @@
         </div>
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="differentName">If you are paying for a different Named Rental Applicant, Please enter their name</label>
-            <input id="differentName" autocomplete="off" formControlName="differentName" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="differentName"  required/>
+            <label for="differentName">Are Paying for Yourself or Someone Else, Please enter their name (Required)</label>
+            <input id="differentName" autocomplete="off" formControlName="differentName" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="differentName" value="N/A"  required/>
 <!--            <span class="alert-warning small" *ngIf="differentNameError !== null">{{differentNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-6 col-md-6 col-lg-6">
-            <label for="amountToPay">Amount You Are Paying</label>
+            <label for="amountToPay">Amount You Are Paying (Required)</label>
             <span class="currency-input">$</span><input id="amountToPay" formControlName="amountToPay" (focus)="loadPaymentForm()" (input)="checkInputError()" autocomplete="off" type="number" min="1" max="9999" class="form-control" name="amountToPay"  value="0" />
-<!--            <span class="alert-warning small" *ngIf="amountToPayError !== null">{{amountToPayError}}<br></span>-->
+            <span class="alert-warning small" *ngIf="amountToPayError !== null">{{amountToPayError}}<br></span>
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
             <span class="afix">***3.75% fee will be added to the amount (see below)</span>
           </div>
