@@ -58,7 +58,13 @@
 .currency-input input {
   border: 0;
 }
-
+@media only screen and (min-width: 768px) and (max-width: 825px) {
+  .currency-input {
+    position: absolute;
+    top: 62px !important;
+    left: 17px;
+  }
+}
 @media only screen and (max-width: 768px) {
   .btn-default {
     width: 115px !important;
