@@ -35,7 +35,6 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
     'phone_number': ['', [Validators.required, Validators.maxLength(15)]],
     'email_address': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]],
     'property_name': ['', [Validators.required, Validators.maxLength(25)]],
-    'propertyComment': ['', [Validators.required, Validators.maxLength(25)]],
     'differentName': ['', [Validators.required, Validators.maxLength(25)]],
     'amountToPay': ['', [Validators.required, Validators.maxLength(4), Validators.minLength(1)]],
     'sqCardNumberError': [''],
@@ -115,11 +114,6 @@ export class PaymentComponent implements OnInit, AfterViewInit, AfterContentInit
       this.propertyNameError = 'Property Name Required';
     } else {
       this.propertyNameError = null;
-    }
-    if (this.infoPaymentForm.controls.propertyComment.value === '') {
-      this.propertyCommentError = 'Property Comment Required';
-    } else {
-      this.propertyCommentError = null;
     }
     if (this.infoPaymentForm.controls.differentName.value === '') {
       this.differentNameError = 'Name Required';
