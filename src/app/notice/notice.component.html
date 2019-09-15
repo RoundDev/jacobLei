@@ -31,7 +31,7 @@
               <strong>Your Contact number</strong>
             </div>
             <div class="col-sm-12 col-md-12">
-              <input autocomplete="on" type="number" class="form-control" formControlName="phoneNumber" name="phoneNumber" placeholder="8657779955" required />
+              <input autocomplete="on" type="text" class="form-control" formControlName="phoneNumber" [textMask]="{mask: mask}" [(ngModel)]="phoneNumberModel" name="phoneNumber"  placeholder="(865) 555 555" required />
             </div>
             <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}</span>
           </div>
