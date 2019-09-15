@@ -8,8 +8,10 @@ import {AppService} from '../app.service';
   styleUrls: ['./notice.component.css']
 })
 export class NoticeComponent implements OnInit {
-@Input()
-noticeForm: FormGroup;
+  public phoneNumberModel = '';
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  @Input()
+  noticeForm: FormGroup;
   nameError: string;
   appAddressError: string;
   phoneNumberError: string;
@@ -25,7 +27,7 @@ noticeForm: FormGroup;
       'tenName': ['', Validators.required],
       'appAddress': ['', Validators.required],
       'textArea': ['', Validators.required],
-      'phoneNumber': ['', [Validators.required, Validators.maxLength(11)]],
+      'phoneNumber': ['', [Validators.required, Validators.maxLength(15)]],
       'emailAddress': ['', [Validators.required, Validators.email, Validators.pattern('[^@]*@[^@]*')]]
     });
   }
