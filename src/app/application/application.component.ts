@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationComponent implements OnInit {
 
+  link = '';
+
   constructor() { }
 
   ngOnInit() {
+    this.link = 'https://jacoblei.managebuilding.com/Resident/rental-application/apply';
   }
 
 }
