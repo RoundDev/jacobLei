@@ -44,10 +44,10 @@ const  appRoutes: Routes = [
     path: 'properties',
     component: PropertiesComponent
   },
-  {
-    path: 'application',
-    component: ApplicationComponent
-  },
+  // {
+  //   path: 'application',
+  //   component: ApplicationComponent
+  // },
   {
     path: 'contact',
     component: ContactComponent
