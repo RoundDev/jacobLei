@@ -34,7 +34,6 @@
     "mailgun-js": "^0.18.0",
     "path": "^0.12.7",
     "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2",
     "square-connect": "^2.20180918.1",
     "unirest": "^0.5.1",
     "uuid": "^3.3.2",
@@ -61,7 +60,7 @@
     "rxjs-tslint": "^0.1.5",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "^3.1.1"
+    "typescript": "3.1.6"
   },
   "engines": {
     "node": "8.11.2",
