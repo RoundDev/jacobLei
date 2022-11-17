@@ -1,3 +1,123 @@
+<script
+  type="text/javascript"
+  src="https://sandbox.web.squarecdn.com/v1/square.js"
+></script>
+<script>
+  const appId = 'sandbox-sq0idp-par5NbRuDfbBOcgNv5j3sw';
+  const locationId = 'CBASEDepGeN6Eev-N-FYE90UA1sgAQ';
+
+  async function initializeCard(payments) {
+    const card = await payments.card();
+    await card.attach('#card-container');
+
+    return card;
+  }
+
+  async function createPayment(token) {
+    const body = JSON.stringify({
+      locationId,
+      sourceId: token,
+    });
+
+    const paymentResponse = await fetch('/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+
+    if (paymentResponse.ok) {
+      return paymentResponse.json();
+    }
+
+    const errorBody = await paymentResponse.text();
+    throw new Error(errorBody);
+  }
+
+  async function tokenize(paymentMethod) {
+    const tokenResult = await paymentMethod.tokenize();
+    if (tokenResult.status === 'OK') {
+      return tokenResult.token;
+    } else {
+      let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(
+          tokenResult.errors
+        )}`;
+      }
+
+      throw new Error(errorMessage);
+    }
+  }
+
+  // status is either SUCCESS or FAILURE;
+  function displayPaymentResults(status) {
+    const statusContainer = document.getElementById(
+      'payment-status-container'
+    );
+    if (status === 'SUCCESS') {
+      statusContainer.classList.remove('is-failure');
+      statusContainer.classList.add('is-success');
+    } else {
+      statusContainer.classList.remove('is-success');
+      statusContainer.classList.add('is-failure');
+    }
+
+    statusContainer.style.visibility = 'visible';
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    if (!window.Square) {
+      throw new Error('Square.js failed to load properly');
+    }
+
+    let payments;
+    try {
+      payments = window.Square.payments(appId, locationId);
+    } catch {
+      const statusContainer = document.getElementById(
+        'payment-status-container'
+      );
+      statusContainer.className = 'missing-credentials';
+      statusContainer.style.visibility = 'visible';
+      return;
+    }
+
+    let card;
+    try {
+      card = await initializeCard(payments);
+    } catch (e) {
+      console.error('Initializing Card failed', e);
+      return;
+    }
+
+    // Checkpoint 2.
+    async function handlePaymentMethodSubmission(event, paymentMethod) {
+      event.preventDefault();
+
+      try {
+        // disable the submit button as we await tokenization and make a payment request.
+        cardButton.disabled = true;
+        const token = await tokenize(paymentMethod);
+        const paymentResults = await createPayment(token);
+        displayPaymentResults('SUCCESS');
+
+        console.debug('Payment Success', paymentResults);
+      } catch (e) {
+        cardButton.disabled = false;
+        displayPaymentResults('FAILURE');
+        console.error(e.message);
+      }
+    }
+
+    const cardButton = document.getElementById('payButton');
+    cardButton.addEventListener('click', async function (event) {
+      await handlePaymentMethodSubmission(event, card);
+    });
+  });
+</script>
+
 <div class="container bg-1 padding-container">
 <div id="sq-ccbox">
   <form [formGroup]="infoPaymentForm" id="nonce-form"  method="POST">
@@ -16,7 +136,7 @@
         <div class="form-group" >
           <div class="col-sm-12 col-md-12">
             <label for="first_name">First Name on Card (Required)</label>
-            <input id="first_name" formControlName="given_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="first_name" required/>
+            <input id="first_name" formControlName="given_name" autocomplete="off" type="text"  (input)="checkInputError()" class="form-control" name="first_name" required/>
 <!--            <span class="alert-warning small" *ngIf="firstNameError !== null">{{firstNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -24,7 +144,7 @@
         <div class="form-group" >
           <div class="col-sm-12 col-md-12">
             <label for="last_name">Last Name on Card (Required)</label>
-            <input id="last_name" formControlName="family_name" autocomplete="off" type="text" (focus)="loadPaymentForm()" (input)="checkInputError()" class="form-control" name="last_name" required/>
+            <input id="last_name" formControlName="family_name" autocomplete="off" type="text"  (input)="checkInputError()" class="form-control" name="last_name" required/>
 <!--            <span class="alert-warning small" *ngIf="lastNameError !== null">{{lastNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -32,7 +152,7 @@
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="phone_number">Phone Number (Required)</label>
-            <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" [textMask]="{mask: mask}" [(ngModel)]="phoneNumberModel" type="text" class="form-control" name="phone_number" required/>
+            <input id="phone_number" formControlName="phone_number" autocomplete="off" (input)="checkInputError()"  [textMask]="{mask: mask}" [(ngModel)]="phoneNumberModel" type="text" class="form-control" name="phone_number" required/>
 <!--            <span class="alert-warning small" *ngIf="phoneNumberError !== null">{{phoneNumberError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -40,7 +160,7 @@
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="email_address">Email Address (Required)</label>
-            <input id="email_address" formControlName="email_address" autocomplete="off" (input)="checkInputError()" (focus)="loadPaymentForm()" type="text" class="form-control" name="email_address" required/>
+            <input id="email_address" formControlName="email_address" autocomplete="off" (input)="checkInputError()"  type="text" class="form-control" name="email_address" required/>
 <!--            <span class="alert-warning small" *ngIf="emailError !== null">{{emailError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -51,7 +171,7 @@
           <div class="form-group">
             <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="sq-card-number">Card Number (Required)</label>
-              <input id="sq-card-number" (focus)="loadPaymentForm()" placeholder="•••• •••• •••• ••••" class="form-control"/>
+              <input id="sq-card-number"  placeholder="•••• •••• •••• ••••" class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
             </div>
           </div>
@@ -65,7 +185,7 @@
           <div class="form-group clearfix">
             <div class='col-xs-12 col-md-12 col-lg-12'>
             <label for="sq-cvv">Card CVV (Required)</label>
-              <input id="sq-cvv" placeholder="CVV" (focus)="loadPaymentForm()" class="form-control"/>
+              <input id="sq-cvv" placeholder="CVV"  class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
               <span class="afix">3 Digit Security Code on Back or 4 Digits on Front of AmEx</span>
             </div>
@@ -73,7 +193,7 @@
           <div class="form-group clearfix">
             <div class='col-xs-12 col-md-12 col-lg-12'>
             <label for="sq-postal-code">5 Digit Card Zip Code (Required)</label>
-              <input id="sq-postal-code" placeholder="54321" (focus)="loadPaymentForm()" class="form-control"/>
+              <input id="sq-postal-code" placeholder="54321"  class="form-control"/>
 <!--              <span class="note"> *Field Cannot Be Left Blank</span>-->
               <span class="afix">5 Digit Credit Card Zip Code</span>
             </div>
@@ -86,7 +206,7 @@
         <div class="form-group clearfix">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="property_name">Rental Property Address (Required)</label>
-              <input id="property_name" formControlName="property_name"  (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="property_name" required/>
+              <input id="property_name" formControlName="property_name"   (input)="checkInputError()" type="text" class="form-control" name="property_name" required/>
 <!--            <span class="alert-warning small" *ngIf="propertyNameError !== null">{{propertyNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -94,7 +214,7 @@
         <div class="form-group">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <label for="differentName">Are You Paying for Yourself or Someone Else, Please Enter Name (Required)</label>
-            <input id="differentName" autocomplete="off" formControlName="differentName" (focus)="loadPaymentForm()" (input)="checkInputError()" type="text" class="form-control" name="differentName"  required/>
+            <input id="differentName" autocomplete="off" formControlName="differentName"  (input)="checkInputError()" type="text" class="form-control" name="differentName"  required/>
 <!--            <span class="alert-warning small" *ngIf="differentNameError !== null">{{differentNameError}}<br></span>-->
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
           </div>
@@ -102,7 +222,7 @@
         <div class="form-group">
           <div class="col-sm-6 col-md-6 col-lg-6">
             <label for="amountToPay">Amount You Are Paying (Required)</label>
-            <span class="currency-input">$</span><input id="amountToPay" formControlName="amountToPay" (focus)="loadPaymentForm()" (input)="checkInputError()" autocomplete="off" type="number" min="1" max="9999" class="form-control" name="amountToPay"  value="0" />
+            <span class="currency-input">$</span><input id="amountToPay" formControlName="amountToPay"  (input)="checkInputError()" autocomplete="off" type="number" min="1" max="9999" class="form-control" name="amountToPay"  value="0" />
             <span class="alert-warning small" *ngIf="amountToPayError !== null">{{amountToPayError}}<br></span>
 <!--            <span class="note"> *Field Cannot Be Left Blank</span>-->
             <span class="afix">***3.75% fee will be added to the amount (see below)</span>
@@ -148,7 +268,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" id="payButton"  data-target="#modal" (click)="requestCardNonce($event)">Pay</button>
+        <button type="button" class="btn btn-default" id="payButton"  data-target="#modal" >Pay</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

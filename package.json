@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "ng-run": "ng serve",
+    "start-node-server": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -33,6 +34,7 @@
     "mailgun-js": "^0.18.0",
     "path": "^0.12.7",
     "rxjs": "^6.2.2",
+    "square": "^23.0.0",
     "square-connect": "^2.20180918.1",
     "unirest": "^0.5.1",
     "uuid": "^3.3.2",

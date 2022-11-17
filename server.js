@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const api = require('./api/email');
 const sq = require('./api/payment');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());

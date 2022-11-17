@@ -1,7 +1,8 @@
 /**
  * Module for processing square payment
  */
-
+const { Client, Environment, ApiError, PaymentsApi , CustomersApi} = require('square')
+const { randomUUID } = require("crypto");
 
 
 // Dependencies
@@ -26,17 +27,22 @@ square.sendSquarePayment = function(req,res,next){
 		let family_name = req.body.last_name;
 		let email_address = req.body.email_address;
 		let phone_number = req.body.phone_number;
-		
-		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
-		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+
+		let location_id =  "CBASEKMX2G17bvMoK22CqyjodIYgAQ";
+    // process.env.SQUARE_LOCATION_PROD
+		let access_token = "sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ"
+      // process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
 		// console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
 		let customer = new Promise((resolve) => {
-			unirest.post('https://connect.squareup.com/v2/customers')
-			.headers({
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + access_token,
-			})
+      let createCustomerResponse =  customersApi.createCustomer({
+              givenName: req.body.first_name,
+              familyName: req.body.last_name,
+              address: {
+                addressLine1: "1455 Market St",
+                addressLine2: "San Francisco, CA 94103",
+              },
+              idempotencyKey: uuidv1(),
+            })
 			.send({
 				"given_name": given_name,
         "family_name": family_name,
