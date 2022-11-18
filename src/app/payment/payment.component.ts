@@ -100,38 +100,50 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    let card1;
     let card;
     try {
-      card = await this.initializeCard(payments);
+      card1 = await this.initializeCard(payments);
+      card = await payments.card();
       console.log('card', card);
     } catch (e) {
       console.error('Initializing Card failed', e);
       return;
     }
-
+    // const token = card.tokenize(payments);
+    // console.log('token', token);
     // Checkpoint 2.
-    async function handlePaymentMethodSubmission(event, paymentMethod) {
-      event.preventDefault();
-
-      /* try {
-        // disable the submit button as we await tokenization and make a payment request.
-        cardButton.disabled = true;
-        const token = await tokenize(paymentMethod);
-        const paymentResults = await createPayment(token);
-        displayPaymentResults("SUCCESS");
-
-        console.debug("Payment Success", paymentResults);
-      } catch (e) {
-        cardButton.disabled = false;
-        displayPaymentResults("FAILURE");
-        console.error(e.message);
-      } */
-    }
-
-    const cardButton = document.getElementById('payButton') as any;
-    cardButton.addEventListener('click', async function (event) {
-      await handlePaymentMethodSubmission(event, card);
+    // async function handlePaymentMethodSubmission(event, paymentMethod) {
+    //   event.preventDefault();
+    //
+    //   try {
+    //     // disable the submit button as we await tokenization and make a payment request.
+    //     cardButton.disabled = true;
+    //     const token = await this.window.Square.tokenize(paymentMethod);
+    //     console.log('Token' + '\n', token);
+    //     const paymentResults = await this.createPayment(token);
+    //     // displayPaymentResults("SUCCESS");
+    //
+    //     console.log('Payment Success', paymentResults);
+    //   } catch (e) {
+    //     cardButton.disabled = false;
+    //     // displayPaymentResults("FAILURE");
+    //     console.error(e.message);
+    //   }
+    // }
+    let tokenResult;
+    const button = document.getElementById('payButton');
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      tokenResult = card.tokenize();
+      console.log('Token Results' + '\n', tokenResult);
     });
+
+
+    // const cardButton = document.getElementById('payButton') as any;
+    // cardButton.addEventListener('click', async function (event) {
+    //   await handlePaymentMethodSubmission(event, card);
+    // });
   }
 
   checkInputError() {
