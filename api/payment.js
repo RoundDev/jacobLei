@@ -36,7 +36,7 @@ async function sendSquarePayment(req, res, next) {
       currency: 'USD',
     },
     appFeeMoney: {
-      amount: (amount * 0.0375),
+      amount: Math.round((amount * 0.0375)),
       currency: 'USD'
     },
   }
