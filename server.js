@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const api = require('./api/email');
@@ -11,6 +12,7 @@ const { sendSquarePayment } = require('./api/payment');
 const port = process.env.PORT || 5001;
 
 app.use(cors());
+app.use(helmet());
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());

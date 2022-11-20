@@ -14,32 +14,63 @@ const { randomUUID } = require('crypto');
 var square = {};
 
 async function sendSquarePayment(req, res, next) {
-  // TODO: Need square token set
+
+  let amount = (parseInt(req.body.amountToPay, 10) * 100);
+
   const client = new Client({
-    accessToken: '<process.env.SQUARE_TOKEN>',
+    accessToken: 'EAAAEBZ5HY81XFzNPM3dsUAEPY7GkwXiiZpeEhJdulWfxWRkyUuzZDmPN9FX1j-W',
     environment: Environment['Sandbox'],//'should be: Environment[process.env.ENVIRONMENT] or some variation'
   });
 
   const customer = {
     givenName: req.body.first_name,
     familyName: req.body.last_name,
+    emailAddress: req.body.email_address,
+    phoneNumber: req.body.phone_number
   }
 
+  const payment = {
+    token: req.body.token,
+    amountMoney: {
+      amount,
+      currency: 'USD',
+    },
+    appFeeMoney: {
+      amount: (amount * 0.0375),
+      currency: 'USD'
+    },
+  }
   // create customer
-  await createCustomer(client, customer);
+  let createdCustomer = await createCustomer(client, customer);
+  payment.customerId = createdCustomer.id;
+  let createdPayment = await createPayment(client, payment);
+  return res.status(200).send();
+}
 
-
+async function createPayment(client, payment){
+  console.log('payment', payment)
+  const { paymentsApi } = client;
+  let {amountMoney, appFeeMoney } = payment;
+  let res = await paymentsApi.createPayment({
+    idempotencyKey: randomUUID(),
+    sourceId: payment.token,
+    amountMoney,
+    appFeeMoney
+  });
+  console.log('ressdafsdasad', res.result.payment);
+  return res.result.payment;
 }
 
 async function createCustomer(client, customer){
   const { customersApi } = client;
 
   let res = await customersApi.createCustomer({
-    givenName: customer.first_name,
-    familyName: customer.last_name,
+    givenName: customer.givenName,
+    familyName: customer.familyName,
+    email_address: customer.emailAddress,
+		phone_number: customer.phoneNumber,
     idempotencyKey: randomUUID(),
   });
-  console.log('res', res.result.customer)
   return res.result.customer;
 }
 
