@@ -14,7 +14,7 @@ var square = {};
 square.sendSquarePayment = function(req,res,next){
 	try{
 	  console.log("Req" + " " + JSON.stringify(req.body));
-		let nonce = req.body.nonce;
+		let nonce = req.body.data.sourceId;
 		console.log("This is nonce" + nonce);
 		let amtEl = parseInt(req.body.amountToPay, 10);
 		console.log('Amount to pay' + ' ' + amtEl);
@@ -28,10 +28,10 @@ square.sendSquarePayment = function(req,res,next){
 		let phone_number = req.body.phone_number;
 
 		let location_id = 'LQ81E4HB41TWJ';//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
-		let access_token = 'sandbox-sq0idb-0CKlwXKBQtjH5BWBrEOHgw';//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
-		console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
+		let access_token = 'EAAAEBZ5HY81XFzNPM3dsUAEPY7GkwXiiZpeEhJdulWfxWRkyUuzZDmPN9FX1j-W';//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+		console.log("Customer" + " " + given_name + family_name + email_address + phone_number + '\n' + "Token" + nonce);
 		let customer = new Promise((resolve) => {
-			unirest.post('https://connect.squareup.com/v2/customers')
+			unirest.post('https://connect.squareupsandbox.com/v2/customers')
 			.headers({
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -41,7 +41,8 @@ square.sendSquarePayment = function(req,res,next){
 				"given_name": given_name,
         "family_name": family_name,
         "email_address": email_address,
-				"phone_number": phone_number
+				"phone_number": phone_number,
+        "idempotency_key": uuidv1()
 			})
 			.end(function(response){
 			  console.log("This is response" + '' + JSON.stringify(response));
@@ -51,7 +52,7 @@ square.sendSquarePayment = function(req,res,next){
 
 		customer.then(data => {
 		  console.log('Customer Data ID' + ' ' + data.body.customer.id);
-			unirest.post('https://connect.squareup.com/v2/locations/' + location_id + '/transactions')
+			unirest.post('https://connect.squareupsandbox.com/v2/locations/' + location_id + '/transactions')
 			.headers({
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -67,7 +68,7 @@ square.sendSquarePayment = function(req,res,next){
 				'customer_id' : data.body.customer.id
 			})
 			.end(function(response){
-			console.log('Respons paymnent' + '' + response);
+			console.log('Respons paymnent' + '' + JSON.stringify(response));
 		// if(response.statusCode === 200) {
 		//   // alert('Payment send')
 		//   console.log('Success')
