@@ -12,23 +12,8 @@ declare var SqPaymentForm: any;
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-  public phoneNumberModel = "";
-  public mask = [
-    "(",
-    /[1-9]/,
-    /\d/,
-    /\d/,
-    ")",
-    " ",
-    /\d/,
-    /\d/,
-    /\d/,
-    "-",
-    /\d/,
-    /\d/,
-    /\d/,
-    /\d/,
-  ];
+  public phoneNumberModel = '';
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,];
   infoPaymentForm = this.formBuilder.group({
     // user: this.formBuilder.group({
     given_name: ["", [Validators.required, Validators.maxLength(25)]],
@@ -573,7 +558,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.conformationShow = false;
     this.appService.sendPayment(data).subscribe(
       (response) => {
-        if (response.statusCode === 200) {
+        console.log('Square Response After Payment' + '\n', response);
+        if (response === 'COMPLETED') {
           this.paymnetSuccess = true;
           this.sendUserEmail(this);
           this.modalHeader = "Thank You";
@@ -583,7 +569,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           this.sendAdminEmail(this);
           console.log("Data success");
           this.infoPaymentForm.reset();
-        } else if (response.statusCode !== 200) {
+        } else if (response !== 'COMPLETED') {
           this.paymnetSuccess = false;
           this.modalHeader = "Sorry Something Went Wrong";
           this.modalConformation = "Please, check form for errors";
