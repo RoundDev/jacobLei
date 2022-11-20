@@ -1,42 +1,57 @@
-import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { AppService } from '../app.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { AppService } from "../app.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 declare var SqPaymentForm: any;
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css'],
+  selector: "app-payment",
+  templateUrl: "./payment.component.html",
+  styleUrls: ["./payment.component.css"],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-  public phoneNumberModel = '';
-  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,];
+  public phoneNumberModel = "";
+  public mask = [
+    "(",
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+  ];
   infoPaymentForm = this.formBuilder.group({
     // user: this.formBuilder.group({
-    given_name: ['', [Validators.required, Validators.maxLength(25)]],
-    family_name: ['', [Validators.required, Validators.maxLength(25)]],
-    phone_number: ['', [Validators.required, Validators.maxLength(15)]],
+    given_name: ["", [Validators.required, Validators.maxLength(25)]],
+    family_name: ["", [Validators.required, Validators.maxLength(25)]],
+    phone_number: ["", [Validators.required, Validators.maxLength(15)]],
     email_address: [
-      '',
+      "",
       [
         Validators.required,
         Validators.email,
-        Validators.pattern('[^@]*@[^@]*'),
+        Validators.pattern("[^@]*@[^@]*"),
       ],
     ],
-    property_name: ['', [Validators.required, Validators.maxLength(100)]],
-    differentName: ['', [Validators.required, Validators.maxLength(50)]],
+    property_name: ["", [Validators.required, Validators.maxLength(100)]],
+    differentName: ["", [Validators.required, Validators.maxLength(50)]],
     amountToPay: [
-      '',
+      "",
       [Validators.required, Validators.maxLength(4), Validators.minLength(1)],
     ],
-    sqCardNumberError: [''],
-    sqExpirationDateError: [''],
-    sqCVVError: [''],
-    sqPostalCodeError: [''],
+    sqCardNumberError: [""],
+    sqExpirationDateError: [""],
+    sqCVVError: [""],
+    sqPostalCodeError: [""],
   });
   formLoaded = false;
   firstNameError: string;
@@ -57,8 +72,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   totalAmount = 0;
   amountValue: any;
   intAmount: number;
-  window: any;
-  cardButton: any;
+  window: Window;
+  cardButton: HTMLButtonElement;
   card: any;
   isSubmitting = false;
   //   loadsScript = loadafter.loadsScript;
@@ -77,7 +92,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   async initializeCard(payments) {
     this.card = await payments.card();
-    await this.card.attach('#card-container');
+    await this.card.attach("#card-container");
     return this.card;
   }
 
@@ -86,17 +101,31 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   // Payments API
   async createPayment(token) {
     const body = JSON.stringify({
-      locationId: 'LQ81E4HB41TWJ',
+      locationId: "LQ81E4HB41TWJ",
       sourceId: token,
     });
     let intAmount = 0;
-    const amount = (<HTMLInputElement>document.getElementById('amountToPay')).value;
-    const first_name = (<HTMLInputElement>document.getElementById('first_name')).value;
-    const last_name = (<HTMLInputElement>document.getElementById('last_name')).value;
-    const email_address = (<HTMLInputElement>document.getElementById('email_address')).value;
-    const phone_number = (<HTMLInputElement>document.getElementById('phone_number')).value;
+    const amount = (<HTMLInputElement>document.getElementById("amountToPay"))
+      .value;
+    const first_name = (<HTMLInputElement>document.getElementById("first_name"))
+      .value;
+    const last_name = (<HTMLInputElement>document.getElementById("last_name"))
+      .value;
+    const email_address = (<HTMLInputElement>(
+      document.getElementById("email_address")
+    )).value;
+    const phone_number = (<HTMLInputElement>(
+      document.getElementById("phone_number")
+    )).value;
     intAmount = parseInt(amount, 10);
-    this.sendSqPayment({'data': body, 'amountToPay': amount, first_name, last_name, email_address, phone_number});
+    this.sendSqPayment({
+      token,
+      amountToPay: amount,
+      first_name,
+      last_name,
+      email_address,
+      phone_number,
+    });
     // const paymentResponse = await fetch('/payment', {
     //   method: 'POST',
     //   headers: {
@@ -118,7 +147,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   // their mistakes.
   async tokenize(paymentMethod) {
     const tokenResult = await paymentMethod.tokenize();
-    if (tokenResult.status === 'OK') {
+    if (tokenResult.status === "OK") {
       return tokenResult.token;
     } else {
       let errorMessage = `Tokenization failed-status: ${tokenResult.status}`;
@@ -132,16 +161,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   // Helper method for displaying the Payment Status on the screen.
   // status is either SUCCESS or FAILURE;
   displayPaymentResults(status) {
-    const statusContainer = document.getElementById('payment-status-container');
-    if (status === 'SUCCESS') {
-      statusContainer.classList.remove('is-failure');
-      statusContainer.classList.add('is-success');
+    const statusContainer = document.getElementById("payment-status-container");
+    if (status === "SUCCESS") {
+      statusContainer.classList.remove("is-failure");
+      statusContainer.classList.add("is-success");
     } else {
-      statusContainer.classList.remove('is-success');
-      statusContainer.classList.add('is-failure');
+      statusContainer.classList.remove("is-success");
+      statusContainer.classList.add("is-failure");
     }
 
-    statusContainer.style.visibility = 'visible';
+    statusContainer.style.visibility = "visible";
   }
 
   async handlePaymentMethodSubmission() {
@@ -151,29 +180,29 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       this.isSubmitting = true;
       const token = await this.tokenize(this.card);
       const paymentResults = await this.createPayment(token);
-      this.displayPaymentResults('SUCCESS');
+      this.displayPaymentResults("SUCCESS");
 
-      console.log('Payment Success', paymentResults);
+      console.log("Payment Success", paymentResults);
     } catch (e) {
       this.isSubmitting = false;
-      this.displayPaymentResults('FAILURE');
+      this.displayPaymentResults("FAILURE");
       console.error(e.message);
     }
   }
 
   async ngAfterViewInit() {
     if (!this.window.Square) {
-      throw new Error('Square.js failed to load properly');
+      throw new Error("Square.js failed to load properly");
     }
 
     let payments;
     try {
       payments = this.window.Square.payments(
-        'sandbox-sq0idb-0CKlwXKBQtjH5BWBrEOHgw',
-        'LQ81E4HB41TWJ'
+        "sandbox-sq0idb-0CKlwXKBQtjH5BWBrEOHgw",
+        "LQ81E4HB41TWJ"
       );
     } catch (err) {
-      console.log('error', err);
+      console.log("error", err);
       /*const statusContainer = document.getElementById(
         "payment-status-container"
       );
@@ -185,7 +214,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     try {
       this.card = await this.initializeCard(payments);
     } catch (e) {
-      console.error('Initializing Card failed', e);
+      console.error("Initializing Card failed", e);
       return;
     }
     // const token = card.tokenize(payments);
@@ -224,42 +253,42 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   }
 
   checkInputError() {
-    if (this.infoPaymentForm.controls.given_name.value === '') {
-      this.firstNameError = 'First Name Required';
+    if (this.infoPaymentForm.controls.given_name.value === "") {
+      this.firstNameError = "First Name Required";
     } else {
       this.firstNameError = null;
     }
-    if (this.infoPaymentForm.controls.family_name.value === '') {
-      this.lastNameError = 'Last Name Required';
+    if (this.infoPaymentForm.controls.family_name.value === "") {
+      this.lastNameError = "Last Name Required";
     } else {
       this.lastNameError = null;
     }
-    if (this.infoPaymentForm.controls.phone_number.value === '') {
-      this.phoneNumberError = 'Phone Number Required';
+    if (this.infoPaymentForm.controls.phone_number.value === "") {
+      this.phoneNumberError = "Phone Number Required";
     } else {
       this.phoneNumberError = null;
     }
-    if (this.infoPaymentForm.controls.email_address.value === '') {
-      this.emailError = 'Email Address Required';
+    if (this.infoPaymentForm.controls.email_address.value === "") {
+      this.emailError = "Email Address Required";
     } else {
       this.emailError = null;
     }
-    if (this.infoPaymentForm.controls.property_name.value === '') {
-      this.propertyNameError = 'Property Name Required';
+    if (this.infoPaymentForm.controls.property_name.value === "") {
+      this.propertyNameError = "Property Name Required";
     } else {
       this.propertyNameError = null;
     }
-    if (this.infoPaymentForm.controls.differentName.value === '') {
-      this.differentNameError = 'Name Required';
+    if (this.infoPaymentForm.controls.differentName.value === "") {
+      this.differentNameError = "Name Required";
     } else {
       this.differentNameError = null;
     }
     if (
-      this.infoPaymentForm.controls.amountToPay.value === '' ||
+      this.infoPaymentForm.controls.amountToPay.value === "" ||
       this.infoPaymentForm.controls.amountToPay.value === 0 ||
       this.infoPaymentForm.controls.amountToPay.value < 1
     ) {
-      this.amountToPayError = 'Amount Required. Minimum $1 maximum $9999';
+      this.amountToPayError = "Amount Required. Minimum $1 maximum $9999";
     } else {
       this.amountToPayError = null;
     }
@@ -512,16 +541,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   conformationModal() {
     this.conformationShow = true;
     // const amountModal = (<HTMLInputElement>document.getElementById('amountToPay')).value;
-    this.modalHeader = 'Do You Agree To Pay';
+    this.modalHeader = "Do You Agree To Pay";
     this.modalAmountToPay = this.modalTotal();
   }
   modalTotal() {
     this.amountValue = (<HTMLInputElement>(
-      document.getElementById('amountToPay')
+      document.getElementById("amountToPay")
     )).value;
     this.intAmount = parseInt(this.amountValue);
     this.totalAmount = this.intAmount * 0.0375 + this.intAmount;
-    console.log('Total amount' + ' ' + this.totalAmount);
+    console.log("Total amount" + " " + this.totalAmount);
     return this.totalAmount.toFixed(2);
   }
   sendUserEmail(data) {
@@ -547,17 +576,17 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         if (response.statusCode === 200) {
           this.paymnetSuccess = true;
           this.sendUserEmail(this);
-          this.modalHeader = 'Thank You';
-          this.modalConformation = 'We received yor payment';
-          (<HTMLInputElement>document.getElementById('payButton')).disabled =
+          this.modalHeader = "Thank You";
+          this.modalConformation = "We received yor payment";
+          (<HTMLInputElement>document.getElementById("payButton")).disabled =
             true;
           this.sendAdminEmail(this);
-          console.log('Data success');
+          console.log("Data success");
           this.infoPaymentForm.reset();
         } else if (response.statusCode !== 200) {
           this.paymnetSuccess = false;
-          this.modalHeader = 'Sorry Something Went Wrong';
-          this.modalConformation = 'Please, check form for errors';
+          this.modalHeader = "Sorry Something Went Wrong";
+          this.modalConformation = "Please, check form for errors";
           // console.log('Message:' + '' + data.statusCode + ' ' + data.toString());
         }
         // console.log('data', data);

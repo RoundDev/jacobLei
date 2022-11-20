@@ -7,11 +7,43 @@
 // Dependencies
 var unirest = require('unirest');
 const uuidv1 = require('uuid/v1');
+const { Client, Environment } = require('square');
+const { randomUUID } = require('crypto');
 
 // Container object
 var square = {};
 
-square.sendSquarePayment = function(req,res,next){
+async function sendSquarePayment(req, res, next) {
+  // TODO: Need square token set
+  const client = new Client({
+    accessToken: '<process.env.SQUARE_TOKEN>',
+    environment: Environment['Sandbox'],//'should be: Environment[process.env.ENVIRONMENT] or some variation'
+  });
+
+  const customer = {
+    givenName: req.body.first_name,
+    familyName: req.body.last_name,
+  }
+
+  // create customer
+  await createCustomer(client, customer);
+
+
+}
+
+async function createCustomer(client, customer){
+  const { customersApi } = client;
+
+  let res = await customersApi.createCustomer({
+    givenName: customer.first_name,
+    familyName: customer.last_name,
+    idempotencyKey: randomUUID(),
+  });
+  console.log('res', res.result.customer)
+  return res.result.customer;
+}
+
+square.sendSquarePaymentOLD = function(req,res,next){
 	try{
 	  console.log("Req" + " " + JSON.stringify(req.body));
 		let nonce = req.body.data.sourceId;
@@ -51,7 +83,7 @@ square.sendSquarePayment = function(req,res,next){
 		});
 
 		customer.then(data => {
-		  console.log('Customer Data ID' + ' ' + data.body.customer.id);
+		  console.log('Customer Data ID' + ' ' + data.body?.customer?.id);
 			unirest.post('https://connect.squareupsandbox.com/v2/locations/' + location_id + '/transactions')
 			.headers({
 				'Accept': 'application/json',
@@ -90,4 +122,6 @@ square.sendSquarePayment = function(req,res,next){
 
 };
 
-module.exports = square;
+module.exports = {
+  sendSquarePayment
+}
