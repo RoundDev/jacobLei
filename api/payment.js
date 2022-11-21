@@ -42,29 +42,36 @@ async function sendSquarePayment(req, res, next) {
 }
 
 async function createPayment(client, payment){
-  console.log('payment', payment)
-  const { paymentsApi } = client;
-  let {amountMoney, appFeeMoney, token} = payment;
-  let res = await paymentsApi.createPayment({
-    idempotencyKey: uuidv1(),
-    sourceId: token,
-    amountMoney,
-    appFeeMoney
-  });
-  return res.result.payment;
+  try{
+    const { paymentsApi } = client;
+    let {amountMoney, appFeeMoney, token} = payment;
+    let res = await paymentsApi.createPayment({
+      idempotencyKey: uuidv1(),
+      sourceId: token,
+      amountMoney,
+      appFeeMoney
+    });
+    return res.result.payment;
+  } catch (err){
+    throw new Error(err);
+  }
 }
 
 async function createCustomer(client, customer){
-  const { customersApi } = client;
+  try{
+    const { customersApi } = client;
 
-  let res = await customersApi.createCustomer({
-    givenName: customer.givenName,
-    familyName: customer.familyName,
-    email_address: customer.emailAddress,
-		phone_number: customer.phoneNumber,
-    idempotencyKey: uuidv1(),
-  });
-  return res.result.customer;
+    let res = await customersApi.createCustomer({
+      givenName: customer.givenName,
+      familyName: customer.familyName,
+      email_address: customer.emailAddress,
+      phone_number: customer.phoneNumber,
+      idempotencyKey: uuidv1(),
+    });
+    return res.result.customer;
+  } catch(err){
+    throw new Error(err);
+  }
 }
 
 module.exports = {
