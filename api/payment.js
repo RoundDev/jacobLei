@@ -4,8 +4,7 @@
 
 // Dependencies
 const uuidv1 = require('uuid/v1');
-const { Client, Environment } = require('square');
-
+const { Client, Environment, PaymentsApi, CustomersApi } = require('square');
 
 async function sendSquarePayment(req, res, next) {
 
@@ -45,10 +44,10 @@ async function sendSquarePayment(req, res, next) {
 async function createPayment(client, payment){
   console.log('payment', payment)
   const { paymentsApi } = client;
-  let {amountMoney, appFeeMoney } = payment;
+  let {amountMoney, appFeeMoney, token} = payment;
   let res = await paymentsApi.createPayment({
     idempotencyKey: uuidv1(),
-    sourceId: payment.token,
+    sourceId: token,
     amountMoney,
     appFeeMoney
   });
