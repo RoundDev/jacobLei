@@ -64,8 +64,8 @@ async function createCustomer(client, customer){
     let res = await customersApi.createCustomer({
       givenName: customer.givenName,
       familyName: customer.familyName,
-      email_address: customer.emailAddress,
-      phone_number: customer.phoneNumber,
+      emailAddress: customer.emailAddress,
+      phoneNumber: customer.phoneNumber,
       idempotencyKey: uuidv1(),
     });
     return res.result.customer;
