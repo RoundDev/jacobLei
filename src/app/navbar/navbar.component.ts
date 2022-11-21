@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @ViewChild('mobileNavbar') mobileNavbar: ElementRef;
+  @ViewChild('mobileNavbar', { static: false }) mobileNavbar: ElementRef;
 
   constructor() { }
 

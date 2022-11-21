@@ -22,7 +22,7 @@ export class MaintenanceComponent implements OnInit {
   emailSuccess: boolean;
   messageHeader: string;
   messageBody: string;
-  @ViewChild('modalInfo') modal: ElementRef;
+  @ViewChild('modalInfo', { static: false }) modal: ElementRef;
 
   constructor(private formBuilder: FormBuilder, private appService: AppService) {
   }
