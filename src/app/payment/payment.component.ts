@@ -61,6 +61,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   cardButton: HTMLButtonElement;
   card: any;
   isSubmitting = false;
+  payments: any;
   //   loadsScript = loadafter.loadsScript;
   // url: 'https://js.squareup.com/v2/paymentform';
   constructor(
@@ -75,8 +76,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.checkInputError();
   }
 
-  async initializeCard(payments) {
-    this.card = await payments.card();
+  async initializeCard() {
+    this.card = await this.payments.card();
     await this.card.attach("#card-container");
     return this.card;
   }
@@ -143,21 +144,6 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Helper method for displaying the Payment Status on the screen.
-  // status is either SUCCESS or FAILURE;
-  displayPaymentResults(status) {
-    const statusContainer = document.getElementById("payment-status-container");
-    if (status === "SUCCESS") {
-      statusContainer.classList.remove("is-failure");
-      statusContainer.classList.add("is-success");
-    } else {
-      statusContainer.classList.remove("is-success");
-      statusContainer.classList.add("is-failure");
-    }
-
-    statusContainer.style.visibility = "visible";
-  }
-
   async handlePaymentMethodSubmission() {
     try {
       // disable the submit button as we await tokenization and make a
@@ -165,12 +151,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       this.isSubmitting = true;
       const token = await this.tokenize(this.card);
       const paymentResults = await this.createPayment(token);
-      this.displayPaymentResults("SUCCESS");
-
-      console.log("Payment Success", paymentResults);
     } catch (e) {
       this.isSubmitting = false;
-      this.displayPaymentResults("FAILURE");
       console.error(e.message);
     }
   }
@@ -180,9 +162,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       throw new Error("Square.js failed to load properly");
     }
 
-    let payments;
     try {
-      payments = this.window.Square.payments(
+      this.payments = this.window.Square.payments(
         "sandbox-sq0idb-0CKlwXKBQtjH5BWBrEOHgw",
         "LQ81E4HB41TWJ"
       );
@@ -197,7 +178,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
 
     try {
-      this.card = await this.initializeCard(payments);
+      this.card = await this.initializeCard();
     } catch (e) {
       console.error("Initializing Card failed", e);
       return;
@@ -556,29 +537,23 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   sendSqPayment(data) {
     this.conformationShow = false;
-    this.appService.sendPayment(data).subscribe(
-      (response) => {
-        console.log('Square Response After Payment' + '\n', response);
-        if (response === 'COMPLETED') {
-          this.paymnetSuccess = true;
-          this.sendUserEmail(this);
-          this.modalHeader = "Thank You";
-          this.modalConformation = "We received yor payment";
-          (<HTMLInputElement>document.getElementById("payButton")).disabled =
-            true;
-          this.sendAdminEmail(this);
-          console.log("Data success");
-          this.infoPaymentForm.reset();
-        } else if (response !== 'COMPLETED') {
-          this.paymnetSuccess = false;
-          this.modalHeader = "Sorry Something Went Wrong";
-          this.modalConformation = "Please, check form for errors";
-          // console.log('Message:' + '' + data.statusCode + ' ' + data.toString());
-        }
-        // console.log('data', data);
+    this.appService.sendPayment(data).subscribe(async (response) => {
+      if (response === "COMPLETED") {
+        this.paymnetSuccess = true;
+        this.sendUserEmail(this);
+        this.modalHeader = "Thank You";
+        this.modalConformation = "We received yor payment";
+        (<HTMLInputElement>document.getElementById("payButton")).disabled =
+          true;
+        this.sendAdminEmail(this);
+        this.infoPaymentForm.reset();
+        await this.card.destroy();
+        await this.initializeCard();
+      } else if (response !== "COMPLETED") {
+        this.paymnetSuccess = false;
+        this.modalHeader = "Sorry Something Went Wrong";
+        this.modalConformation = "Please, check form for errors";
       }
-      // () => '',
-      // () => ''
-    );
+    });
   }
 }
