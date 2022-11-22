@@ -5,6 +5,7 @@
 // Dependencies
 const uuidv1 = require('uuid/v1');
 const { Client, Environment, PaymentsApi, CustomersApi } = require('square');
+const {json} = require("express");
 
 async function sendSquarePayment(req, res, next) {
 
@@ -53,7 +54,7 @@ async function createPayment(client, payment){
     });
     return res.result.payment;
   } catch (err){
-    throw new Error(err);
+    return json(err);
   }
 }
 
@@ -70,7 +71,7 @@ async function createCustomer(client, customer){
     });
     return res.result.customer;
   } catch(err){
-    throw new Error(err);
+    return json(err);
   }
 }
 
