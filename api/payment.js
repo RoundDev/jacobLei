@@ -5,7 +5,7 @@
 // Dependencies
 const uuidv1 = require('uuid/v1');
 const { Client, Environment, PaymentsApi, CustomersApi } = require('square');
-const {json} = require("express");
+// const {json} = require("express");
 
 async function sendSquarePayment(req, res, next) {
 
@@ -47,14 +47,14 @@ async function createPayment(client, payment){
     const { paymentsApi } = client;
     let {amountMoney, appFeeMoney, token} = payment;
     let res = await paymentsApi.createPayment({
-      idempotencyKey: uuidv1(),
       sourceId: token,
+      idempotencyKey: uuidv1(),
       amountMoney,
       appFeeMoney
     });
     return res.result.payment;
   } catch (err){
-    return json(err);
+    return JSON.stringify(err);
   }
 }
 
@@ -71,7 +71,7 @@ async function createCustomer(client, customer){
     });
     return res.result.customer;
   } catch(err){
-    return json(err);
+    return JSON.stringify(err);
   }
 }
 
