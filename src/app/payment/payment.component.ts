@@ -105,8 +105,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     )).value;
     intAmount = parseInt(amount, 10);
     this.sendSqPayment({
-      token,
-      amountToPay: amount,
+      token: token,
+      amount_money: amount,
       first_name,
       last_name,
       email_address,
@@ -244,7 +244,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   sendSqPayment(data) {
     this.conformationShow = false;
     this.appService.sendPayment(data).subscribe(async (response) => {
-      if (response === "COMPLETED") {
+      if (response.statusCode === 200) {
         this.paymnetSuccess = true;
         this.sendUserEmail(this);
         this.modalHeader = "Thank You";
@@ -255,7 +255,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         this.infoPaymentForm.reset();
         await this.card.destroy();
         await this.initializeCard();
-      } else if (response !== "COMPLETED") {
+      } else if (response.statusCode !== 200) {
         this.paymnetSuccess = false;
         this.modalHeader = "Sorry Something Went Wrong";
         this.modalConformation = "Please, check form for errors";

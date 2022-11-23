@@ -2,84 +2,92 @@
  * Module for processing square payment
  */
 
+
+
 // Dependencies
+var unirest = require('unirest');
 const uuidv1 = require('uuid/v1');
-const { Client, Environment, PaymentsApi, CustomersApi } = require('square');
-// const {json} = require("express");
 
-async function sendSquarePayment(req, res, next) {
+// Container object
+var square = {};
 
-  try {
+square.sendSquarePayment = function(req,res,next){
+	try{
+	  console.log("Req" + " " + JSON.stringify(req.body));
+		let nonce = req.body.token;
+		console.log("This is token" + nonce);
+		let amtEl = parseInt(req.body.amount_money, 10);
+		console.log('Amount to pay' + ' ' + amtEl);
+		let amtInDollars = amtEl * 100;
+		let amtTotal = (amtInDollars * 0.0375) + amtInDollars;
+		let amt = parseInt(amtTotal, 10);
+		console.log('This is amt' + ' ' +  amt);
+		let given_name = req.body.first_name;
+		let family_name = req.body.last_name;
+		let email_address = req.body.email_address;
+		let phone_number = req.body.phone_number;
 
-    let amount = (parseInt(req.body.amountToPay, 10) * 100);
+		let location_id = process.env.SQUARE_LOCATION_PROD;//"CBASEKMX2G17bvMoK22CqyjodIYgAQ";
+		let access_token = process.env.SQUARE_TOKEN_PROD;//"sandbox-sq0atb-z_RHpdCXPfJTFaf1itVRjQ";
+		// console.log("Customer" + " " + given_name + family_name + email_address + phone_number);
+		let customer = new Promise((resolve) => {
+			unirest.post('https://connect.squareup.com/v2/customers')
+			.headers({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + access_token,
+			})
+			.send({
+				"given_name": given_name,
+        "family_name": family_name,
+        "email_address": email_address,
+				"phone_number": phone_number,
+        "idempotency_key": uuidv1()
+			})
+			.end(function(response){
+			  console.log("This is response" + '' + JSON.stringify(response));
+				resolve(response);
+			})
+		});
 
-    const client = new Client({
-      accessToken: process.env.SQUARE_TOKEN_PROD,
-      environment: Environment['Production']
-    });
+		customer.then(data => {
+		  // console.log('Customer Data ID' + ' ' + data.body.customer.id);
+			unirest.post('https://connect.squareup.com/v2/payments')
+			.headers({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + access_token,
+			})
+			.send({
+				'source_id':nonce /*NONCE field from form*/,
+				'amount_money': {
+					'amount': amt /*amount field from form*/,
+					'currency':'USD'
+				},
+				'idempotency_key':uuidv1(),
+				'customer_id' : data.body.customer.id
+			})
+			.end(function(response){
+			console.log('Respons paymnent' + '' + JSON.stringify(response));
+		// if(response.statusCode === 200) {
+		//   // alert('Payment send')
+		//   console.log('Success')
+		// }else if(response.statusCode !== 200) {
+		//   // alert('Payment Fail' + res.json(error))
+		//   console.log('Fail')
+		// }
+			// console.log(response);
+				res.json(response)
 
-    const customer = {
-      givenName: req.body.first_name,
-      familyName: req.body.last_name,
-      emailAddress: req.body.email_address,
-      phoneNumber: req.body.phone_number
-    }
+			})
+		});
+	}
+	catch(error){
+		console.log("\x1b[31m%s\x1b[0m",`ERROR: ${error}`);
+	}
 
-    const payment = {
-      token: req.body.token,
-      amountMoney: {
-        amount,
-        currency: 'USD',
-      },
-      appFeeMoney: {
-        amount: Math.round((amount * 0.0375)),
-        currency: 'USD'
-      },
-    }
-    // create customer
-    let createdCustomer = await createCustomer(client, customer);
-    payment.customerId = createdCustomer.id;
-    let createdPayment = await createPayment(client, payment);
-    // console.log('Created payment Payload' + '\n', createdPayment);
-    return res.json(createdPayment.status);
-  } catch (err) {
-    return JSON.stringify(err);
-  }
-}
 
-async function createPayment(client, payment){
-  try{
-    const { paymentsApi } = client;
-    let {amountMoney, appFeeMoney, token} = payment;
-    let res = await paymentsApi.createPayment({
-      sourceId: token,
-      idempotencyKey: uuidv1(),
-      amountMoney,
-      appFeeMoney
-    });
-    return res.result.payment;
-  } catch (err){
-    return JSON.stringify(err);
-  }
-}
 
-async function createCustomer(client, customer){
-  try{
-    const { customersApi } = client;
+};
 
-    let res = await customersApi.createCustomer({
-      givenName: customer.givenName,
-      familyName: customer.familyName,
-      emailAddress: customer.emailAddress,
-      phoneNumber: customer.phoneNumber,
-      idempotencyKey: uuidv1(),
-    });
-    return res.result.customer;
-  } catch(err){
-    return JSON.stringify(err);
-  }
-}
-
-module.exports = {
-  sendSquarePayment
-}
+module.exports = square;
