@@ -228,7 +228,10 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   sendUserEmail(data) {
     this.appService
       .sendUserPaymentEmail(data.infoPaymentForm.value)
-      .subscribe((data) => {
+      .subscribe((response) => {
+        if (response) {
+          console.log('Email sent');
+        }
         // console.log('data', data);
       });
   }
