@@ -33,7 +33,7 @@
             <li><a (click)="collapseNav()" routerLinkActive="router-link-active" routerLink="/notice">NOTICE TO VACATE</a></li>
           </ul>
         </li>
-        <li><a (click)="collapseNav()" routerLinkActive="router-link-active" routerLink="/properties">PROPERTIES</a></li>
+        <li><a routerLinkActive="router-link-active" (click)="openLink()">PROPERTIES</a></li>
         <li><a (click)="collapseNav()" routerLinkActive="router-link-active" routerLink="/contact">CONTACT US</a></li>
       </ul>
     </div>
@@ -67,7 +67,7 @@
             <li><a routerLinkActive="router-link-active" routerLink="/notice">NOTICE TO VACATE</a></li>
           </ul>
         </li>
-        <li><a routerLinkActive="router-link-active" routerLink="/properties">PROPERTIES</a></li>
+        <li><a routerLinkActive="router-link-active" (click)="openLink()">PROPERTIES</a></li>
         <li><a routerLinkActive="router-link-active" routerLink="/contact">CONTACT US</a></li>
       </ul>
     </div>
