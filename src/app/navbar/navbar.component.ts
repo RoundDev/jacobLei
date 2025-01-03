@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('mobileNavbar', { static: false }) mobileNavbar: ElementRef;
-  readonly url: string = 'https://jacoblei.managebuilding.com/Resident/PublicPages/ApartmentSearch.aspx';
+  readonly url: string = 'https://jacoblei.managebuilding.com/Resident/PublicPages/Home.aspx';
 
   constructor() { }
 
